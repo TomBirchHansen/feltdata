@@ -159,7 +159,7 @@ paths:
 components:
   schemas:
     User:
-      title: User
+      title: Location
       type: object
       description: ''
       x-examples:
@@ -173,11 +173,13 @@ components:
           signUpDate: '2019-08-24'
       properties:
         id:
-          type: integer
+          type:
+            - integer
+            - string
           description: Unique identifier for the given user.
-        firstName:
+        projectno:
           type: string
-        lastName:
+        title:
           type: string
         email:
           type: string
@@ -195,8 +197,8 @@ components:
           description: The date that the user was created.
       required:
         - id
-        - firstName
-        - lastName
+        - projectno
+        - title
         - email
         - emailVerified
   securitySchemes: {}
