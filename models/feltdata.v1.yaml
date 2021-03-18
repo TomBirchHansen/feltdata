@@ -1,5 +1,30 @@
 title: feltdata
 type: object
 properties:
-  id:
-    type: string
+  location:
+    type: object
+    properties:
+      locationId:
+        type: string
+      locationName:
+        type: string
+      address:
+        type: string
+      x:
+        type:
+          - number
+          - 'null'
+      'y':
+        type:
+          - number
+          - 'null'
+    required:
+      - locationId
+x-examples:
+  example-1:
+    location:
+      locationId: string
+      locationName: string
+      address: string
+      x: null
+      'y': null
