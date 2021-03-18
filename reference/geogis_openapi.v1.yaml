@@ -183,6 +183,7 @@ paths:
                         type: string
                     required:
                       - samplesiteid
+          headers: {}
       operationId: get-samplesite
       description: Get details of samplesite (geogis point and or intake)
     parameters:
@@ -192,6 +193,13 @@ paths:
         in: path
         required: true
         description: GUID of samplesite (geogis pointid or intakeid)
+    patch:
+      summary: ''
+      operationId: patch-samplesite-samplesiteid
+      responses:
+        '200':
+          description: OK
+      parameters: []
 components:
   schemas:
     feltdata2:
