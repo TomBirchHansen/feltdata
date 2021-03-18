@@ -106,7 +106,7 @@ paths:
           description: 'distance from x,y'
   /user:
     post:
-      summary: Create New User
+      summary: Create New User - example
       operationId: post-user
       responses:
         '200':
@@ -158,6 +158,40 @@ paths:
                   dateOfBirth: '1996-08-24'
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
+  '/samplesite/{samplesiteid}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  samplesite:
+                    type: object
+                    properties:
+                      samplesiteid:
+                        type: string
+                      samplesiteNo:
+                        type: string
+                      publicno:
+                        type: string
+                      intakeid:
+                        type: string
+                    required:
+                      - samplesiteid
+      operationId: get-samplesite
+      description: Get details of samplesite (geogis point and or intake)
+    parameters:
+      - schema:
+          type: string
+        name: samplesiteid
+        in: path
+        required: true
+        description: GUID of samplesite (geogis pointid or intakeid)
 components:
   schemas:
     feltdata2:
