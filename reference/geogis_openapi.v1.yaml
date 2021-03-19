@@ -30,16 +30,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  locationid:
-                    type: string
-                  locationName:
-                    type: string
-                  x:
-                    type: number
-                  'y':
-                    type: number
+                $ref: '#/components/schemas/feltdata2'
               examples: {}
             application/xml:
               schema:
@@ -183,15 +174,21 @@ paths:
                         type: string
                     required:
                       - samplesiteid
+                  location:
+                    $ref: '#/components/schemas/feltdata2'
           headers: {}
       operationId: get-samplesite
       description: Get details of samplesite (geogis point and or intake)
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: test
     parameters:
       - schema:
           type: string
         name: samplesiteid
         in: path
-        required: true
         description: GUID of samplesite (geogis pointid or intakeid)
     patch:
       summary: ''
@@ -200,16 +197,79 @@ paths:
         '200':
           description: OK
       parameters: []
+  /samplesite:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/feltdata2'
+      operationId: get-samplesite
+      description: list samplesites that match parameters
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: projectid
+          description: GUID of projectid
+        - schema:
+            type: array
+          in: query
+          name: DGU
+          description: DGU numer of samplesite
+        - schema:
+            type: string
+          in: query
+          name: startDate
+        - schema:
+            type: string
+          in: query
+          name: endDate
+        - schema:
+            type: array
+          in: query
+          name: typeCode
 components:
   schemas:
     feltdata2:
-      title: feltdata2
+      title: Project
       type: object
-      description: model description
+      description: a project (also called location) consists of one or many samplesites (boreholes ect)
       properties:
         project:
           type: object
           properties:
-            projectid:
+            projectId:
               type: string
+              description: GUID
+            projectNo:
+              type: string
+            projectTitle:
+              type: string
+            x:
+              description: x coordinate
+              type: integer
+            'y':
+              type: integer
+              description: y coordinate in UTM32euref89
+    Samplesite:
+      title: Samplesite
+      description: ''
+      type: object
+      properties:
+        samplesiteid:
+          type: string
+        samplesiteno:
+          type: string
+        DGU:
+          type: string
+        intakeno:
+          type: number
+        intakeid:
+          type: string
   securitySchemes: {}
