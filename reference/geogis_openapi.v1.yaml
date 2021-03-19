@@ -109,7 +109,7 @@ paths:
         - geogis
   /samplesite:
     get:
-      summary: Your GET endpoint
+      summary: GET samplesite
       tags: []
       responses:
         '200':
@@ -120,7 +120,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Samplesite'
       operationId: get-samplesite
-      description: list samplesites that match parameters
+      description: |-
+        list samplesites that match parameters. 
+        Parameters lat,long and distance are used to get records within distance from the position.
       parameters:
         - schema:
             type: string
@@ -131,19 +133,40 @@ paths:
             type: array
           in: query
           name: DGU
-          description: DGU numer of samplesite
+          description: DGU number of borehole
         - schema:
             type: string
           in: query
           name: startDate
+          description: startdate must be less than
         - schema:
             type: string
           in: query
           name: endDate
+          description: enddate must be later than
         - schema:
             type: array
           in: query
           name: typeCode
+          description: the type of the samplesite
+        - $ref: '#/components/parameters/lat'
+        - $ref: '#/components/parameters/long'
+        - $ref: '#/components/parameters/distance'
+        - schema:
+            type: boolean
+          in: query
+          name: isWell
+          description: return only wells
+        - schema:
+            type: boolean
+          in: query
+          name: isNotWell
+          description: do not return wells
+        - schema:
+            type: boolean
+          in: query
+          name: hasIntakes
+          description: must have intakes
   /projects:
     get:
       summary: GET all projects that match parameters
@@ -162,6 +185,7 @@ paths:
         - $ref: '#/components/parameters/projectNo'
         - $ref: '#/components/parameters/lat'
         - $ref: '#/components/parameters/long'
+        - $ref: '#/components/parameters/distance'
       description: Returns array of projects matching search parameters
     parameters: []
 components:
@@ -203,8 +227,8 @@ components:
         example-1:
           samplesiteid: string
           samplesiteno: string
-          DGU: string
-          intakeno: 0
+          DGU: '89.1212'
+          intakeno: 1
           intakeid: string
       properties:
         samplesiteid:
@@ -216,6 +240,8 @@ components:
         intakeno:
           type: number
         intakeid:
+          type: string
+        type:
           type: string
   securitySchemes: {}
   parameters:
@@ -243,6 +269,13 @@ components:
       schema:
         type: string
       description: longitude
+    distance:
+      name: distance
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: distance in meters
   responses:
     test:
       description: Example response
