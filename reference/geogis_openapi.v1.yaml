@@ -6,32 +6,26 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  '/location/{locationId_or_nr}':
+  '/projects/{projectid}':
     parameters:
       - schema:
           type: string
-          example: 751-00001 or 12f45a71-1a1f-1121-121a1f111121
-        name: locationId_or_nr
+        name: projectid
         in: path
-        description: GUID or locationname of location (ProjectID/projectno)
         required: true
     get:
-      summary: Get location by locationid
+      summary: Get project by projectId
       tags: []
       responses:
-        '204':
-          description: No Content
-          content:
-            application/json:
-              schema:
-                type: object
         '302':
           description: Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/feltdata2'
-              examples: {}
+                $ref: '#/components/schemas/Project'
+        '404':
+          description: Not Found
+          content:
             application/xml:
               schema:
                 type: object
@@ -60,41 +54,9 @@ paths:
                 required:
                   - location
               examples: {}
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
       operationId: get-location
       description: Retrieve the information of a location
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties: {}
-          application/xml:
-            schema:
-              type: object
-              properties: {}
-      parameters:
-        - schema:
-            type: number
-          in: query
-          name: x
-          description: 'x coordinate '
-        - schema:
-            type: number
-          in: query
-          name: 'y'
-          description: y coordinate
-        - schema:
-            type: string
-          in: query
-          name: distance
-          description: 'distance from x,y'
+      parameters: []
   /user:
     post:
       summary: Create New User - example
@@ -234,9 +196,26 @@ paths:
             type: array
           in: query
           name: typeCode
+  /projects:
+    get:
+      summary: GET all projects that match parameters
+      tags: []
+      responses:
+        '302':
+          description: Found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+      operationId: get-projects-find
+      parameters:
+        - $ref: '#/components/parameters/projectNo'
+    parameters: []
 components:
   schemas:
-    feltdata2:
+    Project:
       title: Project
       type: object
       description: a project (also called location) consists of one or many samplesites (boreholes ect)
@@ -257,6 +236,14 @@ components:
             'y':
               type: integer
               description: y coordinate in UTM32euref89
+      x-examples:
+        example-1:
+          project:
+            projectId: ac1a56a1-5f39-4272-b8f3-8fd8fd033b41
+            projectNo: 730-00090
+            projectTitle: Vestergade 39 olieforurening
+            x: 5454540
+            'y': 62293921
     Samplesite:
       title: Samplesite
       description: ''
@@ -273,3 +260,51 @@ components:
         intakeid:
           type: string
   securitySchemes: {}
+  parameters:
+    projectNo:
+      name: projectNo
+      in: query
+      required: false
+      schema:
+        type: string
+        example: 701-00101
+        maxLength: 120
+        minLength: 1
+      description: the projectnumber of the location (GeoGIS projectNo)
+    xCoordinate:
+      name: xCoordinate
+      in: query
+      required: false
+      schema:
+        type: number
+      description: x part of coordinate i UTM 32 euref 89
+    yCoordinate:
+      name: yCoordinate
+      in: query
+      required: false
+      schema:
+        type: number
+      description: y part of coordinate
+    lat:
+      name: lat
+      in: query
+      required: false
+      schema:
+        type: number
+      description: 'latitude '
+    long:
+      name: long
+      in: query
+      required: false
+      schema:
+        type: string
+      description: longitude
+  responses:
+    test:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
