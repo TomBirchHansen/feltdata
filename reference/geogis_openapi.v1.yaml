@@ -2,13 +2,16 @@ openapi: 3.0.0
 info:
   title: geogis_openapi
   version: '1.0'
-  description: geogisapi
+  description: API for GeoGIS field data
   contact:
     name: Danske Regioner
     url: 'http://www.danskeregioner.dk'
     email: tomhan@rm.dk
 servers:
   - url: 'http://localhost:3000'
+    description: testsite
+  - description: Region Midt GeoGIS
+    url: 'https://geogisapi.rm.dk'
 paths:
   '/projects/{projectId}':
     parameters:
@@ -110,7 +113,6 @@ paths:
   /samplesite:
     get:
       summary: GET samplesite
-      tags: []
       responses:
         '200':
           description: OK
@@ -167,6 +169,59 @@ paths:
           in: query
           name: hasIntakes
           description: must have intakes
+      tags:
+        - geogis
+    put:
+      summary: ''
+      operationId: put-samplesite
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Samplesite'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      description: create new samplesite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                samplesiteid:
+                  type: string
+                  minLength: 1
+                  description: 'GUID of new samplesiteid, if empty a new GUId is created'
+                samplesiteno:
+                  type: string
+                  minLength: 1
+                DGU:
+                  type: string
+                  minLength: 1
+                intakeno:
+                  type: number
+                intakeid:
+                  type: string
+                  minLength: 1
+                type:
+                  type: string
+                  minLength: 1
+                projectid:
+                  type: string
+                  minLength: 1
+                  description: valid projectid
+              required:
+                - samplesiteno
+                - type
+                - projectid
   /projects:
     get:
       summary: GET all projects that match parameters
@@ -194,31 +249,45 @@ components:
       title: Project
       type: object
       description: a project (also called location) consists of one or many samplesites (boreholes ect)
+      x-examples:
+        example-1:
+          project:
+            projectId: string
+            projectNo: string
+            projectTitle: string
+            x: 0
+            'y': 0
+            sampleSites:
+              - samplesiteid: string
+                samplesiteno: string
+                DGU: string
+                intakeno: 0
+                intakeid: string
+                type: string
+                projectid: string
       properties:
         project:
           type: object
           properties:
             projectId:
               type: string
-              description: GUID
+              description: the unique GUID of project
             projectNo:
               type: string
+              description: the unique projectno
             projectTitle:
               type: string
+              description: name or title of projekt
             x:
               description: x coordinate
               type: integer
             'y':
               type: integer
               description: y coordinate in UTM32euref89
-      x-examples:
-        example-1:
-          project:
-            projectId: ac1a56a1-5f39-4272-b8f3-8fd8fd033b41
-            projectNo: 730-00090
-            projectTitle: Vestergade 39 olieforurening
-            x: 5454540
-            'y': 62293921
+            sampleSites:
+              type: array
+              items:
+                $ref: '#/components/schemas/Samplesite'
     Samplesite:
       title: Samplesite
       description: ''
@@ -230,6 +299,7 @@ components:
           DGU: '89.1212'
           intakeno: 1
           intakeid: string
+          type: BE
       properties:
         samplesiteid:
           type: string
@@ -243,6 +313,13 @@ components:
           type: string
         type:
           type: string
+        projectid:
+          type: string
+          description: reference to project
+      required:
+        - samplesiteid
+        - samplesiteno
+        - projectid
   securitySchemes: {}
   parameters:
     projectNo:
@@ -278,6 +355,14 @@ components:
       description: distance in meters
   responses:
     test:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+    unauthorised:
       description: Example response
       content:
         application/json:
