@@ -222,6 +222,8 @@ paths:
                 - samplesiteno
                 - type
                 - projectid
+      tags:
+        - geogis
   /projects:
     get:
       summary: GET all projects that match parameters
