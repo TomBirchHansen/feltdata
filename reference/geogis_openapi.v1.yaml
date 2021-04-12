@@ -121,6 +121,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Samplesite'
+            application/xml:
+              schema:
+                type: object
+                properties: {}
       operationId: get-samplesite
       description: |-
         list samplesites that match parameters. 
@@ -245,6 +249,10 @@ paths:
         - $ref: '#/components/parameters/lat'
         - $ref: '#/components/parameters/long'
         - $ref: '#/components/parameters/distance'
+        - schema:
+            type: array
+          in: query
+          name: geometry
       description: Returns array of projects matching search parameters
     parameters: []
 components:
