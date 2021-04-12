@@ -226,6 +226,7 @@ paths:
                 - samplesiteno
                 - type
                 - projectid
+            examples: {}
       tags:
         - geogis
   /projects:
@@ -277,6 +278,49 @@ components:
                 intakeid: string
                 type: string
                 projectid: string
+        example-2:
+          project:
+            projectId: string
+            projectNo: string
+            projectTitle: string
+            x: 0
+            'y': 0
+            sampleSites:
+              - samplesiteid: string
+                samplesiteno: string
+                DGU: string
+                intakeno: 0
+                intakeid: string
+                typeC: string
+                typeT: string
+                projectid: string
+                projectName: string
+                LastWaterlevel:
+                  date: string
+                  waterlevel: string
+                  depth: string
+                  referencelevel: string
+                  situationC: string
+                  situationT: string
+                  extremeC: string
+                  extremeT: string
+                LastSample:
+                  date: string
+                  sampledBy: string
+                  MediumC: string
+                  MediumT: string
+            jar-loknr: string
+            address: string
+            contactRegion: string
+            personreference: string
+            primaryLaboratory: string
+            noteForSampler: string
+            Projectfase:
+              - projectName: string
+                projectType: string
+                projectStart: string
+                projectEnd: string
+                projectLabel: string
       properties:
         project:
           type: object
@@ -300,6 +344,45 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Samplesite'
+            jar-loknr:
+              type: string
+            address:
+              type: string
+            contactRegion:
+              type: string
+            personreference:
+              type: string
+              description: as default for EAN invoice
+            primaryLaboratory:
+              type: string
+              description: default for new requisitions
+            noteForSampler:
+              type: string
+              description: general info for field-workers
+            Projectphase:
+              type: array
+              items:
+                type: object
+                properties:
+                  Name:
+                    type: string
+                  Type:
+                    type: string
+                  Start:
+                    type: string
+                  End:
+                    type: string
+                  Label:
+                    type: string
+                    description: long projectname (name + start + end)
+                  phaseId:
+                    type: string
+            geometry:
+              type: string
+            lat:
+              type: number
+            long:
+              type: number
     Samplesite:
       title: Samplesite
       description: ''
@@ -321,13 +404,18 @@ components:
           type: string
         intakeno:
           type: number
+          description: type
         intakeid:
           type: string
-        type:
+        typeC:
+          type: string
+        typeT:
           type: string
         projectid:
           type: string
           description: reference to project
+        projectName:
+          type: string
         LastWaterlevel:
           type: object
           description: Last waterlevel measurements
@@ -341,15 +429,42 @@ components:
               description: depth reading in meters
             referencelevel:
               type: string
-            situation:
+            situationC:
               type: string
-            extremeId:
+              description: 'codevalue for waterlevel situation. '
+            situationT:
+              type: string
+              description: 'code-text for situation. example ''Ro'', ''Drift'''
+            extremeC:
               type: string
               description: code for extreme
+            extremeT:
+              type: string
+              description: 'code-text for extreme. Example: ''overløb'', ''normal'''
+        LastSample:
+          type: object
+          properties:
+            date:
+              type: string
+            sampledBy:
+              type: string
+            MediumC:
+              type: string
+            MediumT:
+              type: string
+              description: code-text for medium. example 'jord'
       required:
         - samplesiteid
         - samplesiteno
         - projectid
+    Sample:
+      title: Sample
+      type: object
+      properties:
+        id:
+          type: string
+        '':
+          type: string
   securitySchemes: {}
   parameters:
     projectNo:
