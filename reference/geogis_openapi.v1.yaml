@@ -237,6 +237,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Project'
+        '400':
+          description: Bad Request
       operationId: get-projects-find
       parameters:
         - $ref: '#/components/parameters/projectNo'
