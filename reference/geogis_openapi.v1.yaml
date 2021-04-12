@@ -318,6 +318,24 @@ components:
         projectid:
           type: string
           description: reference to project
+        LastWaterlevel:
+          type: object
+          description: Last waterlevel measurements
+          properties:
+            date:
+              type: string
+            waterlevel:
+              type: string
+            depth:
+              type: string
+              description: depth reading in meters
+            referencelevel:
+              type: string
+            situation:
+              type: string
+            extremeId:
+              type: string
+              description: code for extreme
       required:
         - samplesiteid
         - samplesiteno
