@@ -242,6 +242,55 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Project'
+              examples:
+                example-1:
+                  value:
+                    - project:
+                        projectId: string
+                        projectNo: string
+                        projectTitle: string
+                        x: 0
+                        'y': 0
+                        sampleSites:
+                          - samplesiteid: string
+                            samplesiteno: string
+                            DGU: string
+                            intakeno: 0
+                            intakeid: string
+                            typeC: string
+                            typeT: string
+                            projectid: string
+                            projectName: string
+                            LastWaterlevel:
+                              date: string
+                              waterlevel: string
+                              depth: string
+                              referencelevel: string
+                              situationC: string
+                              situationT: string
+                              extremeC: string
+                              extremeT: string
+                            LastSample:
+                              date: string
+                              sampledBy: string
+                              MediumC: string
+                              MediumT: string
+                        jar-loknr: string
+                        address: string
+                        contactRegion: string
+                        personreference: string
+                        primaryLaboratory: string
+                        noteForSampler: string
+                        Projectphase:
+                          - Name: string
+                            Type: string
+                            Start: string
+                            End: string
+                            Label: string
+                            phaseId: string
+                        geometry: string
+                        lat: 0
+                        long: 0
         '400':
           description: Bad Request
       operationId: get-projects-find
@@ -264,21 +313,6 @@ components:
       description: a project (also called location) consists of one or many samplesites (boreholes ect)
       x-examples:
         example-1:
-          project:
-            projectId: string
-            projectNo: string
-            projectTitle: string
-            x: 0
-            'y': 0
-            sampleSites:
-              - samplesiteid: string
-                samplesiteno: string
-                DGU: string
-                intakeno: 0
-                intakeid: string
-                type: string
-                projectid: string
-        example-2:
           project:
             projectId: string
             projectNo: string
@@ -315,12 +349,16 @@ components:
             personreference: string
             primaryLaboratory: string
             noteForSampler: string
-            Projectfase:
-              - projectName: string
-                projectType: string
-                projectStart: string
-                projectEnd: string
-                projectLabel: string
+            Projectphase:
+              - Name: string
+                Type: string
+                Start: string
+                End: string
+                Label: string
+                phaseId: string
+            geometry: string
+            lat: 0
+            long: 0
       properties:
         project:
           type: object
@@ -340,10 +378,12 @@ components:
             'y':
               type: integer
               description: y coordinate in UTM32euref89
-            sampleSites:
-              type: array
-              items:
-                $ref: '#/components/schemas/Samplesite'
+            geometry:
+              type: string
+            lat:
+              type: number
+            long:
+              type: number
             jar-loknr:
               type: string
             address:
@@ -359,11 +399,17 @@ components:
             noteForSampler:
               type: string
               description: general info for field-workers
+            sampleSites:
+              type: array
+              items:
+                $ref: '#/components/schemas/Samplesite'
             Projectphase:
               type: array
               items:
                 type: object
                 properties:
+                  phaseId:
+                    type: string
                   Name:
                     type: string
                   Type:
@@ -375,14 +421,6 @@ components:
                   Label:
                     type: string
                     description: long projectname (name + start + end)
-                  phaseId:
-                    type: string
-            geometry:
-              type: string
-            lat:
-              type: number
-            long:
-              type: number
     Samplesite:
       title: Samplesite
       description: ''
