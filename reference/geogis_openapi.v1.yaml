@@ -319,6 +319,15 @@ components:
             projectTitle: string
             x: 0
             'y': 0
+            geometry: string
+            lat: 0
+            long: 0
+            jar-loknr: string
+            address: string
+            contactRegion: string
+            personreference: string
+            primaryLaboratory: string
+            noteForSampler: string
             sampleSites:
               - samplesiteid: string
                 samplesiteno: string
@@ -343,22 +352,13 @@ components:
                   sampledBy: string
                   MediumC: string
                   MediumT: string
-            jar-loknr: string
-            address: string
-            contactRegion: string
-            personreference: string
-            primaryLaboratory: string
-            noteForSampler: string
             Projectphase:
-              - Name: string
+              - phaseId: string
+                Name: string
                 Type: string
                 Start: string
                 End: string
                 Label: string
-                phaseId: string
-            geometry: string
-            lat: 0
-            long: 0
       properties:
         project:
           type: object
@@ -499,10 +499,13 @@ components:
       title: Sample
       type: object
       properties:
-        id:
-          type: string
-        '':
-          type: string
+        Sample:
+          type: object
+          properties:
+            sampleId:
+              type: string
+            sampleLabel:
+              type: string
   securitySchemes: {}
   parameters:
     projectNo:
