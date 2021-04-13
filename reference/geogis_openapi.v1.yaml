@@ -491,6 +491,8 @@ components:
             MediumT:
               type: string
               description: code-text for medium. example 'jord'
+        descriptionLocation:
+          type: string
       required:
         - sampleSiteId
         - sampleSiteNo
