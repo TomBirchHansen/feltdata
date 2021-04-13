@@ -434,22 +434,22 @@ components:
           intakeid: string
           type: BE
       properties:
-        samplesiteid:
+        sampleSiteId:
           type: string
-        samplesiteno:
+        sampleSiteNo:
           type: string
         DGU:
           type: string
-        intakeno:
+        intakeNo:
           type: number
           description: type
-        intakeid:
+        intakeId:
           type: string
         typeC:
           type: string
         typeT:
           type: string
-        projectid:
+        projectId:
           type: string
           description: reference to project
         projectName:
@@ -492,12 +492,13 @@ components:
               type: string
               description: code-text for medium. example 'jord'
       required:
-        - samplesiteid
-        - samplesiteno
-        - projectid
+        - sampleSiteId
+        - sampleSiteNo
+        - projectId
     Sample:
-      title: Sample
+      title: AnalysisSample
       type: object
+      description: ''
       properties:
         Sample:
           type: object
@@ -505,6 +506,49 @@ components:
             sampleId:
               type: string
             sampleLabel:
+              type: string
+            matrixC:
+              description: Stancode list 1183
+              type: string
+            matricT:
+              type: string
+              description: Stancode list 1183
+            sampledBy:
+              type: string
+            sampleBarcode:
+              type: string
+            sampleSiteId:
+              type: string
+            sampleSiteName:
+              type: string
+              description: districptive name of samplesite.
+            laboratoryId:
+              type: string
+            laboratoryName:
+              type: string
+            equipmentC:
+              type: string
+              description: Stancode list 1006
+            equipmentT:
+              type: string
+              description: Stancode list 1006
+            IntakeNo:
+              type: string
+            IntakeName:
+              type: string
+            sampleTop:
+              type: string
+            sampleBottom:
+              type: string
+            start:
+              type: string
+              format: date-time
+            end:
+              type: string
+              format: date-time
+            FieldRemark:
+              type: string
+            remark:
               type: string
   securitySchemes: {}
   parameters:
