@@ -23,7 +23,8 @@ paths:
         description: GUID of project
     get:
       summary: Get project by projectId
-      tags: []
+      tags:
+        - geogis
       responses:
         '200':
           description: OK
@@ -68,7 +69,8 @@ paths:
   '/samplesite/{samplesiteid}':
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - geogis
       responses:
         '200':
           description: OK
@@ -128,7 +130,7 @@ paths:
                 properties: {}
       operationId: get-samplesite
       description: |-
-        list samplesites that match parameters. 
+        get all samplesites that match parameters. 
         Parameters lat,long and distance are used to get records within distance from the position.
       parameters:
         - schema:
@@ -193,7 +195,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      description: create new samplesite
+      description: create new samplesite. Returns the created samplesite object if OK
       requestBody:
         content:
           application/json:
@@ -233,7 +235,8 @@ paths:
   /projects:
     get:
       summary: GET all projects that match parameters
-      tags: []
+      tags:
+        - geogis
       responses:
         '200':
           description: OK
@@ -243,55 +246,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Project'
-              examples:
-                example-1:
-                  value:
-                    - project:
-                        projectId: string
-                        projectNo: string
-                        projectTitle: string
-                        x: 0
-                        'y': 0
-                        sampleSites:
-                          - samplesiteid: string
-                            samplesiteno: string
-                            DGU: string
-                            intakeno: 0
-                            intakeid: string
-                            typeC: string
-                            typeT: string
-                            projectid: string
-                            projectName: string
-                            LastWaterlevel:
-                              date: string
-                              waterlevel: string
-                              depth: string
-                              referencelevel: string
-                              situationC: string
-                              situationT: string
-                              extremeC: string
-                              extremeT: string
-                            LastSample:
-                              date: string
-                              sampledBy: string
-                              MediumC: string
-                              MediumT: string
-                        jar-loknr: string
-                        address: string
-                        contactRegion: string
-                        personreference: string
-                        primaryLaboratory: string
-                        noteForSampler: string
-                        Projectphase:
-                          - Name: string
-                            Type: string
-                            Start: string
-                            End: string
-                            Label: string
-                            phaseId: string
-                        geometry: string
-                        lat: 0
-                        long: 0
+              examples: {}
         '400':
           description: Bad Request
       operationId: get-projects-find
@@ -309,7 +264,6 @@ paths:
   '/samples/{sampleid}':
     get:
       summary: Your GET endpoint
-      tags: []
       responses:
         '200':
           description: OK
@@ -318,6 +272,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Sample'
       operationId: get-samples
+      description: 'n'
+      tags:
+        - geogis
     parameters:
       - schema:
           type: string
@@ -329,21 +286,45 @@ paths:
       summary: Your GET endpoint
       tags:
         - geogis
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sample'
       operationId: get-sample
       parameters: []
+      description: get all samples matching parameters
     put:
       summary: ''
       operationId: put-sample
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sampleId:
+                    type: string
+                  sampleSiteId:
+                    type: string
+                  sampleLabel:
+                    type: string
+                required:
+                  - sampleSiteId
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties: {}
+        description: ''
+      description: create new sample
+      tags:
+        - geogis
 components:
   schemas:
     Project:
