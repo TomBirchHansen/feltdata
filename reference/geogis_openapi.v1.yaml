@@ -121,6 +121,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Samplesite'
+              examples: {}
             application/xml:
               schema:
                 type: object
