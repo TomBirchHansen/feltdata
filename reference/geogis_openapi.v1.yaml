@@ -323,6 +323,26 @@ paths:
         name: sampleid
         in: path
         required: true
+  /sample:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - geogis
+      responses: {}
+      operationId: get-sample
+      parameters: []
+    put:
+      summary: ''
+      operationId: put-sample
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
 components:
   schemas:
     Project:
