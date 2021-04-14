@@ -305,6 +305,18 @@ paths:
           name: geometry
       description: Returns array of projects matching search parameters
     parameters: []
+  '/samples/{sampleid}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-samples
+    parameters:
+      - schema:
+          type: string
+        name: sampleid
+        in: path
+        required: true
 components:
   schemas:
     Project:
@@ -423,7 +435,7 @@ components:
                     description: long projectname (name + start + end)
     Samplesite:
       title: Samplesite
-      description: ''
+      description: Borehole or other samplesite. Where one or more samplings can be made.
       type: object
       x-examples:
         example-1:
@@ -493,6 +505,8 @@ components:
               description: code-text for medium. example 'jord'
         descriptionLocation:
           type: string
+          description: |
+            a description of the specific location ex. 'next to entrance', 'front of house' ect.
       required:
         - sampleSiteId
         - sampleSiteNo
@@ -500,7 +514,7 @@ components:
     Sample:
       title: AnalysisSample
       type: object
-      description: ''
+      description: Samples taken to be analysed
       properties:
         Sample:
           type: object
@@ -510,7 +524,7 @@ components:
             sampleLabel:
               type: string
             matrixC:
-              description: Stancode list 1183
+              description: Stancode list 1183. Air/water/soil
               type: string
             matricT:
               type: string
@@ -530,18 +544,20 @@ components:
               type: string
             equipmentC:
               type: string
-              description: Stancode list 1006
+              description: 'Stancode list 1006. "orsarør","kulrør","canister" ect.'
             equipmentT:
               type: string
               description: Stancode list 1006
             IntakeNo:
-              type: string
+              type: number
             IntakeName:
               type: string
             sampleTop:
-              type: string
+              type: number
+              format: double
             sampleBottom:
-              type: string
+              type: number
+              format: double
             start:
               type: string
               format: date-time
@@ -552,6 +568,9 @@ components:
               type: string
             remark:
               type: string
+          required:
+            - sampleId
+            - sampleSiteId
   securitySchemes: {}
   parameters:
     projectNo:
