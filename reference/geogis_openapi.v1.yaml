@@ -503,6 +503,7 @@ components:
       properties:
         sampleSiteId:
           type: string
+          description: either a geogis pointid or intakeid
         sampleSiteNo:
           type: string
         DGU:
@@ -512,10 +513,16 @@ components:
           description: type
         intakeId:
           type: string
+          description: geogis intakeid. from geogis intake tabel
+        pointid:
+          type: string
+          description: geogis pointid. is never null
         typeC:
           type: string
+          description: pointtype code. Reference to codelist?
         typeT:
           type: string
+          description: pointtype kodevalue
         projectId:
           type: string
           description: reference to project
@@ -625,6 +632,13 @@ components:
             remark:
               type: string
               description: generic remark of sample
+            fieldMeasurements:
+              type: object
+              properties:
+                water:
+                  type: object
+                air:
+                  type: string
           required:
             - sampleId
             - sampleSiteId
