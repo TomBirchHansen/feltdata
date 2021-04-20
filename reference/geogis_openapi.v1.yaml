@@ -63,7 +63,7 @@ paths:
                 required:
                   - location
               examples: {}
-      operationId: get-location
+      operationId: get-project
       description: Returns the information of a project by its projectId
       parameters: []
   '/samplesite/{samplesiteid}':
@@ -244,7 +244,7 @@ paths:
               examples: {}
         '400':
           description: Bad Request
-      operationId: get-projects-find
+      operationId: get-project-find
       parameters:
         - $ref: '#/components/parameters/projectNo'
         - $ref: '#/components/parameters/lat'
@@ -266,7 +266,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Sample'
-      operationId: get-samples
+      operationId: get-sample
       description: get data for specific sample.
       tags:
         - geogis
@@ -278,7 +278,7 @@ paths:
         required: true
     patch:
       summary: ''
-      operationId: patch-samples-sampleid
+      operationId: patch-sample-sampleid
       description: update data for specified sample in path parameter
       tags:
         - geogis
@@ -376,6 +376,15 @@ paths:
               required:
                 - Sample
         description: sample details for updating
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sample'
+        '400':
+          description: Bad Request
   /sample:
     get:
       summary: Your GET endpoint
