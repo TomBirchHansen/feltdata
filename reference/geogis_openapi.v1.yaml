@@ -22,7 +22,7 @@ paths:
         required: true
         description: GUID of project
     get:
-      summary: Get project by projectId
+      summary: Get project by Id
       tags:
         - geogis
       responses:
@@ -68,7 +68,7 @@ paths:
       parameters: []
   '/samplesite/{samplesiteid}':
     get:
-      summary: Your GET endpoint
+      summary: GET samplesite  by id
       tags:
         - geogis
       responses:
@@ -258,7 +258,7 @@ paths:
         - geogis
   /projects:
     get:
-      summary: GET all projects that match parameters
+      summary: GET projects
       tags:
         - geogis
       responses:
@@ -283,11 +283,12 @@ paths:
             type: array
           in: query
           name: geometry
+          description: WKT geometry of search area
       description: Returns array of projects matching search parameters
     parameters: []
   '/sample/{sampleId}':
     get:
-      summary: Your GET endpoint
+      summary: GET Sample by id
       responses:
         '200':
           description: OK
@@ -432,7 +433,7 @@ paths:
                               type: number
   /sample:
     get:
-      summary: Your GET endpoint
+      summary: GET Sample
       tags:
         - geogis
       responses:
