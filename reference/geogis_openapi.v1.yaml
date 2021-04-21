@@ -362,12 +362,118 @@ paths:
                     description: remark noted in field
                 required:
                   - sampleSiteId
+              examples:
+                example-1:
+                  value:
+                    sampleId: string
+                    sampleSiteId: string
+                    sampleLabel: string
+                    samplebarcode: string
+                    equipment: string
+                    remark: string
+                    start: string
+                    end: string
+                    sampledBy: string
+                    fieldRemark: string
       requestBody:
         content:
           application/json:
             schema:
+              description: ''
               type: object
-              properties: {}
+              properties:
+                Sample:
+                  type: object
+                  properties:
+                    sampleId:
+                      type: string
+                      minLength: 1
+                    sampleLabel:
+                      type: string
+                      minLength: 1
+                    matrixC:
+                      type: string
+                      minLength: 1
+                    matricT:
+                      type: string
+                      minLength: 1
+                    sampledBy:
+                      type: string
+                      minLength: 1
+                    sampleBarcode:
+                      type: string
+                      minLength: 1
+                    sampleSiteId:
+                      type: string
+                      minLength: 1
+                    start:
+                      type: string
+                      minLength: 1
+                    end:
+                      type: string
+                      minLength: 1
+                    laboratoryId:
+                      type: string
+                      minLength: 1
+                    equipmentC:
+                      type: string
+                      minLength: 1
+                    IntakeNo:
+                      type: number
+                    IntakeName:
+                      type: string
+                      minLength: 1
+                    sampleTop_m:
+                      type: number
+                    sampleBottom_m:
+                      type: number
+                    FieldRemark:
+                      type: string
+                      minLength: 1
+                    remark:
+                      type: string
+                      minLength: 1
+                    fieldMeasurements:
+                      type: object
+                      properties:
+                        water:
+                          type: object
+                          properties:
+                            temperature:
+                              type: number
+                            conductivity_mSm:
+                              type: number
+                            pH:
+                              type: number
+                            redox_mV:
+                              type: number
+                            pumpYield_m3h:
+                              type: number
+                            prePump_l:
+                              type: number
+                            waterlevelCalm_m:
+                              type: number
+                            waterlevelInUse_m:
+                              type: number
+                        air-orsa:
+                          type: object
+                          properties:
+                            sampleMinutes:
+                              type: number
+                        air-coal:
+                          type: object
+                          properties:
+                            airVolume_l:
+                              type: number
+                            counterPressure_mbar:
+                              type: number
+                        soil:
+                          type: object
+                          properties:
+                            sampleTop_m:
+                              type: number
+                            sampleBottom_m:
+                              type: number
         description: ''
       description: create new sample
       tags:
@@ -662,7 +768,7 @@ components:
                   properties:
                     sampleMinutes:
                       type: integer
-                air-kul:
+                air-coal:
                   type: object
                   properties:
                     airVolume_l:
@@ -679,6 +785,47 @@ components:
           required:
             - sampleId
             - sampleSiteId
+      x-examples:
+        example-1:
+          Sample:
+            sampleId: string
+            sampleLabel: string
+            matrixC: string
+            matricT: string
+            sampledBy: string
+            sampleBarcode: string
+            sampleSiteId: string
+            sampleSiteName: string
+            start: '2019-08-24T14:15:22Z'
+            end: '2019-08-24T14:15:22Z'
+            laboratoryId: string
+            laboratoryName: string
+            equipmentC: string
+            equipmentT: string
+            IntakeNo: 0
+            IntakeName: string
+            sampleTop_m: 0
+            sampleBottom_m: 0
+            FieldRemark: string
+            remark: string
+            fieldMeasurements:
+              water:
+                temperature: 0
+                conductivity_mSm: 0
+                pH: 0
+                redox_mV: 0
+                pumpYield_m3h: 0
+                prePump_l: 0
+                waterlevelCalm_m: 0
+                waterlevelInUse_m: 0
+              air-orsa:
+                sampleMinutes: 0
+              air-coal:
+                airVolume_l: 0
+                counterPressure_mbar: 0
+              soil:
+                sampleTop_m: 0
+                sampleBottom_m: 0
   securitySchemes: {}
   parameters:
     projectNo:
