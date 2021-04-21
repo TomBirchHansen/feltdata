@@ -13,7 +13,7 @@ servers:
   - description: Region Midt GeoGIS
     url: 'https://geogisapi.rm.dk'
 paths:
-  '/project/{projectId}':
+  '/projects/{projectId}':
     parameters:
       - schema:
           type: string
@@ -63,7 +63,7 @@ paths:
                 required:
                   - location
               examples: {}
-      operationId: get-project
+      operationId: get-location
       description: Returns the information of a project by its projectId
       parameters: []
   '/samplesite/{samplesiteid}':
@@ -227,7 +227,7 @@ paths:
             examples: {}
       tags:
         - geogis
-  /project:
+  /projects:
     get:
       summary: GET all projects that match parameters
       tags:
@@ -244,7 +244,7 @@ paths:
               examples: {}
         '400':
           description: Bad Request
-      operationId: get-project-find
+      operationId: get-projects-find
       parameters:
         - $ref: '#/components/parameters/projectNo'
         - $ref: '#/components/parameters/lat'
@@ -256,7 +256,7 @@ paths:
           name: geometry
       description: Returns array of projects matching search parameters
     parameters: []
-  '/sample/{sampleId}':
+  '/samples/{sampleId}':
     get:
       summary: Your GET endpoint
       responses:
@@ -266,7 +266,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Sample'
-      operationId: get-sample
+        '400':
+          description: Bad Request
+      operationId: get-samples
       description: get data for specific sample.
       tags:
         - geogis
@@ -278,113 +280,35 @@ paths:
         required: true
     patch:
       summary: ''
-      operationId: patch-sample-sampleid
-      description: update data for specified sample in path parameter
+      operationId: patch-samples-sampleid
+      responses:
+        '200':
+          description: OK
+      description: update data for specified sample
       tags:
         - geogis
       requestBody:
         content:
           application/json:
             schema:
-              description: ''
               type: object
               properties:
-                Sample:
-                  type: object
-                  required:
-                    - matrixC
-                    - sampledBy
-                  properties:
-                    sampleLabel:
-                      type: string
-                      minLength: 1
-                    matrixC:
-                      type: string
-                      minLength: 1
-                    sampledBy:
-                      type: string
-                      minLength: 1
-                    sampleBarcode:
-                      type: string
-                      minLength: 1
-                    sampleSiteId:
-                      type: string
-                      minLength: 1
-                    start:
-                      type: string
-                      minLength: 1
-                    end:
-                      type: string
-                      minLength: 1
-                    laboratoryId:
-                      type: string
-                      minLength: 1
-                    equipmentC:
-                      type: string
-                      minLength: 1
-                    sampleTop_m:
-                      type: number
-                    sampleBottom_m:
-                      type: number
-                    FieldRemark:
-                      type: string
-                      minLength: 1
-                    remark:
-                      type: string
-                      minLength: 1
-                    fieldMeasurements:
-                      type: object
-                      properties:
-                        water:
-                          type: object
-                          properties:
-                            temperature:
-                              type: number
-                            conductivity_mSm:
-                              type: number
-                            pH:
-                              type: number
-                            redox_mV:
-                              type: number
-                            pumpYield_m3h:
-                              type: number
-                            prePump_l:
-                              type: number
-                            waterlevelCalm_m:
-                              type: number
-                            waterlevelInUse_m:
-                              type: number
-                        air-orsa:
-                          type: object
-                          properties:
-                            sampleMinutes:
-                              type: number
-                        air-coal:
-                          type: object
-                          properties:
-                            airVolume_l:
-                              type: number
-                            counterPressure_mbar:
-                              type: number
-                        soil:
-                          type: object
-                          properties:
-                            sampleTop_m:
-                              type: number
-                            sampleBottom_m:
-                              type: number
-              required:
-                - Sample
-        description: sample details for updating
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Sample'
-        '400':
-          description: Bad Request
+                sample:
+                  type: string
+                sampleLable:
+                  type: string
+                sampleEquipment:
+                  type: string
+                remark:
+                  type: string
+                start:
+                  type: string
+                end:
+                  type: string
+                sampleTop:
+                  type: string
+                sampleBottom:
+                  type: string
   /sample:
     get:
       summary: Your GET endpoint
@@ -397,19 +321,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Sample'
+          headers: {}
+        '400':
+          description: Bad Request
       operationId: get-sample
       parameters: []
       description: get all samples matching parameters
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                s:
-                  $ref: '#/components/schemas/Sample'
     put:
-      summary: PUT sample
+      summary: ''
       operationId: put-sample
       responses:
         '200':
@@ -417,108 +336,40 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Sample'
+                type: object
+                properties:
+                  sampleId:
+                    type: string
+                  sampleSiteId:
+                    type: string
+                  sampleLabel:
+                    type: string
+                  samplebarcode:
+                    type: string
+                  equipment:
+                    type: string
+                  remark:
+                    type: string
+                    description: generic remark
+                  start:
+                    type: string
+                  end:
+                    type: string
+                  sampledBy:
+                    type: string
+                  fieldRemark:
+                    type: string
+                    description: remark noted in field
+                required:
+                  - sampleSiteId
       requestBody:
         content:
           application/json:
             schema:
-              description: ''
               type: object
-              properties:
-                Sample:
-                  type: object
-                  required:
-                    - sampleId
-                    - matrixC
-                    - sampledBy
-                    - sampleSiteId
-                  properties:
-                    sampleId:
-                      type: string
-                      minLength: 1
-                    sampleLabel:
-                      type: string
-                      minLength: 1
-                    matrixC:
-                      type: string
-                      minLength: 1
-                    sampledBy:
-                      type: string
-                      minLength: 1
-                    sampleBarcode:
-                      type: string
-                      minLength: 1
-                    sampleSiteId:
-                      type: string
-                      minLength: 1
-                    start:
-                      type: string
-                      minLength: 1
-                    end:
-                      type: string
-                      minLength: 1
-                    laboratoryId:
-                      type: string
-                      minLength: 1
-                    equipmentC:
-                      type: string
-                      minLength: 1
-                    sampleTop_m:
-                      type: number
-                    sampleBottom_m:
-                      type: number
-                    FieldRemark:
-                      type: string
-                      minLength: 1
-                    remark:
-                      type: string
-                      minLength: 1
-                    fieldMeasurements:
-                      type: object
-                      properties:
-                        water:
-                          type: object
-                          properties:
-                            temperature:
-                              type: number
-                            conductivity_mSm:
-                              type: number
-                            pH:
-                              type: number
-                            redox_mV:
-                              type: number
-                            pumpYield_m3h:
-                              type: number
-                            prePump_l:
-                              type: number
-                            waterlevelCalm_m:
-                              type: number
-                            waterlevelInUse_m:
-                              type: number
-                        air-orsa:
-                          type: object
-                          properties:
-                            sampleMinutes:
-                              type: number
-                        air-coal:
-                          type: object
-                          properties:
-                            airVolume_l:
-                              type: number
-                            counterPressure_mbar:
-                              type: number
-                        soil:
-                          type: object
-                          properties:
-                            sampleTop_m:
-                              type: number
-                            sampleBottom_m:
-                              type: number
-              required:
-                - Sample
-            examples: {}
-        description: inserts new sample including field-values
-      description: create new sample. Returns data for the sample created
+              properties: {}
+        description: ''
+      description: create new sample
       tags:
         - geogis
 components:
@@ -726,48 +577,6 @@ components:
       title: AnalysisSample
       type: object
       description: Samples taken to be analysed
-      x-examples:
-        example-1:
-          Sample:
-            sampleId: string
-            sampleLabel: string
-            matrixC: string
-            matricT: string
-            sampledBy: string
-            sampleBarcode: string
-            sampleSiteId: string
-            sampleSiteName: string
-            start: '2019-08-24T14:15:22Z'
-            end: '2019-08-24T14:15:22Z'
-            laboratoryId: string
-            laboratoryName: string
-            equipmentC: string
-            equipmentT: string
-            IntakeNo: 0
-            IntakeName: string
-            sampleTop_m: 0
-            sampleBottom_m: 0
-            FieldRemark: string
-            remark: string
-            fieldMeasurements:
-              water:
-                temperature: 0
-                conductivity_mSm: 0
-                pH: 0
-                redox_mV: 0
-                pumpYield_m3h: 0
-                prePump_l: 0
-                waterlevelCalm_m: 0
-                waterlevelInUse_m: 0
-              air-orsa:
-                sampleMinutes: 0
-              air-kul:
-                airVolume_l: 0
-                counterPressure_mbar: 0
-              soil:
-                sampleTop_m: 0
-                sampleBottom_m: 0
-                test: string
       properties:
         Sample:
           type: object
@@ -840,8 +649,10 @@ components:
                       type: number
                     pumpYield_m3h:
                       type: number
+                      description: pumping yield in m3h
                     prePump_l:
                       type: number
+                      description: prepumping in litres
                     waterlevelCalm_m:
                       type: number
                     waterlevelInUse_m:
@@ -851,7 +662,7 @@ components:
                   properties:
                     sampleMinutes:
                       type: integer
-                air-coal:
+                air-kul:
                   type: object
                   properties:
                     airVolume_l:
@@ -865,8 +676,6 @@ components:
                       type: number
                     sampleBottom_m:
                       type: number
-                    test:
-                      type: string
           required:
             - sampleId
             - sampleSiteId
