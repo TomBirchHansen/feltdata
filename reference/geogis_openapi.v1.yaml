@@ -279,11 +279,17 @@ paths:
         in: path
         required: true
     patch:
-      summary: ''
+      summary: Patch Sample
       operationId: patch-samples-sampleid
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sample'
+        '400':
+          description: Bad Request
       description: update data for specified sample
       tags:
         - geogis
@@ -291,24 +297,110 @@ paths:
         content:
           application/json:
             schema:
+              description: ''
               type: object
               properties:
-                sample:
-                  type: string
-                sampleLable:
-                  type: string
-                sampleEquipment:
-                  type: string
-                remark:
-                  type: string
-                start:
-                  type: string
-                end:
-                  type: string
-                sampleTop:
-                  type: string
-                sampleBottom:
-                  type: string
+                Sample:
+                  type: object
+                  properties:
+                    sampleId:
+                      type: string
+                      minLength: 1
+                    sampleLabel:
+                      type: string
+                      minLength: 1
+                    matrixC:
+                      type: string
+                      minLength: 1
+                    matricT:
+                      type: string
+                      minLength: 1
+                    sampledBy:
+                      type: string
+                      minLength: 1
+                    sampleBarcode:
+                      type: string
+                      minLength: 1
+                    sampleSiteId:
+                      type: string
+                      minLength: 1
+                    sampleSiteName:
+                      type: string
+                      minLength: 1
+                    start:
+                      type: string
+                      minLength: 1
+                    end:
+                      type: string
+                      minLength: 1
+                    laboratoryId:
+                      type: string
+                      minLength: 1
+                    laboratoryName:
+                      type: string
+                      minLength: 1
+                    equipmentC:
+                      type: string
+                      minLength: 1
+                    equipmentT:
+                      type: string
+                      minLength: 1
+                    IntakeNo:
+                      type: number
+                    IntakeName:
+                      type: string
+                      minLength: 1
+                    sampleTop_m:
+                      type: number
+                    sampleBottom_m:
+                      type: number
+                    FieldRemark:
+                      type: string
+                      minLength: 1
+                    remark:
+                      type: string
+                      minLength: 1
+                    fieldMeasurements:
+                      type: object
+                      properties:
+                        water:
+                          type: object
+                          properties:
+                            temperature:
+                              type: number
+                            conductivity_mSm:
+                              type: number
+                            pH:
+                              type: number
+                            redox_mV:
+                              type: number
+                            pumpYield_m3h:
+                              type: number
+                            prePump_l:
+                              type: number
+                            waterlevelCalm_m:
+                              type: number
+                            waterlevelInUse_m:
+                              type: number
+                        air-orsa:
+                          type: object
+                          properties:
+                            sampleMinutes:
+                              type: number
+                        air-coal:
+                          type: object
+                          properties:
+                            airVolume_l:
+                              type: number
+                            counterPressure_mbar:
+                              type: number
+                        soil:
+                          type: object
+                          properties:
+                            sampleTop_m:
+                              type: number
+                            sampleBottom_m:
+                              type: number
   /sample:
     get:
       summary: Your GET endpoint
@@ -328,7 +420,7 @@ paths:
       parameters: []
       description: get all samples matching parameters
     put:
-      summary: ''
+      summary: PUT Sample
       operationId: put-sample
       responses:
         '200':
@@ -336,45 +428,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  sampleId:
-                    type: string
-                  sampleSiteId:
-                    type: string
-                  sampleLabel:
-                    type: string
-                  samplebarcode:
-                    type: string
-                  equipment:
-                    type: string
-                  remark:
-                    type: string
-                    description: generic remark
-                  start:
-                    type: string
-                  end:
-                    type: string
-                  sampledBy:
-                    type: string
-                  fieldRemark:
-                    type: string
-                    description: remark noted in field
-                required:
-                  - sampleSiteId
-              examples:
-                example-1:
-                  value:
-                    sampleId: string
-                    sampleSiteId: string
-                    sampleLabel: string
-                    samplebarcode: string
-                    equipment: string
-                    remark: string
-                    start: string
-                    end: string
-                    sampledBy: string
-                    fieldRemark: string
+                $ref: '#/components/schemas/Sample'
+              examples: {}
+        '400':
+          description: Bad Request
       requestBody:
         content:
           application/json:
@@ -474,7 +531,8 @@ paths:
                               type: number
                             sampleBottom_m:
                               type: number
-        description: ''
+            examples: {}
+        description: data for the new sample
       description: create new sample
       tags:
         - geogis
