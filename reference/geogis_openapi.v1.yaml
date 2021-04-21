@@ -682,6 +682,8 @@ components:
                   Label:
                     type: string
                     description: long projectname (name + start + end)
+      x-tags:
+        - objects
     Samplesite:
       title: Samplesite
       description: Borehole or other samplesite. Where one or more samplings can be made.
