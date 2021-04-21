@@ -107,7 +107,36 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Samplesite'
+              description: ''
+              type: object
+              properties:
+                sampleSiteId:
+                  type: string
+                  minLength: 1
+                sampleSiteNo:
+                  type: string
+                  minLength: 1
+                DGU:
+                  type: string
+                  minLength: 1
+                intakeNo:
+                  type: number
+                intakeId:
+                  type: string
+                  minLength: 1
+                pointid:
+                  type: string
+                  minLength: 1
+                typeC:
+                  type: string
+                  minLength: 1
+                projectId:
+                  type: string
+                  minLength: 1
+                descriptionLocation:
+                  type: string
+                  minLength: 1
+            examples: {}
         description: 'data to be updated. Note: Samplesiteid and DGU cannot be modified.'
       description: update one of more fields of the samplesite
       tags:
