@@ -63,7 +63,7 @@ paths:
                 required:
                   - location
               examples: {}
-      operationId: get-location
+      operationId: get-project
       description: Returns the information of a project by its projectId
       parameters: []
   '/samplesite/{samplesiteid}':
@@ -97,7 +97,7 @@ paths:
         description: GUID of samplesite (geogis pointid or intakeid)
         required: true
     patch:
-      summary: ''
+      summary: Patch Samplesite
       operationId: patch-samplesite
       responses:
         '200':
@@ -256,7 +256,7 @@ paths:
           name: geometry
       description: Returns array of projects matching search parameters
     parameters: []
-  '/samples/{sampleId}':
+  '/sample/{sampleId}':
     get:
       summary: Your GET endpoint
       responses:
@@ -268,7 +268,7 @@ paths:
                 $ref: '#/components/schemas/Sample'
         '400':
           description: Bad Request
-      operationId: get-samples
+      operationId: get-sample
       description: get data for specific sample.
       tags:
         - geogis
