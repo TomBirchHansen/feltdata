@@ -344,9 +344,6 @@ paths:
                     matrixC:
                       type: string
                       minLength: 1
-                    matricT:
-                      type: string
-                      minLength: 1
                     sampledBy:
                       type: string
                       minLength: 1
@@ -365,8 +362,6 @@ paths:
                     laboratoryName:
                       type: string
                     equipmentC:
-                      type: string
-                    equipmentT:
                       type: string
                     sampleTop_m:
                       type: number
