@@ -32,6 +32,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project'
+              examples: {}
         '404':
           description: Not Found
           content:
@@ -97,7 +98,7 @@ paths:
         description: GUID of samplesite (geogis pointid or intakeid)
         required: true
     patch:
-      summary: Patch Samplesite
+      summary: PATCH Samplesite
       operationId: patch-samplesite
       responses:
         '200':
@@ -250,15 +251,18 @@ paths:
                 sampleMediaC:
                   type: string
                   minLength: 1
+                isIntake:
+                  type: boolean
               required:
                 - samplesiteno
                 - sampleMediaC
             examples: {}
+        description: ''
       tags:
         - geogis
-  /projects:
+  /project:
     get:
-      summary: GET projects
+      summary: GET project
       tags:
         - geogis
       responses:
@@ -273,7 +277,7 @@ paths:
               examples: {}
         '400':
           description: Bad Request
-      operationId: get-projects-find
+      operationId: get-project-find
       parameters:
         - $ref: '#/components/parameters/projectNo'
         - $ref: '#/components/parameters/lat'
@@ -298,7 +302,7 @@ paths:
                 $ref: '#/components/schemas/Sample'
         '400':
           description: Bad Request
-      operationId: get-sample
+      operationId: get-sample-sampleId
       description: get data for specific sample.
       tags:
         - geogis
@@ -309,8 +313,8 @@ paths:
         in: path
         required: true
     patch:
-      summary: Patch Sample
-      operationId: patch-samples-sampleid
+      summary: PATCH Sample
+      operationId: patch-sample-sampleid
       responses:
         '200':
           description: OK
