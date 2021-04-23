@@ -561,13 +561,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Sample'
+                $ref: '#/components/schemas/Sample_alt'
           headers: {}
         '400':
           description: Bad Request
       operationId: get-sample_alternative
       parameters: []
-      description: get all samples matching parameters
+      description: get all samples matching parameters. Alternative to 'sample' where fieldmeasurements is an array
     put:
       summary: PUT Sample_alternative
       operationId: put-sample_alternative
@@ -864,6 +864,90 @@ components:
         - sampleSiteId
         - sampleSiteNo
         - projectId
+    Sample_alt:
+      title: AnalysisSample_alt
+      type: object
+      description: Samples taken to be analysed
+      properties:
+        Sample:
+          type: object
+          properties:
+            sampleId:
+              type: string
+            sampleLabel:
+              type: string
+            matrixC:
+              description: Stancode list 1183. Air/water/soil
+              type: string
+            matricT:
+              type: string
+              description: Stancode list 1183
+            sampledBy:
+              type: string
+            sampleBarcode:
+              type: string
+            sampleSiteId:
+              type: string
+            sampleSiteName:
+              type: string
+              description: districptive name of samplesite.
+            start:
+              type: string
+              format: date-time
+            end:
+              type: string
+              format: date-time
+            laboratoryId:
+              type: string
+            laboratoryName:
+              type: string
+            equipmentC:
+              type: string
+              description: 'Stancode list 1006. "orsarør","kulrør","canister" ect.'
+            equipmentT:
+              type: string
+              description: Stancode list 1006
+            IntakeNo:
+              type: number
+            IntakeName:
+              type: string
+            sampleTop_m:
+              type: number
+              format: double
+            sampleBottom_m:
+              type: number
+              format: double
+              description: sampled end datetime
+            FieldRemark:
+              type: string
+              description: Remark from the field
+            remark:
+              type: string
+              description: generic remark of sample
+            fieldMeasurements:
+              type: array
+              items:
+                type: object
+                properties:
+                  parameterC:
+                    type: string
+                  parameterT:
+                    type: string
+                  value:
+                    type: string
+                  unitT:
+                    type: string
+                  unitC:
+                    type: string
+                  methodT:
+                    type: string
+                  methodC:
+                    type: string
+                  accredited:
+                    type: integer
+          required:
+            - sampleId
+            - sampleSiteId
     Sample:
       title: AnalysisSample
       type: object
@@ -970,47 +1054,7 @@ components:
           required:
             - sampleId
             - sampleSiteId
-      x-examples:
-        example-1:
-          Sample:
-            sampleId: string
-            sampleLabel: string
-            matrixC: string
-            matricT: string
-            sampledBy: string
-            sampleBarcode: string
-            sampleSiteId: string
-            sampleSiteName: string
-            start: '2019-08-24T14:15:22Z'
-            end: '2019-08-24T14:15:22Z'
-            laboratoryId: string
-            laboratoryName: string
-            equipmentC: string
-            equipmentT: string
-            IntakeNo: 0
-            IntakeName: string
-            sampleTop_m: 0
-            sampleBottom_m: 0
-            FieldRemark: string
-            remark: string
-            fieldMeasurements:
-              water:
-                temperature: 0
-                conductivity_mSm: 0
-                pH: 0
-                redox_mV: 0
-                pumpYield_m3h: 0
-                prePump_l: 0
-                waterlevelCalm_m: 0
-                waterlevelInUse_m: 0
-              air-orsa:
-                sampleMinutes: 0
-              air-coal:
-                airVolume_l: 0
-                counterPressure_mbar: 0
-              soil:
-                sampleTop_m: 0
-                sampleBottom_m: 0
+      x-examples: {}
   securitySchemes: {}
   parameters:
     projectNo:
