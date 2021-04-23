@@ -550,6 +550,117 @@ paths:
       description: create new sample
       tags:
         - geogis
+  /sample_alternative:
+    get:
+      summary: GET Sample_alternative
+      tags:
+        - geogis
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sample'
+          headers: {}
+        '400':
+          description: Bad Request
+      operationId: get-sample_alternative
+      parameters: []
+      description: get all samples matching parameters
+    put:
+      summary: PUT Sample_alternative
+      operationId: put-sample_alternative
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sample'
+              examples: {}
+        '400':
+          description: Bad Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                Sample:
+                  type: object
+                  properties:
+                    sampleId:
+                      type: string
+                      minLength: 1
+                    sampleLabel:
+                      type: string
+                      minLength: 1
+                    matrixC:
+                      type: string
+                      minLength: 1
+                    matricT:
+                      type: string
+                      minLength: 1
+                    sampledBy:
+                      type: string
+                      minLength: 1
+                    sampleBarcode:
+                      type: string
+                      minLength: 1
+                    sampleSiteId:
+                      type: string
+                      minLength: 1
+                    start:
+                      type: string
+                      minLength: 1
+                    end:
+                      type: string
+                      minLength: 1
+                    laboratoryId:
+                      type: string
+                      minLength: 1
+                    equipmentC:
+                      type: string
+                      minLength: 1
+                    IntakeNo:
+                      type: number
+                    IntakeName:
+                      type: string
+                      minLength: 1
+                    sampleTop_m:
+                      type: number
+                    sampleBottom_m:
+                      type: number
+                    FieldRemark:
+                      type: string
+                      minLength: 1
+                    remark:
+                      type: string
+                      minLength: 1
+                    fieldMeasurements:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          parameterC:
+                            type: string
+                          parameterValue:
+                            type: string
+                          parameterUnitC:
+                            type: string
+                          parameterMethodC:
+                            type: string
+                          performer:
+                            type: string
+                          accredited:
+                            type: boolean
+            examples: {}
+        description: data for the new sample
+      description: create new sample
+      tags:
+        - geogis
 components:
   schemas:
     Project:
