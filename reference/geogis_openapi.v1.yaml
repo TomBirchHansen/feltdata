@@ -233,29 +233,22 @@ paths:
               description: ''
               type: object
               properties:
-                samplesiteid:
+                samplesiteId:
                   type: string
-                  minLength: 1
-                  description: 'GUID of new samplesiteid, if empty a new GUId is created'
-                samplesiteno:
-                  type: string
-                  minLength: 1
-                DGU:
-                  type: string
-                  minLength: 1
-                intakeno:
-                  type: number
-                intakeid:
-                  type: string
-                  minLength: 1
-                sampleMediaC:
-                  type: string
-                  minLength: 1
-                isIntake:
-                  type: boolean
-              required:
-                - samplesiteno
-                - sampleMediaC
+                sampleSiteDetails:
+                  type: object
+                  properties:
+                    DGU:
+                      type: string
+                    samplesiteno:
+                      type: string
+                    description:
+                      type: string
+                InakeDetails:
+                  type: object
+                  properties:
+                    intakeId:
+                      type: string
             examples: {}
         description: ''
       tags:
@@ -339,7 +332,12 @@ paths:
                   properties:
                     sampleId:
                       type: string
-                      minLength: 1
+                      minLength: 36
+                      maxLength: 36
+                    sampleSiteId:
+                      type: string
+                      minLength: 36
+                      maxLength: 36
                     sampleLabel:
                       type: string
                       minLength: 1
@@ -355,45 +353,29 @@ paths:
                     sampleBarcode:
                       type: string
                       minLength: 1
-                    sampleSiteId:
-                      type: string
-                      minLength: 1
-                    sampleSiteName:
-                      type: string
-                      minLength: 1
                     start:
                       type: string
-                      minLength: 1
+                      format: date-time
                     end:
                       type: string
-                      minLength: 1
+                      format: date-time
+                      description: sampling f
                     laboratoryId:
                       type: string
-                      minLength: 1
                     laboratoryName:
                       type: string
-                      minLength: 1
                     equipmentC:
                       type: string
-                      minLength: 1
                     equipmentT:
                       type: string
-                      minLength: 1
-                    IntakeNo:
-                      type: number
-                    IntakeName:
-                      type: string
-                      minLength: 1
                     sampleTop_m:
                       type: number
                     sampleBottom_m:
                       type: number
                     FieldRemark:
                       type: string
-                      minLength: 1
                     remark:
                       type: string
-                      minLength: 1
                     fieldMeasurements:
                       type: object
                       properties:
@@ -435,6 +417,9 @@ paths:
                               type: number
                             sampleBottom_m:
                               type: number
+                  required:
+                    - sampleId
+                    - sampleSiteId
   /sample:
     get:
       summary: GET Sample
