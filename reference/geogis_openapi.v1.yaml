@@ -709,7 +709,7 @@ paths:
                 example-1:
                   value:
                     listinfo:
-                      listName: analyseparametre
+                      listName: sampleEquipment
                       listID: string
                       stancodeListNo: string
                       listValues:
@@ -722,7 +722,7 @@ paths:
                           stancodeNo: string
                           remark: string
       operationId: get-codeList
-      description: get codevalues used in other endpoints
+      description: get codevalues used in other endpoints. Only for simple list-tables
     parameters:
       - schema:
           type: string
