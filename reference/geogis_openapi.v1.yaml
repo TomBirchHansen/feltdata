@@ -13,7 +13,7 @@ servers:
   - description: Region Midt GeoGIS
     url: 'https://geogisapi.rm.dk'
 paths:
-  '/projects/{projectId}':
+  '/project/{projectId}':
     parameters:
       - schema:
           type: string
@@ -577,7 +577,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Sample'
+                $ref: '#/components/schemas/Sample_alt'
               examples: {}
         '400':
           description: Bad Request
@@ -661,6 +661,75 @@ paths:
       description: create new sample
       tags:
         - geogis
+  '/codeList/{listId}':
+    get:
+      summary: GET codeList values
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  listinfo:
+                    type: object
+                    properties:
+                      listName:
+                        type: string
+                      listID:
+                        type: string
+                      stancodeListNo:
+                        type: string
+                      listValues:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            test:
+                              type: string
+                            valueId:
+                              type: string
+                            value:
+                              type: string
+                            valueLong:
+                              type: string
+                            active:
+                              type: string
+                            startDate:
+                              type: string
+                            endDate:
+                              type: string
+                            stancodeNo:
+                              type: string
+                            remark:
+                              type: string
+              examples:
+                example-1:
+                  value:
+                    listinfo:
+                      listName: analyseparametre
+                      listID: string
+                      stancodeListNo: string
+                      listValues:
+                        - valueId: string
+                          value: string
+                          valueLong: string
+                          active: string
+                          startDate: string
+                          endDate: string
+                          stancodeNo: string
+                          remark: string
+      operationId: get-codeList
+      description: get codevalues used in other endpoints
+    parameters:
+      - schema:
+          type: string
+        name: listId
+        in: path
+        required: true
+        description: the ID of the list to return. "all" returns all lists
 components:
   schemas:
     Project:
