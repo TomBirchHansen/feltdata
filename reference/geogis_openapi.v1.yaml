@@ -233,22 +233,8 @@ paths:
               description: ''
               type: object
               properties:
-                samplesiteId:
+                Intake:
                   type: string
-                sampleSiteDetails:
-                  type: object
-                  properties:
-                    DGU:
-                      type: string
-                    samplesiteno:
-                      type: string
-                    description:
-                      type: string
-                InakeDetails:
-                  type: object
-                  properties:
-                    intakeId:
-                      type: string
             examples: {}
         description: ''
       tags:
@@ -431,7 +417,31 @@ paths:
         '400':
           description: Bad Request
       operationId: get-sample
-      parameters: []
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: matrixC
+        - schema:
+            type: string
+          in: query
+          name: laboratoryId
+        - schema:
+            type: string
+          in: query
+          name: startDate
+        - schema:
+            type: string
+          in: query
+          name: endDate
+        - schema:
+            type: string
+          in: query
+          name: projectId
+        - schema:
+            type: string
+          in: query
+          name: sampleSiteId
       description: get all samples matching parameters
     put:
       summary: PUT Sample
@@ -566,7 +576,31 @@ paths:
         '400':
           description: Bad Request
       operationId: get-sample_alternative
-      parameters: []
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: matrixC
+        - schema:
+            type: string
+          in: query
+          name: laboratoryId
+        - schema:
+            type: string
+          in: query
+          name: startDate
+        - schema:
+            type: string
+          in: query
+          name: endDate
+        - schema:
+            type: string
+          in: query
+          name: sampleSiteId
+        - schema:
+            type: string
+          in: query
+          name: projectId
       description: get all samples matching parameters. Alternative to 'sample' where fieldmeasurements is an array
     put:
       summary: PUT Sample_alternative
@@ -1017,9 +1051,13 @@ components:
                     type: string
                   accredited:
                     type: integer
+                  analysisID:
+                    type: string
+                    description: generated GUID for the record.
           required:
             - sampleId
             - sampleSiteId
+      x-examples: {}
     Sample:
       title: AnalysisSample
       type: object
