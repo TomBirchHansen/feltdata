@@ -422,18 +422,22 @@ paths:
             type: string
           in: query
           name: matrixC
+          description: returns samples for the specified matrix
         - schema:
             type: string
           in: query
           name: laboratoryId
+          description: returns samples for specified laboratory
         - schema:
             type: string
           in: query
-          name: startDate
+          name: StartDate
+          description: returns samples sampled after date
         - schema:
             type: string
           in: query
           name: endDate
+          description: returns samples sampled before date
         - schema:
             type: string
           in: query
