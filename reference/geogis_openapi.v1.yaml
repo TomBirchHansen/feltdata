@@ -664,7 +664,8 @@ paths:
   '/codeList/{listId}':
     get:
       summary: GET codeList values
-      tags: []
+      tags:
+        - geogis
       responses:
         '200':
           description: OK
@@ -722,7 +723,7 @@ paths:
                           stancodeNo: string
                           remark: string
       operationId: get-codeList
-      description: get codevalues used in other endpoints. Only for simple list-tables
+      description: get codevalues used in endpoints. Only for simple list-tables
     parameters:
       - schema:
           type: string
@@ -888,6 +889,10 @@ components:
           description: reference to project
         projectName:
           type: string
+        descriptionLocation:
+          type: string
+          description: |
+            a description of the specific location ex. 'next to entrance', 'front of house' ect.
         LastWaterlevel:
           type: object
           description: Last waterlevel measurements
@@ -925,10 +930,8 @@ components:
             MediumT:
               type: string
               description: code-text for medium. example 'jord'
-        descriptionLocation:
-          type: string
-          description: |
-            a description of the specific location ex. 'next to entrance', 'front of house' ect.
+            sampleId:
+              type: string
       required:
         - sampleSiteId
         - sampleSiteNo
