@@ -974,8 +974,10 @@ components:
         - sampleSiteId
         - sampleSiteNo
         - projectId
+      x-tags:
+        - objects
     Sample_alt:
-      title: AnalysisSample_alt
+      title: Sample_alt
       type: object
       description: Samples taken to be analysed
       properties:
@@ -1062,8 +1064,10 @@ components:
             - sampleId
             - sampleSiteId
       x-examples: {}
+      x-tags:
+        - objects
     Sample:
-      title: AnalysisSample
+      title: Sample
       type: object
       description: Samples taken to be analysed
       properties:
@@ -1169,6 +1173,8 @@ components:
             - sampleId
             - sampleSiteId
       x-examples: {}
+      x-tags:
+        - objects
   securitySchemes: {}
   parameters:
     projectNo:
