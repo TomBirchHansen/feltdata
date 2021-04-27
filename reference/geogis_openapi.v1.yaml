@@ -503,11 +503,6 @@ paths:
                     equipmentC:
                       type: string
                       minLength: 1
-                    IntakeNo:
-                      type: number
-                    IntakeName:
-                      type: string
-                      minLength: 1
                     sampleTop_m:
                       type: number
                     sampleBottom_m:
@@ -559,6 +554,8 @@ paths:
                               type: number
                             sampleBottom_m:
                               type: number
+                  required:
+                    - sampleSiteId
             examples: {}
         description: data for the new sample
       description: create new sample
@@ -662,11 +659,6 @@ paths:
                     equipmentC:
                       type: string
                       minLength: 1
-                    IntakeNo:
-                      type: number
-                    IntakeName:
-                      type: string
-                      minLength: 1
                     sampleTop_m:
                       type: number
                     sampleBottom_m:
@@ -694,6 +686,8 @@ paths:
                             type: string
                           accredited:
                             type: boolean
+                  required:
+                    - sampleSiteId
             examples: {}
         description: data for the new sample
       description: create new sample
@@ -891,14 +885,7 @@ components:
       title: Samplesite
       description: Borehole or other samplesite. Where one or more samplings can be made.
       type: object
-      x-examples:
-        example-1:
-          samplesiteid: string
-          samplesiteno: string
-          DGU: '89.1212'
-          intakeno: 1
-          intakeid: string
-          type: BE
+      x-examples: {}
       properties:
         sampleSiteId:
           type: string
