@@ -233,8 +233,37 @@ paths:
               description: ''
               type: object
               properties:
+                IsIntake:
+                  type: boolean
                 Intake:
+                  type: object
+                  properties:
+                    WellId:
+                      type: string
+                      description: |
+                        GUID of samplesite for well
+                    intakeno:
+                      type: number
+                    intake:
+                      type: string
+                Well:
+                  type: object
+                  properties:
+                    DGU:
+                      type: string
+                SamplesiteId:
                   type: string
+                sampleSiteNo:
+                  type: string
+                description:
+                  type: string
+                '':
+                  type: string
+                projectId:
+                  type: string
+              required:
+                - IsIntake
+                - projectId
             examples: {}
         description: ''
       tags:
