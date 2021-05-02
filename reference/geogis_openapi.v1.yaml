@@ -915,6 +915,8 @@ components:
       description: Borehole or other samplesite. Where one or more samplings can be made.
       type: object
       x-examples: {}
+      x-tags:
+        - objects
       properties:
         sampleSiteId:
           type: string
@@ -986,12 +988,12 @@ components:
               description: code-text for medium. example 'jord'
             sampleId:
               type: string
+        samplesiteStatus:
+          type: string
       required:
         - sampleSiteId
         - sampleSiteNo
         - projectId
-      x-tags:
-        - objects
     Sample_alt:
       title: Sample_alt
       type: object
