@@ -233,12 +233,16 @@ paths:
               description: ''
               type: object
               properties:
+                SamplesiteId:
+                  type: string
+                projectId:
+                  type: string
                 IsIntake:
                   type: boolean
                 Intake:
                   type: object
                   properties:
-                    WellId:
+                    pointId:
                       type: string
                       description: |
                         GUID of samplesite for well
@@ -246,24 +250,30 @@ paths:
                       type: number
                     intake:
                       type: string
+                    depth:
+                      type: string
+                    diameter_mm:
+                      type: string
                 Well:
                   type: object
                   properties:
                     DGU:
                       type: string
-                SamplesiteId:
-                  type: string
+                    depth:
+                      type: string
                 sampleSiteNo:
                   type: string
                 description:
                   type: string
-                '':
+                startDate:
                   type: string
-                projectId:
+                endDate:
+                  type: string
+                typeC:
                   type: string
               required:
-                - IsIntake
                 - projectId
+                - IsIntake
             examples: {}
         description: ''
       tags:
@@ -998,6 +1008,9 @@ components:
       title: Sample_alt
       type: object
       description: Samples taken to be analysed
+      x-examples: {}
+      x-tags:
+        - objects
       properties:
         Sample:
           type: object
@@ -1081,9 +1094,6 @@ components:
           required:
             - sampleId
             - sampleSiteId
-      x-examples: {}
-      x-tags:
-        - objects
     Sample:
       title: Sample
       type: object
