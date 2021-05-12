@@ -272,6 +272,7 @@ paths:
                 typeC:
                   type: string
               required:
+                - SamplesiteId
                 - projectId
                 - IsIntake
             examples: {}
@@ -856,6 +857,8 @@ components:
                 Start: string
                 End: string
                 Label: string
+      x-tags:
+        - objects
       properties:
         project:
           type: object
@@ -918,8 +921,9 @@ components:
                   Label:
                     type: string
                     description: long projectname (name + start + end)
-      x-tags:
-        - objects
+            caseNumber:
+              type: string
+              description: 'alternative projectnumber, ie Consultant''s internal no.'
     Samplesite:
       title: Samplesite
       description: Borehole or other samplesite. Where one or more samplings can be made.
@@ -953,7 +957,7 @@ components:
         projectId:
           type: string
           description: reference to project
-        projectName:
+        projectNo:
           type: string
         descriptionLocation:
           type: string
@@ -999,6 +1003,11 @@ components:
             sampleId:
               type: string
         samplesiteStatus:
+          type: string
+        projectCaseNo:
+          type: string
+          description: Consultants case number
+        projectName:
           type: string
       required:
         - sampleSiteId
