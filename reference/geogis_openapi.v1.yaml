@@ -769,11 +769,14 @@ paths:
                             valueLong:
                               type: string
                             active:
-                              type: string
+                              type: boolean
                             startDate:
                               type: string
+                              format: date-time
+                              example: '2018-03-20T09:12:28Z'
                             endDate:
                               type: string
+                              format: date-time
                             stancodeNo:
                               type: string
                             remark:
@@ -783,17 +786,25 @@ paths:
                   value:
                     listinfo:
                       listName: sampleEquipment
-                      listID: string
-                      stancodeListNo: string
+                      listID: '1'
+                      stancodeListNo: '1'
                       listValues:
-                        - valueId: string
-                          value: string
-                          valueLong: string
-                          active: string
-                          startDate: string
-                          endDate: string
-                          stancodeNo: string
-                          remark: string
+                        - valueId: '1'
+                          value: kulrør
+                          valueLong: kulrør til luftprøver
+                          active: true
+                          startDate: '2018-03-20'
+                          endDate: ''
+                          stancodeNo: '123'
+                          remark: ''
+                        - valueId: '2'
+                          value: orsarør
+                          valueLong: orsarør til luftprøver
+                          active: true
+                          startDate: '2018-03-20'
+                          endDate: ''
+                          stancodeNo: '125'
+                          remark: ''
       operationId: get-codeList
       description: get codevalues used in endpoints. Only for simple list-tables
     parameters:
@@ -963,6 +974,13 @@ components:
           type: string
           description: |
             a description of the specific location ex. 'next to entrance', 'front of house' ect.
+        samplesiteStatus:
+          type: string
+        projectCaseNo:
+          type: string
+          description: Consultants case number
+        projectName:
+          type: string
         LastWaterlevel:
           type: object
           description: Last waterlevel measurements
@@ -1002,13 +1020,6 @@ components:
               description: code-text for medium. example 'jord'
             sampleId:
               type: string
-        samplesiteStatus:
-          type: string
-        projectCaseNo:
-          type: string
-          description: Consultants case number
-        projectName:
-          type: string
       required:
         - sampleSiteId
         - sampleSiteNo
