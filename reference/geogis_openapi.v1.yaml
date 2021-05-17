@@ -269,7 +269,10 @@ paths:
                   type: string
                 endDate:
                   type: string
-                typeC:
+                samplesiteTypeC:
+                  type: string
+                  description: ''
+                phaseId:
                   type: string
               required:
                 - SamplesiteId
@@ -1020,6 +1023,8 @@ components:
               description: code-text for medium. example 'jord'
             sampleId:
               type: string
+        phaseId:
+          type: string
       required:
         - sampleSiteId
         - sampleSiteNo
