@@ -930,8 +930,8 @@ paths:
         description: ''
 components:
   schemas:
-    Project:
-      title: Project
+    Project_detailed:
+      title: Project detailed
       type: object
       description: a project (also called location) consists of one or many samplesites (boreholes ect)
       x-examples:
@@ -1049,6 +1049,8 @@ components:
             caseNumber:
               type: string
               description: 'alternative projectnumber, ie Consultant''s internal no.'
+        d:
+          $ref: '#/components/schemas/Project'
     Samplesite:
       title: Samplesite
       description: Borehole or other samplesite. Where one or more samplings can be made.
@@ -1062,38 +1064,7 @@ components:
           description: either a geogis pointid or intakeid
         sampleSiteLabel:
           type: string
-        DGU:
-          type: string
-        intakeNo:
-          type: number
-          description: type
-        intakeId:
-          type: string
-          description: geogis intakeid. from geogis intake tabel
-        pointid:
-          type: string
-          description: geogis pointid. is never null
-        typeC:
-          type: string
-          description: pointtype code. Reference to codelist?
-        typeT:
-          type: string
-          description: pointtype kodevalue
-        projectId:
-          type: string
-          description: reference to project
-        projectNo:
-          type: string
-        descriptionLocation:
-          type: string
-          description: |
-            a description of the specific location ex. 'next to entrance', 'front of house' ect.
         samplesiteStatus:
-          type: string
-        projectCaseNo:
-          type: string
-          description: Consultants case number
-        projectName:
           type: string
         LastWaterlevel:
           type: object
@@ -1140,10 +1111,13 @@ components:
           $ref: '#/components/schemas/Point'
         intake:
           $ref: '#/components/schemas/Intake'
+        project:
+          $ref: '#/components/schemas/Project'
       required:
         - sampleSiteId
         - sampleSiteLabel
-        - projectId
+        - point
+        - project
     Sample_alt:
       title: Sample_alt
       type: object
@@ -1389,6 +1363,10 @@ components:
           format: date-time
         projectId:
           type: string
+        pointTypeC:
+          type: string
+        pointTypeT:
+          type: string
         Well:
           type: object
           properties:
@@ -1402,6 +1380,42 @@ components:
               type: string
             useT:
               type: string
+    Project:
+      description: ''
+      type: object
+      x-examples: {}
+      title: Project
+      properties:
+        projectId:
+          type: string
+        projectNo:
+          type: string
+        projectTitle:
+          type: string
+        x:
+          type: string
+        'y':
+          type: string
+        geometry:
+          type: string
+        lat:
+          type: string
+        long:
+          type: string
+        jarNo:
+          type: string
+        Address:
+          type: string
+        contactregion:
+          type: string
+        personReference:
+          type: string
+        primaryLaboratory:
+          type: string
+        noteForSampler:
+          type: string
+        caseNumber:
+          type: string
   securitySchemes: {}
   parameters:
     projectNo:
