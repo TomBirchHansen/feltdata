@@ -1066,6 +1066,12 @@ components:
           type: string
         samplesiteStatus:
           type: string
+        point:
+          $ref: '#/components/schemas/Point'
+        intake:
+          $ref: '#/components/schemas/Intake'
+        project:
+          $ref: '#/components/schemas/Project'
         LastWaterlevel:
           type: object
           description: Last waterlevel measurements
@@ -1105,14 +1111,6 @@ components:
               description: code-text for medium. example 'jord'
             sampleId:
               type: string
-        phaseId:
-          type: string
-        point:
-          $ref: '#/components/schemas/Point'
-        intake:
-          $ref: '#/components/schemas/Intake'
-        project:
-          $ref: '#/components/schemas/Project'
       required:
         - sampleSiteId
         - sampleSiteLabel
@@ -1380,6 +1378,8 @@ components:
               type: string
             useT:
               type: string
+        phaseId:
+          type: string
     Project:
       description: ''
       type: object
