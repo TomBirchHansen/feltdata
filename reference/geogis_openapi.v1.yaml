@@ -817,6 +817,52 @@ paths:
         in: path
         required: true
         description: the ID of the list to return. "all" returns all lists
+  /point:
+    put:
+      summary: Point PUT
+      operationId: put-point
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Samplesite'
+      description: 'create new point (well or other samplesite types). For Intake-samplesites, use Intake endpoint. Response is samplesite object with the created point as a samplesite (Pointid becomes the samplesiteId)'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                projectId:
+                  type: string
+                pointid:
+                  type: string
+                pointNo:
+                  type: string
+                DGU:
+                  type: string
+                startDate:
+                  type: string
+                endDate:
+                  type: string
+                phaseId:
+                  type: string
+                pointTypeC:
+                  type: string
+                x:
+                  type: string
+                'y':
+                  type: string
+                z:
+                  type: string
+              required:
+                - projectId
+                - pointNo
+                - pointTypeC
+      tags:
+        - geogis
 components:
   schemas:
     Project:
