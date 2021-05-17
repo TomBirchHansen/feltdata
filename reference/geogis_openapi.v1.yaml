@@ -22,7 +22,7 @@ paths:
         required: true
         description: GUID of project
     get:
-      summary: Get project by Id
+      summary: Get Project by Id
       tags:
         - geogis
       responses:
@@ -287,7 +287,7 @@ paths:
       deprecated: true
   /project:
     get:
-      summary: GET project
+      summary: GET Project
       tags:
         - geogis
       responses:
@@ -1136,6 +1136,10 @@ components:
               type: string
         phaseId:
           type: string
+        point:
+          $ref: '#/components/schemas/Point'
+        intake:
+          $ref: '#/components/schemas/Intake'
       required:
         - sampleSiteId
         - sampleSiteLabel
@@ -1383,6 +1387,8 @@ components:
         endDate:
           type: string
           format: date-time
+        projectId:
+          type: string
         Well:
           type: object
           properties:
@@ -1396,8 +1402,6 @@ components:
               type: string
             useT:
               type: string
-        projectId:
-          type: string
   securitySchemes: {}
   parameters:
     projectNo:
