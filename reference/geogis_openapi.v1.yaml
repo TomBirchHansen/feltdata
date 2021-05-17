@@ -137,6 +137,8 @@ paths:
                 descriptionLocation:
                   type: string
                   minLength: 1
+                phaseId:
+                  type: string
             examples: {}
         description: 'data to be updated. Note: Samplesiteid and DGU cannot be modified.'
       description: update one of more fields of the samplesite
@@ -209,7 +211,7 @@ paths:
       tags:
         - geogis
     put:
-      summary: PUT samplesite
+      summary: PUT samplesite (deprecated)
       operationId: put-samplesite
       responses:
         '200':
@@ -282,6 +284,7 @@ paths:
         description: ''
       tags:
         - geogis
+      deprecated: true
   /project:
     get:
       summary: GET project
@@ -828,7 +831,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Samplesite'
-      description: 'create new point (well or other samplesite types). For Intake-samplesites, use Intake endpoint. Response is samplesite object with the created point as a samplesite (Pointid becomes the samplesiteId)'
+      description: create new point (well or other). Response is as samplesite object with the created point as a samplesite (Pointid becomes the samplesiteId)
       requestBody:
         content:
           application/json:
@@ -857,6 +860,13 @@ paths:
                   type: string
                 z:
                   type: string
+                descriptionLocation:
+                  type: string
+                  description: a description of the location of the point
+                pointStatusC:
+                  type: string
+                description:
+                  type: string
               required:
                 - projectId
                 - pointNo
@@ -874,7 +884,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Samplesite'
-      description: create new intake on a well (pointId). Returns data as samplesite-object
+      description: create new intake on a well (pointId). Returns data as samplesite-object (intakeid becomes samplesiteId)
       requestBody:
         content:
           application/json:
@@ -889,7 +899,7 @@ paths:
                   type: number
                 intakeName:
                   type: string
-                diametermm:
+                diameter_mm:
                   type: number
                 description:
                   type: string
