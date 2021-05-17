@@ -537,6 +537,7 @@ paths:
                     sampleSiteId:
                       type: string
                       minLength: 1
+                      description: Id of the sampleSite (pointid or intakeid)
                     start:
                       type: string
                       minLength: 1
@@ -766,8 +767,6 @@ paths:
                         items:
                           type: object
                           properties:
-                            test:
-                              type: string
                             valueId:
                               type: string
                             value:
@@ -786,6 +785,14 @@ paths:
                             stancodeNo:
                               type: string
                             remark:
+                              type: string
+                            sortOrder:
+                              type: integer
+                            type:
+                              type: string
+                            prefix:
+                              type: string
+                            jupiterId:
                               type: string
               examples:
                 example-1:
@@ -813,6 +820,19 @@ paths:
                           remark: ''
       operationId: get-codeList
       description: get codevalues used in endpoints. Only for simple list-tables
+      parameters:
+        - schema:
+            type: boolean
+            default: '1'
+          in: query
+          name: ShowNonActive
+          description: show non-active items?
+        - schema:
+            type: string
+            default: DK
+          in: query
+          name: Setup
+          description: show rows with specified setup (language). Default is DK
     parameters:
       - schema:
           type: string
@@ -1040,7 +1060,7 @@ components:
         sampleSiteId:
           type: string
           description: either a geogis pointid or intakeid
-        sampleSiteNo:
+        sampleSiteLabel:
           type: string
         DGU:
           type: string
@@ -1118,7 +1138,7 @@ components:
           type: string
       required:
         - sampleSiteId
-        - sampleSiteNo
+        - sampleSiteLabel
         - projectId
     Sample_alt:
       title: Sample_alt
@@ -1214,6 +1234,9 @@ components:
       title: Sample
       type: object
       description: Samples taken to be analysed
+      x-examples: {}
+      x-tags:
+        - objects
       properties:
         Sample:
           type: object
@@ -1234,9 +1257,9 @@ components:
               type: string
             sampleSiteId:
               type: string
-            sampleSiteName:
+            sampleSiteLabel:
               type: string
-              description: districptive name of samplesite.
+              description: 'generated destricptive name of samplesite (pointno + intake). For instance: B201-1 '
             start:
               type: string
               format: date-time
@@ -1313,12 +1336,68 @@ components:
                       type: number
                     sampleBottom_m:
                       type: number
+            Intake:
+              $ref: '#/components/schemas/Intake'
+            Point:
+              $ref: '#/components/schemas/Point'
           required:
             - sampleId
             - sampleSiteId
-      x-examples: {}
-      x-tags:
-        - objects
+    Intake:
+      title: Intake
+      type: object
+      properties:
+        intakeId:
+          type: string
+        intakeNo:
+          type: integer
+        Name:
+          type: string
+        Description:
+          type: string
+        screenNo:
+          type: string
+        top:
+          type: number
+        bottom:
+          type: number
+        depth1:
+          type: number
+        depth2:
+          type: number
+        pointId:
+          type: string
+    Point:
+      title: Point
+      type: object
+      properties:
+        pointId:
+          type: string
+        pointNo:
+          type: string
+        description:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        Well:
+          type: object
+          properties:
+            DGU:
+              type: string
+            purposeC:
+              type: string
+            purposeT:
+              type: string
+            useC:
+              type: string
+            useT:
+              type: string
+        projectId:
+          type: string
   securitySchemes: {}
   parameters:
     projectNo:
@@ -1353,14 +1432,6 @@ components:
         type: integer
       description: distance in meters
   responses:
-    test:
-      description: Example response
-      content:
-        application/json:
-          schema:
-            properties:
-              id:
-                type: string
     unauthorised:
       description: Example response
       content:
