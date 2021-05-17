@@ -863,6 +863,41 @@ paths:
                 - pointTypeC
       tags:
         - geogis
+  /intake:
+    put:
+      summary: Intake PUT
+      operationId: put-intake
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Samplesite'
+      description: create new intake on a well (pointId). Returns data as samplesite-object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pointId:
+                  type: string
+                intakeId:
+                  type: string
+                intakeNo:
+                  type: number
+                intakeName:
+                  type: string
+                diametermm:
+                  type: number
+                description:
+                  type: string
+                screeno:
+                  type: number
+              required:
+                - pointId
+        description: ''
 components:
   schemas:
     Project:
