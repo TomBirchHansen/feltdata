@@ -823,7 +823,7 @@ paths:
       parameters:
         - schema:
             type: boolean
-            default: '1'
+            default: true
           in: query
           name: ShowNonActive
           description: show non-active items?
