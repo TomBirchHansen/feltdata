@@ -154,7 +154,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Samplesite'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Samplesite'
               examples: {}
             application/xml:
               schema:
@@ -458,7 +460,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Sample'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sample'
           headers: {}
         '400':
           description: Bad Request
@@ -503,7 +507,82 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Sample'
-              examples: {}
+              examples:
+                example-1:
+                  value:
+                    Sample:
+                      sampleId: string
+                      sampleLabel: string
+                      matrixC: string
+                      matricT: string
+                      sampledBy: string
+                      sampleBarcode: string
+                      sampleSiteId: string
+                      sampleSiteLabel: string
+                      start: '2019-08-24T14:15:22Z'
+                      end: '2019-08-24T14:15:22Z'
+                      laboratoryId: string
+                      laboratoryName: string
+                      equipmentC: string
+                      equipmentT: string
+                      IntakeNo: 0
+                      IntakeName: string
+                      sampleTop_m: 0
+                      sampleBottom_m: 0
+                      FieldRemark: string
+                      remark: string
+                      fieldMeasurements:
+                        water:
+                          temperature: 0
+                          conductivity_mSm: 0
+                          pH: 0
+                          redox_mV: 0
+                          pumpYield_m3h: 0
+                          prePump_l: 0
+                          waterlevelCalm_m: 0
+                          waterlevelInUse_m: 0
+                        air-orsa:
+                          sampleMinutes: 0
+                        air-coal:
+                          airVolume_l: 0
+                          counterPressure_mbar: 0
+                        soil:
+                          sampleTop_m: 0
+                          sampleBottom_m: 0
+                      Intake:
+                        intakeId: string
+                        intakeNo: 0
+                        Name: string
+                        Description: string
+                        screenNo: string
+                        top: 0
+                        bottom: 0
+                        depth1: 0
+                        depth2: 0
+                        pointId: string
+                      Point:
+                        pointId: string
+                        pointNo: string
+                        description: string
+                        startDate: '2019-08-24T14:15:22Z'
+                        endDate: '2019-08-24T14:15:22Z'
+                        projectId: string
+                        pointTypeC: string
+                        pointTypeT: string
+                        Well:
+                          DGU: string
+                          purposeC: string
+                          purposeT: string
+                          useC: string
+                          useT: string
+                        phaseId: string
+                      FieldMeasurements:
+                        - measurementId: string
+                          parameterC: string
+                          value: 0
+                          unitC: string
+                          methodC: string
+                          remark: string
         '400':
           description: Bad Request
       requestBody:
@@ -601,6 +680,10 @@ paths:
                               type: number
                             sampleBottom_m:
                               type: number
+                    FieldMeasurements:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/fieldmeasurements'
                   required:
                     - sampleSiteId
             examples: {}
@@ -675,47 +758,35 @@ paths:
                   properties:
                     sampleId:
                       type: string
-                      minLength: 1
                     sampleLabel:
                       type: string
-                      minLength: 1
                     matrixC:
                       type: string
-                      minLength: 1
                     matricT:
                       type: string
-                      minLength: 1
                     sampledBy:
                       type: string
-                      minLength: 1
                     sampleBarcode:
                       type: string
-                      minLength: 1
                     sampleSiteId:
                       type: string
                       minLength: 1
                     start:
                       type: string
-                      minLength: 1
                     end:
                       type: string
-                      minLength: 1
                     laboratoryId:
                       type: string
-                      minLength: 1
                     equipmentC:
                       type: string
-                      minLength: 1
                     sampleTop_m:
                       type: number
                     sampleBottom_m:
                       type: number
                     FieldRemark:
                       type: string
-                      minLength: 1
                     remark:
                       type: string
-                      minLength: 1
                     fieldMeasurements:
                       type: array
                       items:
@@ -1316,6 +1387,10 @@ components:
               $ref: '#/components/schemas/Intake'
             Point:
               $ref: '#/components/schemas/Point'
+            FieldMeasurements:
+              type: array
+              items:
+                $ref: '#/components/schemas/fieldmeasurements'
           required:
             - sampleId
             - sampleSiteId
@@ -1416,6 +1491,26 @@ components:
           type: string
         caseNumber:
           type: string
+    fieldmeasurements:
+      title: fieldMeasurement
+      type: object
+      properties:
+        measurementId:
+          type: string
+          description: GUID of record
+        parameterC:
+          type: string
+        value:
+          type: number
+        unitC:
+          type: string
+        methodC:
+          type: string
+        remark:
+          type: string
+      required:
+        - parameterC
+        - unitC
   securitySchemes: {}
   parameters:
     projectNo:
