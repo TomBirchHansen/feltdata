@@ -81,7 +81,7 @@ paths:
                 type: object
                 properties:
                   location:
-                    $ref: '#/components/schemas/Samplesite'
+                    $ref: '#/components/schemas/SampleSite'
           headers: {}
         '401':
           description: Unauthorized
@@ -156,7 +156,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Samplesite'
+                  $ref: '#/components/schemas/SampleSite'
               examples: {}
             application/xml:
               schema:
@@ -221,7 +221,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Samplesite'
+                $ref: '#/components/schemas/SampleSite'
               examples: {}
         '400':
           description: Bad Request
@@ -879,7 +879,7 @@ paths:
                 type: object
                 properties:
                   sampleSite:
-                    $ref: '#/components/schemas/Samplesite'
+                    $ref: '#/components/schemas/SampleSite'
                   point:
                     $ref: '#/components/schemas/Point'
       description: create new point (well or other). Response is samplesite object with the created point as a samplesite (Pointid becomes the samplesiteId). Response is also returned as point-object
@@ -937,7 +937,7 @@ paths:
                 type: object
                 properties:
                   sampleSite:
-                    $ref: '#/components/schemas/Samplesite'
+                    $ref: '#/components/schemas/SampleSite'
                   intake:
                     $ref: '#/components/schemas/Intake'
               examples:
@@ -1032,133 +1032,57 @@ paths:
         - geogis
 components:
   schemas:
-    Project_detailed:
+    Project_Detailed:
       title: Project detailed
-      type: object
-      description: a project (also called location) consists of one or many samplesites (boreholes ect)
-      x-examples:
-        example-1:
-          project:
-            projectId: string
-            projectNo: string
-            projectTitle: string
-            x: 0
-            'y': 0
-            geometry: string
-            lat: 0
-            long: 0
-            jar-loknr: string
-            address: string
-            contactRegion: string
-            personreference: string
-            primaryLaboratory: string
-            noteForSampler: string
-            sampleSites:
-              - samplesiteid: string
-                samplesiteno: string
-                DGU: string
-                intakeno: 0
-                intakeid: string
-                typeC: string
-                typeT: string
-                projectid: string
-                projectName: string
-                LastWaterlevel:
-                  date: string
-                  waterlevel: string
-                  depth: string
-                  referencelevel: string
-                  situationC: string
-                  situationT: string
-                  extremeC: string
-                  extremeT: string
-                LastSample:
-                  date: string
-                  sampledBy: string
-                  MediumC: string
-                  MediumT: string
-            Projectphase:
-              - phaseId: string
-                Name: string
-                Type: string
-                Start: string
-                End: string
-                Label: string
+      description: A project (also called location) consists of one or many samplesites (boreholes ect)
+      x-examples: {}
       x-tags:
         - objects
+      type: object
       properties:
-        project:
-          type: object
-          properties:
-            projectId:
-              type: string
-              description: the unique GUID of project
-            projectNo:
-              type: string
-              description: the unique projectno
-            projectTitle:
-              type: string
-              description: name or title of projekt
-            x:
-              description: x coordinate
-              type: integer
-            'y':
-              type: integer
-              description: y coordinate in UTM32euref89
-            geometry:
-              type: string
-            lat:
-              type: number
-            long:
-              type: number
-            jar-loknr:
-              type: string
-            address:
-              type: string
-            contactRegion:
-              type: string
-            personreference:
-              type: string
-              description: as default for EAN invoice
-            primaryLaboratory:
-              type: string
-              description: default for new requisitions
-            noteForSampler:
-              type: string
-              description: general info for field-workers
-            sampleSites:
-              type: array
-              items:
-                $ref: '#/components/schemas/Samplesite'
-            Projectphase:
-              type: array
-              items:
-                type: object
-                properties:
-                  phaseId:
-                    type: string
-                  name:
-                    type: string
-                  type:
-                    type: string
-                  start:
-                    type: string
-                  end:
-                    type: string
-                  label:
-                    type: string
-                    description: long projectname (name + start + end)
-                  PhaseCompanyId:
-                    type: string
-                  phaseCompanyT:
-                    type: string
-            caseNumber:
-              type: string
-              description: 'alternative projectnumber, ie Consultant''s internal no.'
-        d:
-          $ref: '#/components/schemas/Project'
-    Samplesite:
-      title: Samplesite
+        projectId:
+          type: string
+        projectNo:
+          type: string
+        projectTitle:
+          type: string
+        x:
+          type: string
+        'y':
+          type: string
+        geometry:
+          type: string
+        lat:
+          type: string
+        long:
+          type: string
+        jarNo:
+          type: string
+        Address:
+          type: string
+        contactRegion:
+          type: string
+        InvoicePersonReference:
+          type: string
+        primaryLaboratoryId:
+          type: string
+        noteToSampler:
+          type: string
+          description: generic information to the sampler regarding the project/site
+        caseNumber:
+          type: string
+        projectManager:
+          type: string
+        ProjectPhases:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectPhase'
+        SampleSites:
+          type: array
+          items:
+            $ref: '#/components/schemas/SampleSite'
+    SampleSite:
+      title: SampleSite
       description: Borehole or other samplesite. Where one or more samplings can be made.
       type: object
       x-examples: {}
@@ -1220,7 +1144,6 @@ components:
       required:
         - sampleSiteId
         - sampleSiteLabel
-        - point
         - project
     Sample_alt:
       title: Sample_alt
@@ -1660,6 +1583,31 @@ components:
           description: GUID of sample
       x-tags:
         - objects
+    ProjectPhase:
+      title: ProjectPhase
+      type: object
+      description: project phase data
+      x-tags:
+        - objects
+      properties:
+        phaseId:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        start:
+          type: string
+        end:
+          type: string
+        label:
+          type: string
+        companyId:
+          type: string
+        companyT:
+          type: string
+        projectId:
+          type: string
   securitySchemes: {}
   parameters:
     projectNo:
