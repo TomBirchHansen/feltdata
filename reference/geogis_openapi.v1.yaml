@@ -449,6 +449,43 @@ paths:
                   required:
                     - sampleId
                     - sampleSiteId
+            examples:
+              example-1:
+                value:
+                  Sample:
+                    sampleId: stringstringstringstringstringstring
+                    sampleSiteId: stringstringstringstringstringstring
+                    sampleLabel: string
+                    matrixC: string
+                    sampledBy: string
+                    sampleBarcode: string
+                    start: '2019-08-24T14:15:22Z'
+                    end: '2019-08-24T14:15:22Z'
+                    laboratoryId: string
+                    laboratoryName: string
+                    equipmentC: string
+                    sampleTop_m: 0
+                    sampleBottom_m: 0
+                    FieldRemark: string
+                    remark: string
+                    fieldMeasurements:
+                      water:
+                        temperature: 0
+                        conductivity_mSm: 0
+                        pH: 0
+                        redox_mV: 0
+                        pumpYield_m3h: 0
+                        prePump_l: 0
+                        waterlevelCalm_m: 0
+                        waterlevelInUse_m: 0
+                      air-orsa:
+                        sampleMinutes: 0
+                      air-coal:
+                        airVolume_l: 0
+                        counterPressure_mbar: 0
+                      soil:
+                        sampleTop_m: 0
+                        sampleBottom_m: 0
   /sample:
     get:
       summary: GET Sample
@@ -507,82 +544,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Sample'
-              examples:
-                example-1:
-                  value:
-                    Sample:
-                      sampleId: string
-                      sampleLabel: string
-                      matrixC: string
-                      matricT: string
-                      sampledBy: string
-                      sampleBarcode: string
-                      sampleSiteId: string
-                      sampleSiteLabel: string
-                      start: '2019-08-24T14:15:22Z'
-                      end: '2019-08-24T14:15:22Z'
-                      laboratoryId: string
-                      laboratoryName: string
-                      equipmentC: string
-                      equipmentT: string
-                      IntakeNo: 0
-                      IntakeName: string
-                      sampleTop_m: 0
-                      sampleBottom_m: 0
-                      FieldRemark: string
-                      remark: string
-                      fieldMeasurements:
-                        water:
-                          temperature: 0
-                          conductivity_mSm: 0
-                          pH: 0
-                          redox_mV: 0
-                          pumpYield_m3h: 0
-                          prePump_l: 0
-                          waterlevelCalm_m: 0
-                          waterlevelInUse_m: 0
-                        air-orsa:
-                          sampleMinutes: 0
-                        air-coal:
-                          airVolume_l: 0
-                          counterPressure_mbar: 0
-                        soil:
-                          sampleTop_m: 0
-                          sampleBottom_m: 0
-                      Intake:
-                        intakeId: string
-                        intakeNo: 0
-                        Name: string
-                        Description: string
-                        screenNo: string
-                        top: 0
-                        bottom: 0
-                        depth1: 0
-                        depth2: 0
-                        pointId: string
-                      Point:
-                        pointId: string
-                        pointNo: string
-                        description: string
-                        startDate: '2019-08-24T14:15:22Z'
-                        endDate: '2019-08-24T14:15:22Z'
-                        projectId: string
-                        pointTypeC: string
-                        pointTypeT: string
-                        Well:
-                          DGU: string
-                          purposeC: string
-                          purposeT: string
-                          useC: string
-                          useT: string
-                        phaseId: string
-                      FieldMeasurements:
-                        - measurementId: string
-                          parameterC: string
-                          value: 0
-                          unitC: string
-                          methodC: string
-                          remark: string
+              examples: {}
         '400':
           description: Bad Request
       requestBody:
@@ -597,48 +559,36 @@ paths:
                   properties:
                     sampleId:
                       type: string
-                      minLength: 1
                     sampleLabel:
                       type: string
-                      minLength: 1
                     matrixC:
                       type: string
-                      minLength: 1
                     matricT:
                       type: string
-                      minLength: 1
                     sampledBy:
                       type: string
-                      minLength: 1
                     sampleBarcode:
                       type: string
-                      minLength: 1
                     sampleSiteId:
                       type: string
                       minLength: 1
                       description: Id of the sampleSite (pointid or intakeid)
                     start:
                       type: string
-                      minLength: 1
                     end:
                       type: string
-                      minLength: 1
                     laboratoryId:
                       type: string
-                      minLength: 1
                     equipmentC:
                       type: string
-                      minLength: 1
                     sampleTop_m:
                       type: number
                     sampleBottom_m:
                       type: number
                     FieldRemark:
                       type: string
-                      minLength: 1
                     remark:
                       type: string
-                      minLength: 1
                     fieldMeasurements:
                       type: object
                       properties:
@@ -661,6 +611,8 @@ paths:
                               type: number
                             waterlevelInUse_m:
                               type: number
+                            '':
+                              type: string
                         air-orsa:
                           type: object
                           properties:
@@ -680,10 +632,12 @@ paths:
                               type: number
                             sampleBottom_m:
                               type: number
+                        '':
+                          type: string
                     FieldMeasurements:
                       type: array
                       items:
-                        $ref: '#/components/schemas/fieldmeasurements'
+                        $ref: '#/components/schemas/fieldmeasurement'
                   required:
                     - sampleSiteId
             examples: {}
@@ -877,7 +831,7 @@ paths:
                           value: kulrør
                           valueLong: kulrør til luftprøver
                           active: true
-                          startDate: '2018-03-20'
+                          startDate: '2012-04-23T18:25:43.511Z'
                           endDate: ''
                           stancodeNo: '123'
                           remark: ''
@@ -921,8 +875,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Samplesite'
-      description: create new point (well or other). Response is as samplesite object with the created point as a samplesite (Pointid becomes the samplesiteId)
+                type: object
+                properties:
+                  sampleSite:
+                    $ref: '#/components/schemas/Samplesite'
+                  point:
+                    $ref: '#/components/schemas/Point'
+      description: create new point (well or other). Response is samplesite object with the created point as a samplesite (Pointid becomes the samplesiteId). Response is also returned as point-object
       requestBody:
         content:
           application/json:
@@ -974,8 +933,77 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Samplesite'
-      description: create new intake on a well (pointId). Returns data as samplesite-object (intakeid becomes samplesiteId)
+                type: object
+                properties:
+                  sampleSite:
+                    $ref: '#/components/schemas/Samplesite'
+                  intake:
+                    $ref: '#/components/schemas/Intake'
+              examples:
+                example-1:
+                  value:
+                    sampleSiteId: string
+                    sampleSiteLabel: string
+                    samplesiteStatus: string
+                    point:
+                      pointId: string
+                      pointNo: string
+                      description: string
+                      startDate: '2019-08-24T14:15:22Z'
+                      endDate: '2019-08-24T14:15:22Z'
+                      projectId: string
+                      pointTypeC: string
+                      pointTypeT: string
+                      Well:
+                        DGU: string
+                        purposeC: string
+                        purposeT: string
+                        useC: string
+                        useT: string
+                      phaseId: string
+                    intake:
+                      intakeId: string
+                      intakeNo: 0
+                      Name: string
+                      Description: string
+                      screenNo: 1
+                      top: 0
+                      bottom: 0
+                      depth1: 0
+                      depth2: 0
+                      pointId: string
+                    project:
+                      projectId: string
+                      projectNo: string
+                      projectTitle: string
+                      x: string
+                      'y': string
+                      geometry: string
+                      lat: string
+                      long: string
+                      jarNo: string
+                      Address: string
+                      contactregion: string
+                      personReference: string
+                      primaryLaboratory: string
+                      noteForSampler: string
+                      caseNumber: string
+                    LastWaterlevel:
+                      date: string
+                      waterlevel: string
+                      depth: string
+                      referencelevel: string
+                      situationC: string
+                      situationT: string
+                      extremeC: string
+                      extremeT: string
+                    LastSample:
+                      date: string
+                      sampledBy: string
+                      MediumC: string
+                      MediumT: string
+                      sampleId: string
+      description: create new intake on a well (pointId). Returns data as samplesite-object (intakeid becomes samplesiteId) and also as intake-object
       requestBody:
         content:
           application/json:
@@ -987,18 +1015,20 @@ paths:
                 intakeId:
                   type: string
                 intakeNo:
-                  type: number
+                  type: integer
                 intakeName:
                   type: string
                 diameter_mm:
                   type: number
                 description:
                   type: string
-                screeno:
-                  type: number
+                screenNo:
+                  type: integer
               required:
                 - pointId
         description: ''
+      tags:
+        - geogis
 components:
   schemas:
     Project_detailed:
@@ -1277,6 +1307,7 @@ components:
           required:
             - sampleId
             - sampleSiteId
+      x-internal: true
     Sample:
       title: Sample
       type: object
@@ -1390,13 +1421,16 @@ components:
             FieldMeasurements:
               type: array
               items:
-                $ref: '#/components/schemas/fieldmeasurements'
+                $ref: '#/components/schemas/fieldmeasurement'
           required:
             - sampleId
             - sampleSiteId
     Intake:
       title: Intake
       type: object
+      description: Intake for wells
+      x-tags:
+        - objects
       properties:
         intakeId:
           type: string
@@ -1407,7 +1441,8 @@ components:
         Description:
           type: string
         screenNo:
-          type: string
+          description: 'only relevant '
+          type: integer
         top:
           type: number
         bottom:
@@ -1440,6 +1475,11 @@ components:
           type: string
         pointTypeT:
           type: string
+        phaseId:
+          type: string
+        phaseT:
+          type: string
+          description: text description of projectphase
         Well:
           type: object
           properties:
@@ -1453,12 +1493,60 @@ components:
               type: string
             useT:
               type: string
-        phaseId:
+            WellTopTypeC:
+              type: string
+              description: ''
+            WellTopTypeT:
+              type: string
+            isAbandoned:
+              type: boolean
+            contractorId:
+              type: string
+              description: GUID
+            contractorT:
+              type: string
+            geoCompany:
+              type: string
+            abandonDate:
+              type: string
+        x:
+          type: number
+        'y':
+          type: number
+        z:
+          type: number
+        dataowner:
           type: string
+        StatusC:
+          type: string
+        StatusT:
+          type: string
+        pointTypeGroup:
+          type: string
+        pointTypeJupiterGroupC:
+          type: string
+      description: point data
     Project:
       description: ''
       type: object
-      x-examples: {}
+      x-examples:
+        example-1:
+          value:
+            projectId: string
+            projectNo: string
+            projectTitle: string
+            x: string
+            'y': string
+            geometry: string
+            lat: string
+            long: string
+            jarNo: string
+            Address: string
+            contactregion: string
+            personReference: string
+            primaryLaboratory: string
+            noteForSampler: string
+            caseNumber: string
       title: Project
       properties:
         projectId:
@@ -1491,7 +1579,9 @@ components:
           type: string
         caseNumber:
           type: string
-    fieldmeasurements:
+      x-tags:
+        - objects
+    fieldmeasurement:
       title: fieldMeasurement
       type: object
       properties:
@@ -1511,6 +1601,57 @@ components:
       required:
         - parameterC
         - unitC
+      x-tags:
+        - objects
+      description: ''
+    analysisvalue:
+      title: analysisvalue
+      type: object
+      x-internal: true
+      description: analysisvalues
+      properties:
+        valueId:
+          type: string
+          description: GUID of value record
+        parameterId:
+          type: string
+        parameterT:
+          type: string
+        attributeC:
+          type: string
+        attributeT:
+          type: string
+        value:
+          type: number
+        unitC:
+          type: string
+        unitT:
+          type: string
+        valueText:
+          type: string
+        laboratoryId:
+          type: string
+        laboratoryT:
+          type: string
+        methodC:
+          type: string
+        methodT:
+          type: string
+        detectionLimit:
+          type: number
+        uncertainty:
+          type: number
+        remark:
+          type: string
+        siteC:
+          type: string
+        siteT:
+          type: string
+        sampleId:
+          type: string
+          description: GUID of sample
+      x-tags:
+        - objects
   securitySchemes: {}
   parameters:
     projectNo:
