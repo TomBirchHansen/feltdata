@@ -222,6 +222,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Samplesite'
+              examples: {}
         '400':
           description: Bad Request
           content:
@@ -1019,7 +1020,7 @@ paths:
                 intakeName:
                   type: string
                 diameter_mm:
-                  type: number
+                  type: integer
                 description:
                   type: string
                 screenNo:
@@ -1136,17 +1137,21 @@ components:
                 properties:
                   phaseId:
                     type: string
-                  Name:
+                  name:
                     type: string
-                  Type:
+                  type:
                     type: string
-                  Start:
+                  start:
                     type: string
-                  End:
+                  end:
                     type: string
-                  Label:
+                  label:
                     type: string
                     description: long projectname (name + start + end)
+                  PhaseCompanyId:
+                    type: string
+                  phaseCompanyT:
+                    type: string
             caseNumber:
               type: string
               description: 'alternative projectnumber, ie Consultant''s internal no.'
@@ -1548,6 +1553,8 @@ components:
             noteForSampler: string
             caseNumber: string
       title: Project
+      x-tags:
+        - objects
       properties:
         projectId:
           type: string
@@ -1569,18 +1576,19 @@ components:
           type: string
         Address:
           type: string
-        contactregion:
+        contactRegion:
           type: string
-        personReference:
+        InvoicePersonReference:
           type: string
-        primaryLaboratory:
+        primaryLaboratoryId:
           type: string
-        noteForSampler:
+        noteToSampler:
           type: string
+          description: generic information to the sampler regarding the project/site
         caseNumber:
           type: string
-      x-tags:
-        - objects
+        projectManager:
+          type: string
     fieldmeasurement:
       title: fieldMeasurement
       type: object
