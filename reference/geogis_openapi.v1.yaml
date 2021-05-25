@@ -267,7 +267,7 @@ paths:
           in: query
           name: geometry
           description: WKT geometry of search area
-      description: Returns array of projects matching search parameters
+      description: Returns projects matching search parameters.
     parameters: []
   '/sample/{sampleId}':
     get:
@@ -711,7 +711,7 @@ paths:
                     $ref: '#/components/schemas/SampleSite'
                   point:
                     $ref: '#/components/schemas/Point'
-      description: create new point (well or other). Response is samplesite object with the created point as a samplesite (Pointid becomes the samplesiteId). Response is also returned as point-object
+      description: Create new point (well or other). Response is samplesite object with the created point as a samplesite (Pointid becomes the samplesiteId). Response is also returned as point-object
       requestBody:
         content:
           application/json:
@@ -751,8 +751,80 @@ paths:
                 - projectId
                 - pointNo
                 - pointTypeC
+            examples:
+              example-1:
+                value:
+                  projectId: string
+                  pointid: string
+                  pointNo: string
+                  DGU: string
+                  startDate: string
+                  endDate: string
+                  phaseId: string
+                  pointTypeC: string
+                  x: string
+                  'y': string
+                  z: string
+                  descriptionLocation: string
+                  pointStatusC: string
+                  description: string
       tags:
         - geogis
+    get:
+      summary: Point GET
+      operationId: get-point
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Point'
+              examples: {}
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+      description: returns points matching criteria. Minimum one criteria must be provided
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: projectId
+        - schema:
+            type: string
+          in: query
+          name: projectNo
+        - schema:
+            type: number
+          in: query
+          name: x
+        - schema:
+            type: string
+          in: query
+          name: 'y'
+        - schema:
+            type: integer
+          in: query
+          name: distance
+        - schema:
+            type: string
+          in: query
+          name: pointTypeC
+        - schema:
+            type: boolean
+          in: query
+          name: isNotAbandoned
+        - schema:
+            type: boolean
+          in: query
+          name: isWell
+        - schema:
+            type: string
+          in: query
+          name: pointStatusC
   /intake:
     put:
       summary: Intake PUT
@@ -921,22 +993,99 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Point GET endpoint
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Point'
       operationId: get-point-pointId-'
+      description: Get point data
     patch:
-      summary: ''
+      summary: Point PATCH
       operationId: patch-point-pointId
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    projectId: string
+                    pointid: string
+                    pointNo: string
+                    DGU: string
+                    startDate: string
+                    endDate: string
+                    phaseId: string
+                    pointTypeC: string
+                    x: string
+                    'y': string
+                    z: string
+                    descriptionLocation: string
+                    pointStatusC: string
+                    description: string
+                properties:
+                  projectId:
+                    type: string
+                    minLength: 36
+                    maxLength: 36
+                  pointid:
+                    type: string
+                  pointNo:
+                    type: string
+                  DGU:
+                    type: string
+                  startDate:
+                    type: string
+                  endDate:
+                    type: string
+                  phaseId:
+                    type: string
+                  x:
+                    type: string
+                  'y':
+                    type: string
+                  z:
+                    type: string
+                  descriptionLocation:
+                    type: string
+                  pointStatusC:
+                    type: string
+                  description:
+                    type: string
+                required:
+                  - projectId
+                  - pointid
+                  - pointNo
+                  - DGU
+                  - startDate
+                  - endDate
+                  - phaseId
+                  - x
+                  - 'y'
+                  - z
+                  - descriptionLocation
+                  - pointStatusC
+                  - description
+      description: update point data
     delete:
-      summary: ''
+      summary: Point DELETE
       operationId: delete-point-pointId
       responses:
         '200':
           description: OK
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      description: delete point
 components:
   schemas:
     Project_Detailed:
