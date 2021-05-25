@@ -69,7 +69,7 @@ paths:
       parameters: []
   '/samplesite/{samplesiteid}':
     get:
-      summary: GET samplesite  by id
+      summary: Samplesite GET by id
       tags:
         - geogis
       responses:
@@ -94,56 +94,9 @@ paths:
         in: path
         description: GUID of samplesite (geogis pointid or intakeid)
         required: true
-    patch:
-      summary: PATCH Samplesite
-      operationId: patch-samplesite
-      responses:
-        '200':
-          description: OK
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: ''
-              type: object
-              properties:
-                sampleSiteId:
-                  type: string
-                  minLength: 1
-                sampleSiteNo:
-                  type: string
-                  minLength: 1
-                DGU:
-                  type: string
-                  minLength: 1
-                intakeNo:
-                  type: number
-                intakeId:
-                  type: string
-                  minLength: 1
-                pointid:
-                  type: string
-                  minLength: 1
-                typeC:
-                  type: string
-                  minLength: 1
-                projectId:
-                  type: string
-                  minLength: 1
-                descriptionLocation:
-                  type: string
-                  minLength: 1
-                phaseId:
-                  type: string
-            examples: {}
-        description: 'data to be updated. Note: Samplesiteid and DGU cannot be modified.'
-      description: update one of more fields of the samplesite
-      tags:
-        - geogis
   /samplesite:
     get:
-      summary: GET samplesite
+      summary: Samplesite GET
       responses:
         '200':
           description: OK
@@ -210,7 +163,7 @@ paths:
       tags:
         - geogis
     put:
-      summary: PUT samplesite (deprecated)
+      summary: Samplesite PUT (deprecated)
       operationId: put-samplesite
       responses:
         '200':
@@ -285,9 +238,10 @@ paths:
       tags:
         - geogis
       deprecated: true
+      x-internal: true
   /project:
     get:
-      summary: GET Project
+      summary: Project GET
       tags:
         - geogis
       responses:
@@ -317,7 +271,7 @@ paths:
     parameters: []
   '/sample/{sampleId}':
     get:
-      summary: GET Sample by id
+      summary: Sample GET by id
       responses:
         '200':
           description: OK
@@ -338,7 +292,7 @@ paths:
         in: path
         required: true
     patch:
-      summary: PATCH Sample
+      summary: Sample PATCH
       operationId: patch-sample-sampleid
       responses:
         '200':
@@ -921,6 +875,27 @@ paths:
                 - pointTypeC
       tags:
         - geogis
+    delete:
+      summary: Point DELETE
+      operationId: delete-point
+      responses:
+        '200':
+          description: OK
+      description: Delete point. point can only be deleted on certain conditions
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: pointId
+          description: GUID of point to be deleted
+      tags:
+        - geogis
+    patch:
+      summary: Point PATCH
+      operationId: patch-point
+      responses:
+        '200':
+          description: OK
   /intake:
     put:
       summary: Intake PUT
@@ -1027,6 +1002,40 @@ paths:
         description: ''
       tags:
         - geogis
+    parameters: []
+  '/intake/{intakeId}':
+    parameters:
+      - schema:
+          type: string
+        name: intakeId
+        in: path
+        required: true
+        description: GUID of intake
+    get:
+      summary: Intake GET
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Intake'
+      operationId: get-intake-intakeId
+      description: GET data on Intake
+    patch:
+      summary: Intake Patch
+      operationId: patch-intake-intakeId
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Intake DELETE
+      operationId: delete-intake-intakeId
+      responses:
+        '200':
+          description: OK
+      description: Delete IntakeId
 components:
   schemas:
     Project_Detailed:
@@ -1090,8 +1099,6 @@ components:
           type: string
           description: either a geogis pointid or intakeid
         sampleSiteLabel:
-          type: string
-        samplesiteStatus:
           type: string
         point:
           $ref: '#/components/schemas/Point'
