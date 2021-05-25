@@ -96,7 +96,7 @@ paths:
         required: true
   /samplesite:
     get:
-      summary: Samplesite GET
+      summary: Samplesite GET. Find samplesites
       responses:
         '200':
           description: OK
@@ -241,7 +241,7 @@ paths:
       x-internal: true
   /project:
     get:
-      summary: Project GET
+      summary: Project GET. Find projects
       tags:
         - geogis
       responses:
@@ -360,43 +360,7 @@ paths:
                   required:
                     - sampleId
                     - sampleSiteId
-            examples:
-              example-1:
-                value:
-                  Sample:
-                    sampleId: stringstringstringstringstringstring
-                    sampleSiteId: stringstringstringstringstringstring
-                    sampleLabel: string
-                    matrixC: string
-                    sampledBy: string
-                    sampleBarcode: string
-                    start: '2019-08-24T14:15:22Z'
-                    end: '2019-08-24T14:15:22Z'
-                    laboratoryId: string
-                    laboratoryName: string
-                    equipmentC: string
-                    sampleTop_m: 0
-                    sampleBottom_m: 0
-                    FieldRemark: string
-                    remark: string
-                    fieldMeasurements:
-                      water:
-                        temperature: 0
-                        conductivity_mSm: 0
-                        pH: 0
-                        redox_mV: 0
-                        pumpYield_m3h: 0
-                        prePump_l: 0
-                        waterlevelCalm_m: 0
-                        waterlevelInUse_m: 0
-                      air-orsa:
-                        sampleMinutes: 0
-                      air-coal:
-                        airVolume_l: 0
-                        counterPressure_mbar: 0
-                      soil:
-                        sampleTop_m: 0
-                        sampleBottom_m: 0
+            examples: {}
   /sample:
     get:
       summary: Sample GET
@@ -789,27 +753,6 @@ paths:
                 - pointTypeC
       tags:
         - geogis
-    delete:
-      summary: Point DELETE
-      operationId: delete-point
-      responses:
-        '200':
-          description: OK
-      description: Delete point. point can only be deleted on certain conditions
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: pointId
-          description: GUID of point to be deleted
-      tags:
-        - geogis
-    patch:
-      summary: Point PATCH
-      operationId: patch-point
-      responses:
-        '200':
-          description: OK
   /intake:
     put:
       summary: Intake PUT
@@ -822,8 +765,6 @@ paths:
               schema:
                 type: object
                 properties:
-                  sampleSite:
-                    $ref: '#/components/schemas/SampleSite'
                   intake:
                     $ref: '#/components/schemas/Intake'
               examples:
@@ -943,6 +884,28 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  intakeNo:
+                    type: integer
+                  intakeName:
+                    type: string
+                  decription:
+                    type: string
+                  screenNo:
+                    type: string
+                  top:
+                    type: number
+                  bottom:
+                    type: number
+                  depth1:
+                    type: number
+                  depth2:
+                    type: number
+      description: 'update intake data. '
     delete:
       summary: Intake DELETE
       operationId: delete-intake-intakeId
@@ -950,6 +913,30 @@ paths:
         '200':
           description: OK
       description: Delete IntakeId
+  '/point/{pointId}':
+    parameters:
+      - schema:
+          type: string
+        name: pointId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-point-pointId-'
+    patch:
+      summary: ''
+      operationId: patch-point-pointId
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: ''
+      operationId: delete-point-pointId
+      responses:
+        '200':
+          description: OK
 components:
   schemas:
     Project_Detailed:
@@ -1059,6 +1046,9 @@ components:
               description: code-text for medium. example 'jord'
             sampleId:
               type: string
+        sampleSiteType:
+          type: string
+          description: point or intake
       required:
         - sampleSiteId
         - sampleSiteLabel
