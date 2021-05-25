@@ -326,16 +326,12 @@ paths:
                       maxLength: 36
                     sampleLabel:
                       type: string
-                      minLength: 1
                     matrixC:
                       type: string
-                      minLength: 1
                     sampledBy:
                       type: string
-                      minLength: 1
                     sampleBarcode:
                       type: string
-                      minLength: 1
                     start:
                       type: string
                       format: date-time
@@ -353,51 +349,14 @@ paths:
                       type: number
                     sampleBottom_m:
                       type: number
-                    FieldRemark:
+                    fieldRemark:
                       type: string
                     remark:
                       type: string
                     fieldMeasurements:
-                      type: object
-                      properties:
-                        water:
-                          type: object
-                          properties:
-                            temperature:
-                              type: number
-                            conductivity_mSm:
-                              type: number
-                            pH:
-                              type: number
-                            redox_mV:
-                              type: number
-                            pumpYield_m3h:
-                              type: number
-                            prePump_l:
-                              type: number
-                            waterlevelCalm_m:
-                              type: number
-                            waterlevelInUse_m:
-                              type: number
-                        air-orsa:
-                          type: object
-                          properties:
-                            sampleMinutes:
-                              type: number
-                        air-coal:
-                          type: object
-                          properties:
-                            airVolume_l:
-                              type: number
-                            counterPressure_mbar:
-                              type: number
-                        soil:
-                          type: object
-                          properties:
-                            sampleTop_m:
-                              type: number
-                            sampleBottom_m:
-                              type: number
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/fieldmeasurement'
                   required:
                     - sampleId
                     - sampleSiteId
@@ -440,7 +399,7 @@ paths:
                         sampleBottom_m: 0
   /sample:
     get:
-      summary: GET Sample
+      summary: Sample GET
       tags:
         - geogis
       responses:
@@ -487,7 +446,7 @@ paths:
           name: sampleSiteId
       description: get all samples matching parameters
     put:
-      summary: PUT Sample
+      summary: Sample PUT
       operationId: put-sample
       responses:
         '200':
@@ -541,51 +500,6 @@ paths:
                       type: string
                     remark:
                       type: string
-                    fieldMeasurements:
-                      type: object
-                      properties:
-                        water:
-                          type: object
-                          properties:
-                            temperature:
-                              type: number
-                            conductivity_mSm:
-                              type: number
-                            pH:
-                              type: number
-                            redox_mV:
-                              type: number
-                            pumpYield_m3h:
-                              type: number
-                            prePump_l:
-                              type: number
-                            waterlevelCalm_m:
-                              type: number
-                            waterlevelInUse_m:
-                              type: number
-                            '':
-                              type: string
-                        air-orsa:
-                          type: object
-                          properties:
-                            sampleMinutes:
-                              type: number
-                        air-coal:
-                          type: object
-                          properties:
-                            airVolume_l:
-                              type: number
-                            counterPressure_mbar:
-                              type: number
-                        soil:
-                          type: object
-                          properties:
-                            sampleTop_m:
-                              type: number
-                            sampleBottom_m:
-                              type: number
-                        '':
-                          type: string
                     FieldMeasurements:
                       type: array
                       items:
@@ -1303,49 +1217,6 @@ components:
             remark:
               type: string
               description: generic remark of sample
-            fieldMeasurements:
-              type: object
-              properties:
-                water:
-                  type: object
-                  properties:
-                    temperature:
-                      type: number
-                    conductivity_mSm:
-                      type: number
-                    pH:
-                      type: number
-                    redox_mV:
-                      type: number
-                    pumpYield_m3h:
-                      type: number
-                      description: pumping yield in m3h
-                    prePump_l:
-                      type: number
-                      description: prepumping in litres
-                    waterlevelCalm_m:
-                      type: number
-                    waterlevelInUse_m:
-                      type: number
-                air-orsa:
-                  type: object
-                  properties:
-                    sampleMinutes:
-                      type: integer
-                air-coal:
-                  type: object
-                  properties:
-                    airVolume_l:
-                      type: number
-                    counterPressure_mbar:
-                      type: number
-                soil:
-                  type: object
-                  properties:
-                    sampleTop_m:
-                      type: number
-                    sampleBottom_m:
-                      type: number
             Intake:
               $ref: '#/components/schemas/Intake'
             Point:
@@ -1612,6 +1483,50 @@ components:
           type: string
         projectId:
           type: string
+    fieldMeasurementOLD:
+      title: fieldMeasurementOLD
+      type: object
+      properties:
+        water:
+          type: object
+          properties:
+            temperature:
+              type: number
+            conductivity_mSm:
+              type: number
+            pH:
+              type: number
+            redox_mV:
+              type: number
+            pumpYield_m3h:
+              type: number
+              description: pumping yield in m3h
+            prePump_l:
+              type: number
+              description: prepumping in litres
+            waterlevelCalm_m:
+              type: number
+            waterlevelInUse_m:
+              type: number
+            air-orsa:
+              type: object
+              properties:
+                sampleMinutes:
+                  type: integer
+            air-coal:
+              type: object
+              properties:
+                airVolume_l:
+                  type: number
+                counterPressure_mbar:
+                  type: number
+            soil:
+              type: object
+              properties:
+                sampleTop_m:
+                  type: number
+                sampleBottom_m:
+                  type: number
   securitySchemes: {}
   parameters:
     projectNo:
