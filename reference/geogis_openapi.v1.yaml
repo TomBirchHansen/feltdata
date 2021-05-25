@@ -31,7 +31,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Project'
+                $ref: '#/components/schemas/Project_Detailed'
               examples: {}
         '404':
           description: Not Found
@@ -78,10 +78,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  location:
-                    $ref: '#/components/schemas/SampleSite'
+                $ref: '#/components/schemas/SampleSite'
           headers: {}
         '401':
           description: Unauthorized
