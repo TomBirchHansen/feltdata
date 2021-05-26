@@ -781,7 +781,12 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Point'
+                  type: object
+                  properties:
+                    pointdata:
+                      $ref: '#/components/schemas/Point'
+                    projectdata:
+                      $ref: '#/components/schemas/Project'
               examples: {}
             application/xml:
               schema:
@@ -930,6 +935,35 @@ paths:
       tags:
         - geogis
     parameters: []
+    get:
+      summary: Intake GET
+      operationId: get-intake
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    intakedata:
+                      $ref: '#/components/schemas/Intake'
+                    pointdata:
+                      $ref: '#/components/schemas/Point'
+                    projectdata:
+                      $ref: '#/components/schemas/Project'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: pointId
+        - schema:
+            type: string
+          in: query
+          name: projectId
+      description: returns intakes matching criteria
   '/intake/{intakeId}':
     parameters:
       - schema:
@@ -1150,6 +1184,7 @@ components:
           description: either a geogis pointid or intakeid
         sampleSiteLabel:
           type: string
+          description: 'auto formattet label: DGU:pointno-intakeno'
         point:
           $ref: '#/components/schemas/Point'
         intake:
