@@ -140,7 +140,7 @@ paths:
         - schema:
             type: array
           in: query
-          name: typeCode
+          name: pointTypeC
           description: the type of the samplesite
         - $ref: '#/components/parameters/lat'
         - $ref: '#/components/parameters/long'
