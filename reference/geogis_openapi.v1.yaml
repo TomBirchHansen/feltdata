@@ -838,7 +838,7 @@ paths:
           name: x
           description: coordinate x
         - schema:
-            type: string
+            type: number
           in: query
           name: 'y'
           description: coordinate  y
