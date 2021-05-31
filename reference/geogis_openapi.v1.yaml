@@ -244,6 +244,7 @@ paths:
       summary: Project GET. Find projects
       tags:
         - geogis
+        - project
       responses:
         '200':
           description: OK
@@ -867,6 +868,9 @@ paths:
             type: boolean
           in: query
           name: hasIntake
+      tags:
+        - point
+        - geogis
   /intake:
     put:
       summary: Intake PUT
