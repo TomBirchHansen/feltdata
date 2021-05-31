@@ -1213,8 +1213,9 @@ paths:
       description: delete point
   /codeListOverview:
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: CodeListOverview GET
+      tags:
+        - geogis
       responses:
         '200':
           description: OK
