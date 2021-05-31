@@ -267,6 +267,16 @@ paths:
           in: query
           name: geometry
           description: WKT geometry of search area
+        - schema:
+            type: string
+          in: query
+          name: projectTypeC
+          description: projecttype code
+        - schema:
+            type: string
+          in: query
+          name: caseNumber
+          description: the project case number
       description: Returns projects matching search parameters.
     parameters: []
   '/sample/{sampleId}':
@@ -825,18 +835,22 @@ paths:
             type: number
           in: query
           name: x
+          description: coordinate x
         - schema:
             type: string
           in: query
           name: 'y'
+          description: coordinate  y
         - schema:
             type: integer
           in: query
           name: distance
+          description: 'distance from x,y to return data for'
         - schema:
             type: string
           in: query
-          name: pointTypeC
+          name: pointTypeJupiterGroupC
+          description: '1=boringer, 2=jord,3=poreluft,4=indeklima,5=tilsyn,7=recipient,9=andet'
         - schema:
             type: boolean
           in: query
@@ -849,6 +863,10 @@ paths:
             type: string
           in: query
           name: pointStatusC
+        - schema:
+            type: boolean
+          in: query
+          name: hasIntake
   /intake:
     put:
       summary: Intake PUT
@@ -1227,37 +1245,8 @@ components:
       properties:
         projectId:
           type: string
-        projectNo:
-          type: string
-        projectTitle:
-          type: string
-        x:
-          type: string
-        'y':
-          type: string
-        geometry:
-          type: string
-        lat:
-          type: string
-        long:
-          type: string
-        jarNo:
-          type: string
-        Address:
-          type: string
-        contactRegion:
-          type: string
-        InvoicePersonReference:
-          type: string
-        primaryLaboratoryId:
-          type: string
-        noteToSampler:
-          type: string
-          description: generic information to the sampler regarding the project/site
-        caseNumber:
-          type: string
-        projectManager:
-          type: string
+        ProjectData:
+          $ref: '#/components/schemas/Project'
         ProjectPhases:
           type: array
           items:
@@ -1689,7 +1678,7 @@ components:
         - unitC
       x-tags:
         - objects
-      description: ''
+      description: field measurement data
     analysisvalue:
       title: analysisvalue
       type: object
