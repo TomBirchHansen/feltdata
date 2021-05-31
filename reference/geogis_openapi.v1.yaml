@@ -870,7 +870,6 @@ paths:
           name: hasIntake
       tags:
         - point
-        - geogis
   /intake:
     put:
       summary: Intake PUT
