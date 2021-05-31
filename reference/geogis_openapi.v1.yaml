@@ -611,9 +611,9 @@ paths:
                   listinfo:
                     type: object
                     properties:
-                      listName:
+                      listDescription:
                         type: string
-                      listID:
+                      listId:
                         type: string
                       stancodeListNo:
                         type: string
@@ -673,6 +673,25 @@ paths:
                           endDate: ''
                           stancodeNo: '125'
                           remark: ''
+                example-2:
+                  value:
+                    listinfo:
+                      listDescription: string
+                      listID: string
+                      stancodeListNo: string
+                      listValues:
+                        - valueId: string
+                          value: string
+                          valueLong: string
+                          active: true
+                          startDate: '2018-03-20T09:12:28Z'
+                          endDate: '2019-08-24T14:15:22Z'
+                          stancodeNo: string
+                          remark: string
+                          sortOrder: 0
+                          type: string
+                          prefix: string
+                          jupiterId: string
       operationId: get-codeList
       description: get codevalues used in endpoints. Only for simple list-tables
       parameters:
@@ -993,31 +1012,55 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  intakeNo:
-                    type: integer
-                  intakeName:
-                    type: string
-                  decription:
-                    type: string
-                  screenNo:
-                    type: string
-                  top:
-                    type: number
-                  bottom:
-                    type: number
-                  depth1:
-                    type: number
-                  depth2:
-                    type: number
-      description: 'update intake data. '
+                $ref: '#/components/schemas/Intake'
+              examples: {}
+      description: update intake data. Note that validation rule may limit what data can be modified
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  intakeNo: 0
+                  intakeName: string
+                  description: string
+                  screenNo: string
+                  top: 0
+                  bottom: 0
+                  depth1: 0
+                  depth2: 0
+              properties:
+                intakeNo:
+                  type: number
+                intakeName:
+                  type: string
+                description:
+                  type: string
+                screenNo:
+                  type: string
+                top:
+                  type: number
+                bottom:
+                  type: number
+                depth1:
+                  type: number
+                depth2:
+                  type: number
+                diameter_mm:
+                  type: string
+              required:
+                - intakeNo
+        description: ''
     delete:
       summary: Intake DELETE
       operationId: delete-intake-intakeId
       responses:
         '200':
           description: OK
+        '400':
+          description: Bad Request
       description: Delete IntakeId
   '/point/{pointId}':
     parameters:
@@ -1047,68 +1090,98 @@ paths:
           content:
             application/json:
               schema:
-                description: ''
-                type: object
-                x-examples:
-                  example-1:
-                    projectId: string
-                    pointid: string
-                    pointNo: string
-                    DGU: string
-                    startDate: string
-                    endDate: string
-                    phaseId: string
-                    pointTypeC: string
-                    x: string
-                    'y': string
-                    z: string
-                    descriptionLocation: string
-                    pointStatusC: string
-                    description: string
-                properties:
-                  projectId:
-                    type: string
-                    minLength: 36
-                    maxLength: 36
-                  pointid:
-                    type: string
-                  pointNo:
-                    type: string
-                  DGU:
-                    type: string
-                  startDate:
-                    type: string
-                  endDate:
-                    type: string
-                  phaseId:
-                    type: string
-                  x:
-                    type: string
-                  'y':
-                    type: string
-                  z:
-                    type: string
-                  descriptionLocation:
-                    type: string
-                  pointStatusC:
-                    type: string
-                  description:
-                    type: string
-                required:
-                  - projectId
-                  - pointid
-                  - pointNo
-                  - DGU
-                  - startDate
-                  - endDate
-                  - phaseId
-                  - x
-                  - 'y'
-                  - z
-                  - descriptionLocation
-                  - pointStatusC
-                  - description
+                $ref: '#/components/schemas/Point'
       description: update point data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  pointId: string
+                  pointNo: string
+                  description: string
+                  startDate: '2019-08-24T14:15:22Z'
+                  endDate: '2019-08-24T14:15:22Z'
+                  projectId: string
+                  pointTypeC: string
+                  pointTypeT: string
+                  phaseId: string
+                  phaseT: string
+                  Well:
+                    DGU: string
+                    purposeC: string
+                    purposeT: string
+                    useC: string
+                    useT: string
+                    WellTopTypeC: string
+                    WellTopTypeT: string
+                    isAbandoned: true
+                    contractorId: string
+                    contractorT: string
+                    geoCompany: string
+                    abandonDate: string
+                    hasIntakes: true
+                  x: 0
+                  'y': 0
+                  z: 0
+                  dataowner: string
+                  StatusC: string
+                  StatusT: string
+                  pointTypeGroup: string
+                  pointTypeJupiterGroupC: string
+              properties:
+                pointNo:
+                  type: string
+                description:
+                  type: string
+                startDate:
+                  type: string
+                endDate:
+                  type: string
+                projectId:
+                  type: string
+                pointTypeC:
+                  type: string
+                pointTypeT:
+                  type: string
+                phaseId:
+                  type: string
+                phaseT:
+                  type: string
+                Well:
+                  type: object
+                  properties:
+                    DGU:
+                      type: string
+                    purposeC:
+                      type: string
+                    useC:
+                      type: string
+                    useT:
+                      type: string
+                    WellTopTypeC:
+                      type: string
+                    contractorId:
+                      type: string
+                    geoCompany:
+                      type: string
+                    abandonDate:
+                      type: string
+                x:
+                  type: number
+                'y':
+                  type: number
+                z:
+                  type: number
+                StatusC:
+                  type: string
+              required:
+                - pointNo
+                - projectId
+            examples: {}
     delete:
       summary: Point DELETE
       operationId: delete-point-pointId
@@ -1120,6 +1193,28 @@ paths:
         '404':
           description: Not Found
       description: delete point
+  /codeListOverview:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    listId:
+                      type: string
+                    listDescription:
+                      type: string
+                    stancodeListNo:
+                      type: string
+      operationId: get-codeListOverview
+      description: Overview of all codelists
 components:
   schemas:
     Project_Detailed:
@@ -1361,9 +1456,11 @@ components:
             start:
               type: string
               format: date-time
+              description: datetime for when sampling was started.
             end:
               type: string
               format: date-time
+              description: datetime for when sampling was finished
             laboratoryId:
               type: string
             laboratoryName:
@@ -1381,11 +1478,12 @@ components:
             sampleTop_m:
               type: number
               format: double
+              description: depth to top of sample
             sampleBottom_m:
               type: number
               format: double
-              description: sampled end datetime
-            FieldRemark:
+              description: depth to bottom of sample
+            fieldRemark:
               type: string
               description: Remark from the field
             remark:
@@ -1430,9 +1528,12 @@ components:
           type: number
         pointId:
           type: string
+        diameter_mm:
+          type: number
     Point:
       title: Point
       type: object
+      description: point data
       properties:
         pointId:
           type: string
@@ -1486,6 +1587,8 @@ components:
               type: string
             abandonDate:
               type: string
+            hasIntakes:
+              type: boolean
         x:
           type: number
         'y':
@@ -1502,7 +1605,10 @@ components:
           type: string
         pointTypeJupiterGroupC:
           type: string
-      description: point data
+        coordinateQualityC:
+          type: string
+        coordinateQualityT:
+          type: string
     Project:
       description: ''
       type: object
