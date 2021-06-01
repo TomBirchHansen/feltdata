@@ -23,8 +23,6 @@ paths:
         description: GUID of project
     get:
       summary: 'Project GET {projectId}'
-      tags:
-        - geogis
       responses:
         '200':
           description: OK
@@ -67,11 +65,11 @@ paths:
       operationId: get-project
       description: Returns the information of a project by its projectId
       parameters: []
+      tags:
+        - Endpoints
   '/samplesite/{samplesiteid}':
     get:
       summary: Samplesite GET by id
-      tags:
-        - geogis
       responses:
         '200':
           description: OK
@@ -87,6 +85,8 @@ paths:
       operationId: get-samplesite-samplesiteid
       description: Get details of samplesite (geogis point and or intake)
       parameters: []
+      tags:
+        - Endpoints
     parameters:
       - schema:
           type: string
@@ -161,8 +161,7 @@ paths:
           name: hasIntakes
           description: must have intakes
       tags:
-        - geogis
-        - search endpoints
+        - Endpoints
     put:
       summary: Samplesite PUT (deprecated)
       operationId: put-samplesite
@@ -236,17 +235,13 @@ paths:
                 - IsIntake
             examples: {}
         description: ''
-      tags:
-        - geogis
       deprecated: true
       x-internal: true
+      tags:
+        - Endpoints
   /project:
     get:
       summary: Project GET. Find projects
-      tags:
-        - geogis
-        - project
-        - search endpoints
       responses:
         '200':
           description: OK
@@ -281,6 +276,8 @@ paths:
           name: caseNumber
           description: the project case number
       description: Returns projects matching search parameters.
+      tags:
+        - Endpoints
     parameters: []
   '/sample/{sampleId}':
     get:
@@ -297,7 +294,7 @@ paths:
       operationId: get-sample-sampleId
       description: get data for specific sample.
       tags:
-        - geogis
+        - Endpoints
     parameters:
       - schema:
           type: string
@@ -317,8 +314,6 @@ paths:
         '400':
           description: Bad Request
       description: update data for specified sample
-      tags:
-        - geogis
       requestBody:
         content:
           application/json:
@@ -374,12 +369,11 @@ paths:
                     - sampleId
                     - sampleSiteId
             examples: {}
+      tags:
+        - Endpoints
   /sample:
     get:
       summary: Sample GET
-      tags:
-        - geogis
-        - search_endpoints
       responses:
         '200':
           description: OK
@@ -423,6 +417,8 @@ paths:
           in: query
           name: sampleSiteId
       description: get all samples matching parameters
+      tags:
+        - Endpoints
     put:
       summary: Sample PUT
       operationId: put-sample
@@ -488,14 +484,10 @@ paths:
         description: data for the new sample
       description: create new sample
       tags:
-        - geogis
-  /sample_alternative: {}
+        - Endpoints
   '/codeList/{listId}':
     get:
       summary: 'codeList GET {listId}'
-      tags:
-        - geogis
-        - search endpoints
       responses:
         '200':
           description: OK
@@ -603,6 +595,8 @@ paths:
           in: query
           name: Setup
           description: show rows with specified setup (language). Default is DK
+      tags:
+        - Endpoints
     parameters:
       - schema:
           type: string
@@ -684,7 +678,7 @@ paths:
                   pointStatusC: string
                   description: string
       tags:
-        - geogis
+        - Endpoints
     get:
       summary: Point GET
       operationId: get-point
@@ -754,9 +748,7 @@ paths:
           in: query
           name: hasIntake
       tags:
-        - geogis
-        - point
-        - serach endpoints
+        - Endpoints
   /intake:
     put:
       summary: Intake PUT
@@ -860,8 +852,7 @@ paths:
                 - pointId
         description: ''
       tags:
-        - geogis
-        - put
+        - Endpoints
     parameters: []
     get:
       summary: Intake GET
@@ -893,7 +884,7 @@ paths:
           name: projectId
       description: returns intakes matching criteria
       tags:
-        - search endpoints
+        - Endpoints
   '/intake/{intakeId}':
     parameters:
       - schema:
@@ -904,7 +895,8 @@ paths:
         description: GUID of intake
     get:
       summary: 'Intake GET {intakeId}'
-      tags: []
+      tags:
+        - geogis
       responses:
         '200':
           description: OK
@@ -964,6 +956,8 @@ paths:
               required:
                 - intakeNo
         description: ''
+      tags:
+        - Endpoints
     delete:
       summary: Intake DELETE
       operationId: delete-intake-intakeId
@@ -973,6 +967,8 @@ paths:
         '400':
           description: Bad Request
       description: Delete IntakeId
+      tags:
+        - Endpoints
   '/point/{pointId}':
     parameters:
       - schema:
@@ -982,7 +978,8 @@ paths:
         required: true
     get:
       summary: 'Point GET {pointId}'
-      tags: []
+      tags:
+        - Endpoints
       responses:
         '200':
           description: OK
@@ -1093,6 +1090,8 @@ paths:
                 - pointNo
                 - projectId
             examples: {}
+      tags:
+        - Endpoints
     delete:
       summary: Point DELETE
       operationId: delete-point-pointId
@@ -1104,11 +1103,11 @@ paths:
         '404':
           description: Not Found
       description: delete point
+      tags:
+        - Endpoints
   /codeListOverview:
     get:
       summary: CodeListOverview GET
-      tags:
-        - geogis
       responses:
         '200':
           description: OK
@@ -1127,6 +1126,8 @@ paths:
                       type: string
       operationId: get-codeListOverview
       description: Overview of all codelists
+      tags:
+        - Endpoints
 components:
   schemas:
     Project_Detailed:
