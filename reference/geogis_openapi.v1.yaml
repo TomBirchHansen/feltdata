@@ -22,7 +22,7 @@ paths:
         required: true
         description: GUID of project
     get:
-      summary: Get Project by Id
+      summary: 'Project GET {projectId}'
       tags:
         - geogis
       responses:
@@ -492,7 +492,7 @@ paths:
   /sample_alternative: {}
   '/codeList/{listId}':
     get:
-      summary: GET codeList values
+      summary: 'codeList GET {listId}'
       tags:
         - geogis
         - search endpoints
@@ -861,6 +861,7 @@ paths:
         description: ''
       tags:
         - geogis
+        - put
     parameters: []
     get:
       summary: Intake GET
@@ -902,7 +903,7 @@ paths:
         required: true
         description: GUID of intake
     get:
-      summary: Intake GET
+      summary: 'Intake GET {intakeId}'
       tags: []
       responses:
         '200':
@@ -980,7 +981,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Point GET endpoint
+      summary: 'Point GET {pointId}'
       tags: []
       responses:
         '200':
