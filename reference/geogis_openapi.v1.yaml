@@ -114,7 +114,7 @@ paths:
                 properties: {}
       operationId: get-samplesite
       description: |-
-        get all samplesites that match parameters. 
+        get all samplesites that match query parameters. 
         Parameters lat,long and distance are used to get records within distance from the position.
       parameters:
         - schema:
@@ -241,7 +241,7 @@ paths:
         - Endpoints
   /project:
     get:
-      summary: Project GET. Find projects
+      summary: Project GET
       responses:
         '200':
           description: OK
@@ -275,7 +275,7 @@ paths:
           in: query
           name: caseNumber
           description: the project case number
-      description: Returns projects matching search parameters.
+      description: Returns projects matching query parameters.
       tags:
         - Endpoints
     parameters: []
@@ -701,7 +701,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      description: returns points matching criteria. Minimum one criteria must be provided
+      description: returns points matching query parameters. Minimum one criteria must be provided
       parameters:
         - schema:
             type: string
@@ -878,11 +878,13 @@ paths:
             type: string
           in: query
           name: pointId
+          description: GUID of pointId
         - schema:
             type: string
           in: query
           name: projectId
-      description: returns intakes matching criteria
+          description: GUID of projectId
+      description: returns intakes matching query parameters
       tags:
         - Endpoints
   '/intake/{intakeId}':
@@ -1493,6 +1495,8 @@ components:
           type: string
         coordinateQualityT:
           type: string
+      x-tags:
+        - objects
     Project:
       description: ''
       type: object
@@ -1691,6 +1695,7 @@ components:
                   type: number
                 sampleBottom_m:
                   type: number
+      x-internal: true
   securitySchemes: {}
   parameters:
     projectNo:
