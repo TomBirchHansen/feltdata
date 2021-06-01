@@ -96,7 +96,7 @@ paths:
         required: true
   /samplesite:
     get:
-      summary: Samplesite GET. Find samplesites
+      summary: Samplesite GET
       responses:
         '200':
           description: OK
@@ -162,6 +162,7 @@ paths:
           description: must have intakes
       tags:
         - geogis
+        - search endpoints
     put:
       summary: Samplesite PUT (deprecated)
       operationId: put-samplesite
@@ -245,6 +246,7 @@ paths:
       tags:
         - geogis
         - project
+        - search endpoints
       responses:
         '200':
           description: OK
@@ -377,6 +379,7 @@ paths:
       summary: Sample GET
       tags:
         - geogis
+        - search_endpoints
       responses:
         '200':
           description: OK
@@ -486,131 +489,13 @@ paths:
       description: create new sample
       tags:
         - geogis
-  /sample_alternative:
-    get:
-      summary: GET Sample_alternative
-      tags:
-        - geogis
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Sample_alt'
-          headers: {}
-        '400':
-          description: Bad Request
-      operationId: get-sample_alternative
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: matrixC
-        - schema:
-            type: string
-          in: query
-          name: laboratoryId
-        - schema:
-            type: string
-          in: query
-          name: startDate
-        - schema:
-            type: string
-          in: query
-          name: endDate
-        - schema:
-            type: string
-          in: query
-          name: sampleSiteId
-        - schema:
-            type: string
-          in: query
-          name: projectId
-      description: get all samples matching parameters. Alternative to 'sample' where fieldmeasurements is an array
-    put:
-      summary: PUT Sample_alternative
-      operationId: put-sample_alternative
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Sample_alt'
-              examples: {}
-        '400':
-          description: Bad Request
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: ''
-              type: object
-              properties:
-                Sample:
-                  type: object
-                  properties:
-                    sampleId:
-                      type: string
-                    sampleLabel:
-                      type: string
-                    matrixC:
-                      type: string
-                    matricT:
-                      type: string
-                    sampledBy:
-                      type: string
-                    sampleBarcode:
-                      type: string
-                    sampleSiteId:
-                      type: string
-                      minLength: 1
-                    start:
-                      type: string
-                    end:
-                      type: string
-                    laboratoryId:
-                      type: string
-                    equipmentC:
-                      type: string
-                    sampleTop_m:
-                      type: number
-                    sampleBottom_m:
-                      type: number
-                    FieldRemark:
-                      type: string
-                    remark:
-                      type: string
-                    fieldMeasurements:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          parameterC:
-                            type: string
-                          parameterValue:
-                            type: string
-                          parameterUnitC:
-                            type: string
-                          parameterMethodC:
-                            type: string
-                          performer:
-                            type: string
-                          accredited:
-                            type: boolean
-                  required:
-                    - sampleSiteId
-            examples: {}
-        description: data for the new sample
-      description: create new sample
-      tags:
-        - geogis
+  /sample_alternative: {}
   '/codeList/{listId}':
     get:
       summary: GET codeList values
       tags:
         - geogis
+        - search endpoints
       responses:
         '200':
           description: OK
@@ -869,7 +754,9 @@ paths:
           in: query
           name: hasIntake
       tags:
+        - geogis
         - point
+        - serach endpoints
   /intake:
     put:
       summary: Intake PUT
@@ -1004,6 +891,8 @@ paths:
           in: query
           name: projectId
       description: returns intakes matching criteria
+      tags:
+        - search endpoints
   '/intake/{intakeId}':
     parameters:
       - schema:
