@@ -660,23 +660,7 @@ paths:
                 - projectId
                 - pointNo
                 - pointTypeC
-            examples:
-              example-1:
-                value:
-                  projectId: string
-                  pointid: string
-                  pointNo: string
-                  DGU: string
-                  startDate: string
-                  endDate: string
-                  phaseId: string
-                  pointTypeC: string
-                  x: string
-                  'y': string
-                  z: string
-                  descriptionLocation: string
-                  pointStatusC: string
-                  description: string
+            examples: {}
       tags:
         - Endpoints
     get:
