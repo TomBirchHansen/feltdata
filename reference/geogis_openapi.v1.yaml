@@ -897,8 +897,6 @@ paths:
         description: GUID of intake
     get:
       summary: 'Intake GET {intakeId}'
-      tags:
-        - geogis
       responses:
         '200':
           description: OK
@@ -908,6 +906,8 @@ paths:
                 $ref: '#/components/schemas/Intake'
       operationId: get-intake-intakeId
       description: GET data on Intake
+      tags:
+        - Endpoints
     patch:
       summary: Intake Patch
       operationId: patch-intake-intakeId
