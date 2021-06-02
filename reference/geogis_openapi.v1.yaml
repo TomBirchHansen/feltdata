@@ -281,7 +281,7 @@ paths:
     parameters: []
   '/sample/{sampleId}':
     get:
-      summary: Sample GET by id
+      summary: 'Sample GET {sampleId}'
       responses:
         '200':
           description: OK
