@@ -67,9 +67,9 @@ paths:
       parameters: []
       tags:
         - Endpoints
-  '/samplesite/{samplesiteid}':
+  '/samplesite/{samplesiteId}':
     get:
-      summary: Samplesite GET by id
+      summary: 'Samplesite GET {samplesiteId}'
       responses:
         '200':
           description: OK
@@ -90,7 +90,7 @@ paths:
     parameters:
       - schema:
           type: string
-        name: samplesiteid
+        name: samplesiteId
         in: path
         description: GUID of samplesite (geogis pointid or intakeid)
         required: true
