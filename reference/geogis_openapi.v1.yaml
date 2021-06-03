@@ -1175,6 +1175,9 @@ components:
         sampleSiteLabel:
           type: string
           description: 'auto formattet label: DGU:pointno-intakeno'
+        sampleSiteType:
+          type: string
+          description: point or intake
         point:
           $ref: '#/components/schemas/Point'
         intake:
@@ -1220,9 +1223,6 @@ components:
               description: code-text for medium. example 'jord'
             sampleId:
               type: string
-        sampleSiteType:
-          type: string
-          description: point or intake
       required:
         - sampleSiteId
         - sampleSiteLabel
@@ -1453,6 +1453,26 @@ components:
         phaseT:
           type: string
           description: text description of projectphase
+        x:
+          type: number
+        'y':
+          type: number
+        z:
+          type: number
+        dataowner:
+          type: string
+        StatusC:
+          type: string
+        StatusT:
+          type: string
+        pointTypeGroup:
+          type: string
+        pointTypeJupiterGroupC:
+          type: string
+        coordinateQualityC:
+          type: string
+        coordinateQualityT:
+          type: string
         Well:
           type: object
           properties:
@@ -1484,26 +1504,6 @@ components:
               type: string
             hasIntakes:
               type: boolean
-        x:
-          type: number
-        'y':
-          type: number
-        z:
-          type: number
-        dataowner:
-          type: string
-        StatusC:
-          type: string
-        StatusT:
-          type: string
-        pointTypeGroup:
-          type: string
-        pointTypeJupiterGroupC:
-          type: string
-        coordinateQualityC:
-          type: string
-        coordinateQualityT:
-          type: string
       x-tags:
         - objects
     Project:
