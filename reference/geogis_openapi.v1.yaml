@@ -160,6 +160,21 @@ paths:
           in: query
           name: hasIntakes
           description: must have intakes
+        - schema:
+            type: string
+          in: query
+          name: projectNo
+          description: projectno to search
+        - schema:
+            type: string
+          in: query
+          name: caseNumber
+          description: projects case number
+        - schema:
+            type: string
+          in: query
+          name: phaseId
+          description: phaseId matching the samplesites
       tags:
         - Endpoints
     put:
