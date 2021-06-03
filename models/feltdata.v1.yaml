@@ -28,3 +28,4 @@ x-examples:
       address: string
       x: null
       'y': null
+x-internal: true
