@@ -464,47 +464,44 @@ paths:
               description: ''
               type: object
               properties:
-                Sample:
-                  type: object
-                  properties:
-                    sampleId:
-                      type: string
-                    sampleLabel:
-                      type: string
-                    matrixC:
-                      type: string
-                    matricT:
-                      type: string
-                    sampledBy:
-                      type: string
-                    sampleBarcode:
-                      type: string
-                    sampleSiteId:
-                      type: string
-                      minLength: 1
-                      description: Id of the sampleSite (pointid or intakeid)
-                    start:
-                      type: string
-                    end:
-                      type: string
-                    laboratoryId:
-                      type: string
-                    equipmentC:
-                      type: string
-                    sampleTop_m:
-                      type: number
-                    sampleBottom_m:
-                      type: number
-                    FieldRemark:
-                      type: string
-                    remark:
-                      type: string
-                    FieldMeasurements:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/fieldmeasurement'
-                  required:
-                    - sampleSiteId
+                sampleId:
+                  type: string
+                sampleSiteId:
+                  type: string
+                  minLength: 1
+                  description: Id of the sampleSite (pointid or intakeid)
+                sampleLabel:
+                  type: string
+                matrixC:
+                  type: string
+                matricT:
+                  type: string
+                sampledBy:
+                  type: string
+                sampleBarcode:
+                  type: string
+                start:
+                  type: string
+                end:
+                  type: string
+                laboratoryId:
+                  type: string
+                equipmentC:
+                  type: string
+                sampleTop_m:
+                  type: number
+                sampleBottom_m:
+                  type: number
+                FieldRemark:
+                  type: string
+                remark:
+                  type: string
+                FieldMeasurements:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/fieldmeasurement'
+              required:
+                - sampleSiteId
             examples: {}
         description: data for the new sample
       description: create new sample
@@ -772,70 +769,7 @@ paths:
                 properties:
                   intake:
                     $ref: '#/components/schemas/Intake'
-              examples:
-                example-1:
-                  value:
-                    sampleSiteId: string
-                    sampleSiteLabel: string
-                    samplesiteStatus: string
-                    point:
-                      pointId: string
-                      pointNo: string
-                      description: string
-                      startDate: '2019-08-24T14:15:22Z'
-                      endDate: '2019-08-24T14:15:22Z'
-                      projectId: string
-                      pointTypeC: string
-                      pointTypeT: string
-                      Well:
-                        DGU: string
-                        purposeC: string
-                        purposeT: string
-                        useC: string
-                        useT: string
-                      phaseId: string
-                    intake:
-                      intakeId: string
-                      intakeNo: 0
-                      Name: string
-                      Description: string
-                      screenNo: 1
-                      top: 0
-                      bottom: 0
-                      depth1: 0
-                      depth2: 0
-                      pointId: string
-                    project:
-                      projectId: string
-                      projectNo: string
-                      projectTitle: string
-                      x: string
-                      'y': string
-                      geometry: string
-                      lat: string
-                      long: string
-                      jarNo: string
-                      Address: string
-                      contactregion: string
-                      personReference: string
-                      primaryLaboratory: string
-                      noteForSampler: string
-                      caseNumber: string
-                    LastWaterlevel:
-                      date: string
-                      waterlevel: string
-                      depth: string
-                      referencelevel: string
-                      situationC: string
-                      situationT: string
-                      extremeC: string
-                      extremeT: string
-                    LastSample:
-                      date: string
-                      sampledBy: string
-                      MediumC: string
-                      MediumT: string
-                      sampleId: string
+              examples: {}
       description: create new intake on a well (pointId). Returns data as samplesite-object (intakeid becomes samplesiteId) and also as intake-object
       requestBody:
         content:
@@ -1330,75 +1264,69 @@ components:
       x-tags:
         - objects
       properties:
-        Sample:
-          type: object
-          properties:
-            sampleId:
-              type: string
-            sampleLabel:
-              type: string
-            matrixC:
-              description: Stancode list 1183. Air/water/soil
-              type: string
-            matricT:
-              type: string
-              description: Stancode list 1183
-            sampledBy:
-              type: string
-            sampleBarcode:
-              type: string
-            sampleSiteId:
-              type: string
-            sampleSiteLabel:
-              type: string
-              description: 'generated destricptive name of samplesite (pointno + intake). For instance: B201-1 '
-            start:
-              type: string
-              format: date-time
-              description: datetime for when sampling was started.
-            end:
-              type: string
-              format: date-time
-              description: datetime for when sampling was finished
-            laboratoryId:
-              type: string
-            laboratoryName:
-              type: string
-            equipmentC:
-              type: string
-              description: 'Stancode list 1006. "orsarør","kulrør","canister" ect.'
-            equipmentT:
-              type: string
-              description: Stancode list 1006
-            IntakeNo:
-              type: number
-            IntakeName:
-              type: string
-            sampleTop_m:
-              type: number
-              format: double
-              description: depth to top of sample
-            sampleBottom_m:
-              type: number
-              format: double
-              description: depth to bottom of sample
-            fieldRemark:
-              type: string
-              description: Remark from the field
-            remark:
-              type: string
-              description: generic remark of sample
-            Intake:
-              $ref: '#/components/schemas/Intake'
-            Point:
-              $ref: '#/components/schemas/Point'
-            FieldMeasurements:
-              type: array
-              items:
-                $ref: '#/components/schemas/fieldmeasurement'
-          required:
-            - sampleId
-            - sampleSiteId
+        sampleId:
+         type: string
+        sampleLabel:
+         type: string
+        matrixC:
+         description: Stancode list 1183. Air/water/soil
+         type: string
+        matricT:
+         type: string
+         description: Stancode list 1183
+        sampledBy:
+          type: string
+        sampleBarcode:
+          type: string
+        sampleSiteId:
+          type: string
+        sampleSiteLabel:
+          type: string
+          description: 'generated destricptive name of samplesite (pointno + intake). For instance: B201-1 '
+        start:
+          type: string
+          format: date-time
+          description: datetime for when sampling was started.
+        end:
+          type: string
+          format: date-time
+          description: datetime for when sampling was finished
+        laboratoryId:
+          type: string
+        laboratoryName:
+          type: string
+        equipmentC:
+          type: string
+          description: 'Stancode list 1006. "orsarør","kulrør","canister" ect.'
+        equipmentT:
+          type: string
+          description: Stancode list 1006
+        IntakeNo:
+          type: number
+        IntakeName:
+          type: string
+        sampleTop_m:
+          type: number
+          format: double
+          description: depth to top of sample
+        sampleBottom_m:
+          type: number
+          format: double
+          description: depth to bottom of sample
+        fieldRemark:
+          type: string
+          description: Remark from the field
+        remark:
+          type: string
+          description: generic remark of sample
+        Intake:
+          $ref: '#/components/schemas/Intake'
+        Point:
+          $ref: '#/components/schemas/Point'
+        FieldMeasurements:
+          type: array
+          items:
+            $ref: '#/components/schemas/fieldmeasurement'
     Intake:
       title: Intake
       type: object
