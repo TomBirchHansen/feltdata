@@ -175,6 +175,16 @@ paths:
           in: query
           name: phaseId
           description: phaseId matching the samplesites
+        - schema:
+            type: boolean
+          in: query
+          name: isNotAbandoned
+          description: only return data not marked as abandoned
+        - schema:
+            type: string
+          in: query
+          name: pointTypeJupiterGroupC
+          description: '1=boringer, 2=jord,3=poreluft,4=indeklima,5=tilsyn,7=recipient,9=andet'
       tags:
         - Endpoints
     put:
@@ -565,15 +575,15 @@ paths:
                           valueLong: kulrør til luftprøver
                           active: true
                           startDate: '2012-04-23T18:25:43.511Z'
-                          endDate: ''
+                          endDate: '2019-08-24T14:15:22Z'
                           stancodeNo: '123'
                           remark: ''
                         - valueId: '2'
                           value: orsarør
                           valueLong: orsarør til luftprøver
                           active: true
-                          startDate: '2018-03-20'
-                          endDate: ''
+                          startDate: '2019-08-24T14:15:22Z'
+                          endDate: '2019-08-24T14:15:22Z'
                           stancodeNo: '125'
                           remark: ''
                 example-2:
@@ -1739,3 +1749,4 @@ components:
                 type: string
 tags:
   - name: geogis
+  - name: Endpoints
