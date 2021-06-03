@@ -893,6 +893,10 @@ paths:
           in: query
           name: projectId
           description: GUID of projectId
+        - schema:
+            type: string
+          in: query
+          name: projectNo
       description: returns intakes matching query parameters
       tags:
         - Endpoints
