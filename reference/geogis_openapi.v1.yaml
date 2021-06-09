@@ -104,9 +104,16 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/SampleSite'
+                type: object
+                properties:
+                  recordsFound:
+                    type: integer
+                  maxRecordsExceeded:
+                    type: boolean
+                  SampleSites:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SampleSite'
               examples: {}
             application/xml:
               schema:
@@ -251,7 +258,7 @@ paths:
                   type: string
                 samplesiteTypeC:
                   type: string
-                  description: ''
+                  description: . Irrelevant
                 phaseId:
                   type: string
               required:
@@ -396,6 +403,15 @@ paths:
             examples: {}
       tags:
         - Endpoints
+    delete:
+      summary: Sample DELETE
+      operationId: delete-sample-sampleId
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Endpoints
+      description: 'Delete specified sample. Validation will restrict '
   /sample:
     get:
       summary: Sample GET
@@ -405,9 +421,18 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Sample'
+                type: object
+                properties:
+                  recordsFound:
+                    type: integer
+                  maxRecordsExceeded:
+                    type: boolean
+                  Samples:
+                    type:
+                      - string
+                      - array
+                    items:
+                      $ref: '#/components/schemas/Sample'
           headers: {}
         '400':
           description: Bad Request
@@ -1265,15 +1290,15 @@ components:
         - objects
       properties:
         sampleId:
-         type: string
+          type: string
         sampleLabel:
-         type: string
+          type: string
         matrixC:
-         description: Stancode list 1183. Air/water/soil
-         type: string
+          description: Stancode list 1183. Air/water/soil
+          type: string
         matricT:
-         type: string
-         description: Stancode list 1183
+          type: string
+          description: Stancode list 1183
         sampledBy:
           type: string
         sampleBarcode:
