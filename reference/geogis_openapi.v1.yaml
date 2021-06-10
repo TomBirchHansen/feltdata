@@ -280,9 +280,16 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Project'
+                type: object
+                properties:
+                  recordsFound:
+                    type: integer
+                  maxRecordsExceeded:
+                    type: boolean
+                  Projects:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Project'
               examples: {}
         '400':
           description: Bad Request
@@ -428,9 +435,7 @@ paths:
                   maxRecordsExceeded:
                     type: boolean
                   Samples:
-                    type:
-                      - string
-                      - array
+                    type: array
                     items:
                       $ref: '#/components/schemas/Sample'
           headers: {}
@@ -719,14 +724,21 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    pointdata:
-                      $ref: '#/components/schemas/Point'
-                    projectdata:
-                      $ref: '#/components/schemas/Project'
+                type: object
+                properties:
+                  recordsFound:
+                    type: integer
+                  maxRecordsExceeded:
+                    type: boolean
+                  Points:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        pointData:
+                          $ref: '#/components/schemas/Point'
+                        projectData:
+                          $ref: '#/components/schemas/Project'
               examples: {}
             application/xml:
               schema:
@@ -831,16 +843,23 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    intakedata:
-                      $ref: '#/components/schemas/Intake'
-                    pointdata:
-                      $ref: '#/components/schemas/Point'
-                    projectdata:
-                      $ref: '#/components/schemas/Project'
+                type: object
+                properties:
+                  recordsFound:
+                    type: integer
+                  maxRecordsExceeded:
+                    type: boolean
+                  Intakes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        IntakeData:
+                          $ref: '#/components/schemas/Intake'
+                        PointData:
+                          $ref: '#/components/schemas/Point'
+                        ProjectData:
+                          $ref: '#/components/schemas/Project'
       parameters:
         - schema:
             type: string
