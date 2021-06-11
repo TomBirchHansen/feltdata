@@ -341,7 +341,7 @@ paths:
         in: path
         required: true
     patch:
-      summary: Sample PATCH
+      summary: 'Sample PATCH {sampleId}'
       operationId: patch-sample-sampleid
       responses:
         '200':
@@ -411,7 +411,7 @@ paths:
       tags:
         - Endpoints
     delete:
-      summary: Sample DELETE
+      summary: 'Sample DELETE {sampleId}'
       operationId: delete-sample-sampleId
       responses:
         '200':
@@ -900,7 +900,7 @@ paths:
       tags:
         - Endpoints
     patch:
-      summary: Intake Patch
+      summary: 'Intake Patch {IntakeId}'
       operationId: patch-intake-intakeId
       responses:
         '200':
@@ -952,7 +952,7 @@ paths:
       tags:
         - Endpoints
     delete:
-      summary: Intake DELETE
+      summary: 'Intake DELETE {IntakeId}'
       operationId: delete-intake-intakeId
       responses:
         '200':
@@ -983,7 +983,7 @@ paths:
       operationId: get-point-pointId-'
       description: Get point data
     patch:
-      summary: Point PATCH
+      summary: 'Point PATCH {pointId}'
       operationId: patch-point-pointId
       responses:
         '200':
@@ -1086,7 +1086,7 @@ paths:
       tags:
         - Endpoints
     delete:
-      summary: Point DELETE
+      summary: 'Point DELETE {pointId}'
       operationId: delete-point-pointId
       responses:
         '200':
