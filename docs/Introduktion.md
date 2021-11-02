@@ -14,6 +14,11 @@ The response is structured so it is easy to see if data is an intake or point in
 
 The SampleSite GET endpoint can be found here: https://feltdata.stoplight.io/docs/feltdata/reference/geogis_openapi.v1.yaml/paths/~1sample/get
 
+## codelist data
+codelist fields have a trailing "C" in it's name. It's corisponding codelist-value-field has a trailing "T".
+For example:
+ - parameterT
+ - parameterC
 
 
 

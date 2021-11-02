@@ -1546,12 +1546,24 @@ components:
       x-tags:
         - objects
       description: field measurement data
+      x-examples:
+        example-1:
+          measurementId: ''
+          parameterC: string
+          parameterT: string
+          value: 7
+          unitC: string
+          unitT: string
+          methodC: string
+          methodT: string
+          remark: string
       properties:
         measurementId:
           type: string
           description: GUID of record
         parameterC:
           type: string
+          description: stancode 1008
         parameterT:
           type: string
         value:
