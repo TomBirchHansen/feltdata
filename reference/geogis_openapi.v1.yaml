@@ -1198,9 +1198,9 @@ components:
               type: string
             sampledBy:
               type: string
-            MediumC:
+            MatrixC:
               type: string
-            MediumT:
+            MatrixT:
               type: string
               description: code-text for medium. example 'jord'
             sampleId:
@@ -1543,26 +1543,32 @@ components:
     fieldmeasurement:
       title: fieldMeasurement
       type: object
+      x-tags:
+        - objects
+      description: field measurement data
       properties:
         measurementId:
           type: string
           description: GUID of record
         parameterC:
           type: string
+        parameterT:
+          type: string
         value:
           type: number
         unitC:
           type: string
+        unitT:
+          type: string
         methodC:
+          type: string
+        methodT:
           type: string
         remark:
           type: string
       required:
         - parameterC
         - unitC
-      x-tags:
-        - objects
-      description: field measurement data
     analysisvalue:
       title: analysisvalue
       type: object
