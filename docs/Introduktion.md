@@ -1,5 +1,5 @@
 # Introduction
-This API documentation is used in danish regions 
+This API documentation is used in Danish regions 
 
 
 ## Overview
