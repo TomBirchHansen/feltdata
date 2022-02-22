@@ -30,7 +30,120 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project_Detailed'
-              examples: {}
+              examples:
+                example-1:
+                  value:
+                    projectId: string
+                    ProjectData:
+                      projectId: string
+                      projectNo: string
+                      projectTitle: string
+                      x: string
+                      'y': string
+                      geometry: string
+                      lat: string
+                      long: string
+                      jarNo: string
+                      Address: string
+                      contactRegion: string
+                      InvoicePersonReference: string
+                      primaryLaboratoryId: string
+                      noteToSampler: string
+                      caseNumber: string
+                      projectManager: string
+                    ProjectPhases:
+                      - phaseId: string
+                        name: string
+                        type: string
+                        start: string
+                        end: string
+                        label: string
+                        companyId: string
+                        companyT: string
+                        projectId: string
+                    SampleSites:
+                      - sampleSiteId: string
+                        sampleSiteLabel: string
+                        sampleSiteType: string
+                        point:
+                          pointId: string
+                          pointNo: string
+                          description: string
+                          startDate: '2019-08-24T14:15:22Z'
+                          endDate: '2019-08-24T14:15:22Z'
+                          projectId: string
+                          pointTypeC: string
+                          pointTypeT: string
+                          phaseId: string
+                          phaseT: string
+                          x: 0
+                          'y': 0
+                          z: 0
+                          dataowner: string
+                          StatusC: string
+                          StatusT: string
+                          pointTypeGroup: string
+                          pointTypeJupiterGroupC: string
+                          coordinateQualityC: string
+                          coordinateQualityT: string
+                          Well:
+                            DGU: string
+                            purposeC: string
+                            purposeT: string
+                            useC: string
+                            useT: string
+                            WellTopTypeC: string
+                            WellTopTypeT: string
+                            isAbandoned: true
+                            contractorId: string
+                            contractorT: string
+                            geoCompany: string
+                            abandonDate: string
+                            hasIntakes: true
+                        intake:
+                          intakeId: string
+                          intakeNo: 0
+                          Name: string
+                          Description: string
+                          screenNo: 0
+                          top: 0
+                          bottom: 0
+                          depth1: 0
+                          depth2: 0
+                          pointId: string
+                          diameter_mm: 0
+                        project:
+                          projectId: string
+                          projectNo: string
+                          projectTitle: string
+                          x: string
+                          'y': string
+                          geometry: string
+                          lat: string
+                          long: string
+                          jarNo: string
+                          Address: string
+                          contactRegion: string
+                          InvoicePersonReference: string
+                          primaryLaboratoryId: string
+                          noteToSampler: string
+                          caseNumber: string
+                          projectManager: string
+                        LastWaterlevel:
+                          date: string
+                          waterlevel: string
+                          depth: string
+                          referencelevel: string
+                          situationC: string
+                          situationT: string
+                          extremeC: string
+                          extremeT: string
+                        LastSample:
+                          date: string
+                          sampledBy: string
+                          MatrixC: string
+                          MatrixT: string
+                          sampleId: string
         '404':
           description: Not Found
           content:
@@ -503,8 +616,6 @@ paths:
                 sampleLabel:
                   type: string
                 matrixC:
-                  type: string
-                matricT:
                   type: string
                 sampledBy:
                   type: string
