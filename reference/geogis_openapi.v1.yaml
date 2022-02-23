@@ -516,7 +516,7 @@ paths:
                     fieldMeasurements:
                       type: array
                       items:
-                        $ref: '#/components/schemas/fieldmeasurement'
+                        $ref: '#/components/schemas/fieldmeasurement_input'
                   required:
                     - sampleId
                     - sampleSiteId
@@ -638,9 +638,7 @@ paths:
                 remark:
                   type: string
                 FieldMeasurements:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/fieldmeasurement'
+                  $ref: '#/components/schemas/fieldmeasurement_input'
               required:
                 - sampleSiteId
             examples: {}
@@ -1157,11 +1155,7 @@ paths:
                   type: string
                 pointTypeC:
                   type: string
-                pointTypeT:
-                  type: string
                 phaseId:
-                  type: string
-                phaseT:
                   type: string
                 Well:
                   type: object
@@ -1171,8 +1165,6 @@ paths:
                     purposeC:
                       type: string
                     useC:
-                      type: string
-                    useT:
                       type: string
                     WellTopTypeC:
                       type: string
@@ -1692,23 +1684,13 @@ components:
       required:
         - parameterC
         - unitC
-    fieldmeasurement - copy:
+    fieldmeasurement_input:
       title: fieldMeasurement_input
       type: object
       x-tags:
         - objects
       description: field measurement data
-      x-examples:
-        example-1:
-          measurementId: ''
-          parameterC: string
-          parameterT: string
-          value: 7
-          unitC: string
-          unitT: string
-          methodC: string
-          methodT: string
-          remark: string
+      x-examples: {}
       properties:
         measurementId:
           type: string
