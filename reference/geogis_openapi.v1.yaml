@@ -434,7 +434,7 @@ paths:
             type: number
           in: query
           name: 'y'
-          description: y x utm32euref89
+          description: y utm32euref89
       description: Returns projects matching query parameters.
       tags:
         - Endpoints
