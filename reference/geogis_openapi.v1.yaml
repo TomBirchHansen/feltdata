@@ -409,8 +409,6 @@ paths:
       operationId: get-project-find
       parameters:
         - $ref: '#/components/parameters/projectNo'
-        - $ref: '#/components/parameters/lat'
-        - $ref: '#/components/parameters/long'
         - $ref: '#/components/parameters/distance'
         - schema:
             type: array
@@ -427,6 +425,16 @@ paths:
           in: query
           name: caseNumber
           description: the project case number
+        - schema:
+            type: number
+          in: query
+          name: x
+          description: x utm32euref89
+        - schema:
+            type: number
+          in: query
+          name: 'y'
+          description: y x utm32euref89
       description: Returns projects matching query parameters.
       tags:
         - Endpoints
