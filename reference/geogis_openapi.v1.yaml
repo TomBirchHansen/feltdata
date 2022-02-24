@@ -832,6 +832,7 @@ paths:
                   properties:
                     DGU:
                       type: string
+                      description: DGU number
                     purposeC:
                       type: string
                     useC:
