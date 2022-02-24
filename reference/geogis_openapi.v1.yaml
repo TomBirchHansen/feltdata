@@ -11,7 +11,7 @@ servers:
   - url: 'http://localhost:3000'
     description: testsite
   - description: Region Midt GeoGIS
-    url: 'https://geogisapi.rm.dk'
+    url: 'https://geogisopenapi-test.rm.dk/v1/api'
 paths:
   '/project/{projectId}':
     parameters:
@@ -789,6 +789,8 @@ paths:
                     $ref: '#/components/schemas/SampleSite'
                   point:
                     $ref: '#/components/schemas/Point'
+        '201':
+          description: Created
       description: Create new point (well or other). Response is samplesite object with the created point as a samplesite (Pointid becomes the samplesiteId). Response is also returned as point-object
       requestBody:
         content:
@@ -798,11 +800,11 @@ paths:
               properties:
                 projectId:
                   type: string
+                  description: the projectid where the point is to be created on.
                 pointid:
                   type: string
+                  description: GUID of new pointid. If empty a new GUID is returned in the response.
                 pointNo:
-                  type: string
-                DGU:
                   type: string
                 startDate:
                   type: string
@@ -812,19 +814,36 @@ paths:
                   type: string
                 pointTypeC:
                   type: string
+                descriptionLocation:
+                  type: string
+                  description: a description of the location of the point
+                description:
+                  type: string
+                pointStatusC:
+                  type: string
                 x:
                   type: string
                 'y':
                   type: string
                 z:
                   type: string
-                descriptionLocation:
-                  type: string
-                  description: a description of the location of the point
-                pointStatusC:
-                  type: string
-                description:
-                  type: string
+                Well:
+                  type: object
+                  properties:
+                    DGU:
+                      type: string
+                    purposeC:
+                      type: string
+                    useC:
+                      type: string
+                    WellTopTypeC:
+                      type: string
+                    contractorId:
+                      type: string
+                    geoCompany:
+                      type: string
+                    abandonDate:
+                      type: string
               required:
                 - projectId
                 - pointNo
@@ -1155,6 +1174,8 @@ paths:
                   type: string
                 description:
                   type: string
+                descriptionLocation:
+                  type: string
                 startDate:
                   type: string
                 endDate:
@@ -1165,6 +1186,14 @@ paths:
                   type: string
                 phaseId:
                   type: string
+                PointStatusC:
+                  type: string
+                x:
+                  type: number
+                'y':
+                  type: number
+                z:
+                  type: number
                 Well:
                   type: object
                   properties:
@@ -1182,14 +1211,6 @@ paths:
                       type: string
                     abandonDate:
                       type: string
-                x:
-                  type: number
-                'y':
-                  type: number
-                z:
-                  type: number
-                StatusC:
-                  type: string
               required:
                 - pointNo
                 - projectId
@@ -1835,7 +1856,16 @@ components:
                 sampleBottom_m:
                   type: number
       x-internal: true
-  securitySchemes: {}
+  securitySchemes:
+    API Key - 1:
+      type: oauth2
+      description: ''
+      flows:
+        clientCredentials:
+          refreshUrl: ''
+          scopes:
+            openid: ''
+          tokenUrl: 'https://log-in.test.miljoeportal.dk/runtime/oauth2/token.idp'
   parameters:
     projectNo:
       name: projectNo
