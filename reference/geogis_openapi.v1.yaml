@@ -849,7 +849,31 @@ paths:
                 - projectId
                 - pointNo
                 - pointTypeC
-            examples: {}
+            examples:
+              example-1:
+                value:
+                  projectId: string
+                  pointid: string
+                  pointNo: string
+                  startDate: string
+                  endDate: string
+                  phaseId: string
+                  pointTypeC: string
+                  descriptionLocation: string
+                  description: string
+                  pointStatusC: string
+                  x: string
+                  'y': string
+                  z: string
+                  Well:
+                    DGU: string
+                    purposeC: string
+                    useC: string
+                    WellTopTypeC: string
+                    contractorId: string
+                    geoCompany: string
+                    abandonDate: string
+        description: ''
       tags:
         - Endpoints
     get:
