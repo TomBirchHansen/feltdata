@@ -791,7 +791,7 @@ paths:
                     $ref: '#/components/schemas/Point'
         '201':
           description: Created
-      description: Create new point (well or other). Response is samplesite object with the created point as a samplesite (Pointid becomes the samplesiteId). Response is also returned as point-object
+      description: Create new point (well or other). Response is samplesite object with the created point as a samplesite (Pointid becomes the samplesiteId). Response is also returned as point-object.
       requestBody:
         content:
           application/json:
