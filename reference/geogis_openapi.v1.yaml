@@ -775,7 +775,7 @@ paths:
         description: the ID of the list to return. "all" returns all lists
   /point:
     put:
-      summary: Point PUT
+      summary: Point PUT.
       operationId: put-point
       responses:
         '200':
