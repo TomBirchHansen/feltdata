@@ -1562,6 +1562,8 @@ components:
       title: Point
       type: object
       description: point data
+      x-tags:
+        - objects
       properties:
         pointId:
           type: string
@@ -1602,6 +1604,7 @@ components:
           type: string
         pointTypeJupiterGroupC:
           type: string
+          description: '1=boringer, 2=jord,3=poreluft,4=indeklima,5=tilsyn,7=recipient,9=andet'
         coordinateQualityC:
           type: string
         coordinateQualityT:
@@ -1637,8 +1640,6 @@ components:
               type: string
             hasIntakes:
               type: boolean
-      x-tags:
-        - objects
     Project:
       description: ''
       type: object
@@ -1705,15 +1706,12 @@ components:
       description: field measurement data
       x-examples:
         example-1:
-          measurementId: ''
-          parameterC: string
-          parameterT: string
+          measurementId: ECC648E1-313E-4835-BF21-91BA57877786
+          parameterC: '13'
           value: 7
-          unitC: string
-          unitT: string
-          methodC: string
-          methodT: string
-          remark: string
+          unitC: '5'
+          methodC: ''
+          remark: test
       properties:
         measurementId:
           type: string
@@ -1734,6 +1732,10 @@ components:
         methodT:
           type: string
         remark:
+          type: string
+        attributeC:
+          type: string
+        attributeT:
           type: string
       required:
         - parameterC
