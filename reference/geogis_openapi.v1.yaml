@@ -1338,13 +1338,13 @@ components:
               type: string
             situationC:
               type: string
-              description: 'codevalue for waterlevel situation. '
+              description: codevalue for waterlevel situation. (codelist='waterlevelSituationC')
             situationT:
               type: string
               description: 'code-text for situation. example ''Ro'', ''Drift'''
             extremeC:
               type: string
-              description: code for extreme
+              description: code for extreme. (codelist='waterlevelExtremeC')
             extremeT:
               type: string
               description: 'code-text for extreme. Example: ''overløb'', ''normal'''
@@ -1357,6 +1357,7 @@ components:
               type: string
             MatrixC:
               type: string
+              description: (codelist='analysisMatrixC')
             MatrixT:
               type: string
               description: code-text for medium. example 'jord'
@@ -1470,7 +1471,7 @@ components:
         sampleLabel:
           type: string
         matrixC:
-          description: Stancode list 1183. Air/water/soil
+          description: (codelist='analysisMatrixC') Stancode list 1183. Air/water/soil
           type: string
         matricT:
           type: string
@@ -1498,10 +1499,10 @@ components:
           type: string
         equipmentC:
           type: string
-          description: 'Stancode list 1006. "orsarør","kulrør","canister" ect.'
+          description: 'codetype=''analysisEquipmentC'' for '
         equipmentT:
           type: string
-          description: Stancode list 1006
+          description: 'Stancode list 1006  '
         IntakeNo:
           type: number
         IntakeName:
@@ -1581,6 +1582,7 @@ components:
           type: string
         pointTypeC:
           type: string
+          description: codelist='pointTypeC'
         pointTypeT:
           type: string
         phaseId:
@@ -1598,15 +1600,18 @@ components:
           type: string
         StatusC:
           type: string
+          description: codelist='pointStatusC'
         StatusT:
           type: string
         pointTypeGroup:
           type: string
+          description: 'Boring, Jordforurening, poreluft, indeklima, recipient ect (codelist=''pointTypeGroupC'')'
         pointTypeJupiterGroupC:
           type: string
-          description: '1=boringer, 2=jord,3=poreluft,4=indeklima,5=tilsyn,7=recipient,9=andet'
+          description: '1=boringer, 2=jord,poreluft,indeklima,recipient mv. 0=vandforsyningsanlæg. Codelist=''PointTypeJupiterGroupC'''
         coordinateQualityC:
           type: string
+          description: codelist=CoordinateQualityC
         coordinateQualityT:
           type: string
         Well:
@@ -1616,26 +1621,29 @@ components:
               type: string
             purposeC:
               type: string
+              description: codelist='pointPurposeC'
             purposeT:
               type: string
             useC:
               type: string
+              description: codelist='PointUse'
             useT:
               type: string
             WellTopTypeC:
               type: string
-              description: ''
+              description: codelist='WellTopTypeC'
             WellTopTypeT:
               type: string
             isAbandoned:
               type: boolean
             contractorId:
               type: string
-              description: GUID
+              description: GUID codelist='contractorC'
             contractorT:
               type: string
             geoCompany:
               type: string
+              description: 'geology-company '
             abandonDate:
               type: string
             hasIntakes:
