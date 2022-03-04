@@ -1353,6 +1353,7 @@ components:
           properties:
             date:
               type: string
+              format: date-time
             sampledBy:
               type: string
             MatrixC:
@@ -1468,6 +1469,7 @@ components:
       properties:
         sampleId:
           type: string
+          format: uuid
         sampleLabel:
           type: string
         matrixC:
@@ -1478,10 +1480,12 @@ components:
           description: Stancode list 1183
         sampledBy:
           type: string
+          example: Anders And
         sampleBarcode:
           type: string
         sampleSiteId:
           type: string
+          format: uuid
         sampleSiteLabel:
           type: string
           description: 'generated destricptive name of samplesite (pointno + intake). For instance: B201-1 '
@@ -1495,6 +1499,7 @@ components:
           description: datetime for when sampling was finished
         laboratoryId:
           type: string
+          description: stancode 1025 codelist=AnalysisLaboratoryC
         laboratoryName:
           type: string
         equipmentC:
@@ -1538,15 +1543,19 @@ components:
       properties:
         intakeId:
           type: string
+          format: uuid
         intakeNo:
           type: integer
+          example: 1
         Name:
           type: string
+          example: 1A
         Description:
           type: string
         screenNo:
-          description: 'only relevant '
           type: integer
+          description: 'only relevant '
+          example: 1
         top:
           type: number
         bottom:
@@ -1557,6 +1566,7 @@ components:
           type: number
         pointId:
           type: string
+          format: uuid
         diameter_mm:
           type: number
     Point:
@@ -1568,6 +1578,7 @@ components:
       properties:
         pointId:
           type: string
+          format: uuid
         pointNo:
           type: string
         description:
@@ -1587,6 +1598,7 @@ components:
           type: string
         phaseId:
           type: string
+          format: uuid
         phaseT:
           type: string
           description: text description of projectphase
@@ -1639,6 +1651,8 @@ components:
             contractorId:
               type: string
               description: GUID codelist='contractorC'
+              maxLength: 36
+              format: uuid
             contractorT:
               type: string
             geoCompany:
@@ -1675,6 +1689,7 @@ components:
       properties:
         projectId:
           type: string
+          format: uuid
         projectNo:
           type: string
         projectTitle:
@@ -1724,27 +1739,42 @@ components:
         measurementId:
           type: string
           description: GUID of record
+          format: uuid
+          example: ECC648E1-313E-4835-BF21-91BA57877786
         parameterC:
           type: string
-          description: stancode 1008
+          description: codelist='analysisparameterC' stancode 1008
+          example: '215'
         parameterT:
           type: string
+          example: benzen
         value:
           type: number
+          example: '0,023'
+          format: double
         unitC:
           type: string
+          description: codelist 'analysisUnitC'
+          example: '20'
         unitT:
           type: string
+          example: ug/l
         methodC:
           type: string
+          description: codelist 'AnalysisUnitC'
+          example: '10'
         methodT:
           type: string
+          example: DS 220
         remark:
           type: string
         attributeC:
           type: string
+          description: codelist 'AttributeC'
+          example: '7'
         attributeT:
           type: string
+          example: '='
       required:
         - parameterC
         - unitC
@@ -1764,8 +1794,11 @@ components:
           description: stancode 1008
         value:
           type: number
+          example: 0.23
+          format: double
         unitC:
           type: string
+          example: '20'
         methodC:
           type: string
         remark:
