@@ -1675,7 +1675,7 @@ components:
               type: string
             useC:
               type: string
-              description: codelist='PointUse'
+              description: codelist='PointUseC'
             useT:
               type: string
             WellTopTypeC:
