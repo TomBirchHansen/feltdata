@@ -649,8 +649,10 @@ paths:
                   description: 'codelist: analysisEquipmentC'
                 sampleTop_m:
                   type: number
+                  description: depth from terrain to top of sample in meters
                 sampleBottom_m:
                   type: number
+                  description: depth i meters to bottom of sample (soilsamples)
                 FieldRemark:
                   type: string
                   description: Remark from field worker
@@ -810,20 +812,27 @@ paths:
             schema:
               type: object
               properties:
-                projectId:
-                  type: string
-                  description: the projectid where the point is to be created on.
                 pointid:
                   type: string
                   description: GUID of new pointid. If empty a new GUID is returned in the response.
+                  format: uuid
+                projectId:
+                  type: string
+                  description: the projectid where the point is to be created on.
+                  format: uuid
                 pointNo:
                   type: string
+                  example: IK2
                 startDate:
                   type: string
+                  format: date
                 endDate:
                   type: string
+                  description: for wells this is the drill-date
+                  format: date
                 phaseId:
                   type: string
+                  format: uuid
                 pointTypeC:
                   type: string
                 descriptionLocation:
@@ -833,6 +842,7 @@ paths:
                   type: string
                 pointStatusC:
                   type: string
+                  description: 'codelist: pointStatusC'
                 x:
                   type: string
                 'y':
@@ -853,6 +863,8 @@ paths:
                       type: string
                     contractorId:
                       type: string
+                      description: 'codelist:contractorC'
+                      format: uuid
                     geoCompany:
                       type: string
                     abandonDate:
