@@ -415,6 +415,7 @@ paths:
         - $ref: '#/components/parameters/distance'
         - schema:
             type: array
+            deprecated: true
           in: query
           name: geometry
           description: WKT geometry of search area
@@ -1389,6 +1390,7 @@ components:
               description: code-text for medium. example 'jord'
             sampleId:
               type: string
+              format: uuid
       required:
         - sampleSiteId
         - sampleSiteLabel
@@ -1741,6 +1743,7 @@ components:
           type: string
         primaryLaboratoryId:
           type: string
+          description: 'codelist:analysisLaboratoryC'
         noteToSampler:
           type: string
           description: generic information to the sampler regarding the project/site
