@@ -335,8 +335,10 @@ paths:
               properties:
                 SamplesiteId:
                   type: string
+                  format: uuid
                 projectId:
                   type: string
+                  format: uuid
                 IsIntake:
                   type: boolean
                 Intake:
@@ -346,6 +348,7 @@ paths:
                       type: string
                       description: |
                         GUID of samplesite for well
+                      format: uuid
                     intakeno:
                       type: number
                     intake:
@@ -617,34 +620,43 @@ paths:
               properties:
                 sampleId:
                   type: string
+                  format: uuid
                 sampleSiteId:
                   type: string
                   minLength: 1
                   description: Id of the sampleSite (pointid or intakeid)
+                  format: uuid
                 sampleLabel:
                   type: string
                 matrixC:
                   type: string
+                  description: 'codelist: "analysisMatrixC"'
                 sampledBy:
                   type: string
                 sampleBarcode:
                   type: string
                 start:
                   type: string
+                  format: uuid
                 end:
                   type: string
+                  format: date-time
                 laboratoryId:
                   type: string
+                  description: 'codelist: "analyisLaboratoryC"'
                 equipmentC:
                   type: string
+                  description: 'codelist: analysisEquipmentC'
                 sampleTop_m:
                   type: number
                 sampleBottom_m:
                   type: number
                 FieldRemark:
                   type: string
+                  description: Remark from field worker
                 remark:
                   type: string
+                  description: generic remark field
                 FieldMeasurements:
                   $ref: '#/components/schemas/fieldmeasurement_input'
               required:
@@ -1496,7 +1508,7 @@ components:
         end:
           type: string
           format: date-time
-          description: datetime for when sampling was finished
+          description: 'datetime for when sampling was finished. '
         laboratoryId:
           type: string
           description: stancode 1025 codelist=AnalysisLaboratoryC
@@ -1534,6 +1546,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/fieldmeasurement'
+      required:
+        - end
     Intake:
       title: Intake
       type: object
