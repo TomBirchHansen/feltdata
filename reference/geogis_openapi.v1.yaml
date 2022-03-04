@@ -262,8 +262,6 @@ paths:
           in: query
           name: pointTypeC
           description: the type of the samplesite
-        - $ref: '#/components/parameters/lat'
-        - $ref: '#/components/parameters/long'
         - $ref: '#/components/parameters/distance'
         - schema:
             type: boolean
@@ -305,6 +303,16 @@ paths:
           in: query
           name: pointTypeJupiterGroupC
           description: '1=boringer, 2=jord,3=poreluft,4=indeklima,5=tilsyn,7=recipient,9=andet'
+        - schema:
+            type: number
+          in: query
+          name: x
+          description: x coordinate
+        - schema:
+            type: string
+          in: query
+          name: 'y'
+          description: y coordinate
       tags:
         - Endpoints
     put:
@@ -1995,7 +2003,7 @@ components:
       required: false
       schema:
         type: integer
-      description: distance in meters
+      description: 'distance in meters from x,y'
   responses:
     unauthorised:
       description: Example response
