@@ -851,6 +851,7 @@ paths:
                   type: string
                 Well:
                   type: object
+                  description: Wellspecific data
                   properties:
                     DGU:
                       type: string
@@ -1646,7 +1647,7 @@ components:
           description: 'Boring, Jordforurening, poreluft, indeklima, recipient ect (codelist=''pointTypeGroupC'')'
         pointTypeJupiterGroupC:
           type: string
-          description: '1=boringer, 2=jord,poreluft,indeklima,recipient mv. 0=vandforsyningsanlæg. Codelist=''PointTypeJupiterGroupC'''
+          description: '1=boringer, 2=other ... Codelist=''PointTypeJupiterGroupC'''
         coordinateQualityC:
           type: string
           description: codelist=CoordinateQualityC
