@@ -201,7 +201,7 @@ paths:
                           sampledBy: string
                           MatrixC: string
                           MatrixT: string
-                          sampleId: '4C681F7F-98CA-4F66-8375-87ED1D469366'
+                          sampleId: 4C681F7F-98CA-4F66-8375-87ED1D469366
         '404':
           description: Not Found
           content:
@@ -1488,7 +1488,7 @@ components:
         - sampleSiteLabel
         - project
     Sample_alt:
-      title: Sample_alt
+      title: Sample_alt_DEPRECATED
       type: object
       description: Samples taken to be analysed
       x-examples: {}
@@ -1876,6 +1876,13 @@ components:
         unitT:
           type: string
           example: ug/l
+        attributeC:
+          type: string
+          description: codelist 'AttributeC'
+          example: '7'
+        attributeT:
+          type: string
+          example: '='
         methodC:
           type: string
           description: codelist 'AnalysisUnitC'
@@ -1885,13 +1892,6 @@ components:
           example: DS 220
         remark:
           type: string
-        attributeC:
-          type: string
-          description: codelist 'AttributeC'
-          example: '7'
-        attributeT:
-          type: string
-          example: '='
       required:
         - parameterC
         - unitC
@@ -1909,6 +1909,8 @@ components:
         parameterC:
           type: string
           description: stancode 1008
+        attributeC:
+          type: string
         value:
           type: number
           example: 0.23
