@@ -1418,6 +1418,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SampleSite'
+        Points:
+          type: array
+          items:
+            $ref: '#/components/schemas/Point'
     SampleSite:
       title: SampleSite
       description: Borehole or other samplesite. Where one or more samplings can be made.
@@ -1675,21 +1679,26 @@ components:
           type: string
         screenNo:
           type: integer
-          description: 'only relevant '
+          description: only relevant in special cases
           example: 1
         top:
           type: number
+          description: top of intakepipe in meters above terrain
         bottom:
           type: number
+          description: 'debth in meters from terrain to bottom of intakepipe '
         depth1:
           type: number
+          description: depth to top of filterintake from terrain
         depth2:
           type: number
+          description: depth to top of filterintake from terrain
         pointId:
           type: string
           format: uuid
         diameter_mm:
           type: number
+          description: diameter of pipe
     Point:
       title: Point
       type: object
@@ -1747,6 +1756,10 @@ components:
           description: codelist=CoordinateQualityC
         coordinateQualityT:
           type: string
+        GISlegendC:
+          type: string
+        GISlegendT:
+          type: string
         Well:
           type: object
           properties:
@@ -1782,6 +1795,110 @@ components:
               type: string
             hasIntakes:
               type: boolean
+        Intakes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Intake'
+    Point - copy:
+      title: Points including intakes
+      type: object
+      description: point data including intakes
+      x-tags:
+        - objects
+      properties:
+        pointId:
+          type: string
+          format: uuid
+        pointNo:
+          type: string
+        description:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        projectId:
+          type: string
+        pointTypeC:
+          type: string
+          description: codelist='pointTypeC'
+        pointTypeT:
+          type: string
+        phaseId:
+          type: string
+          format: uuid
+        phaseT:
+          type: string
+          description: text description of projectphase
+        x:
+          type: number
+        'y':
+          type: number
+        z:
+          type: number
+        dataowner:
+          type: string
+        StatusC:
+          type: string
+          description: codelist='pointStatusC'
+        StatusT:
+          type: string
+        pointTypeGroup:
+          type: string
+          description: 'Boring, Jordforurening, poreluft, indeklima, recipient ect (codelist=''pointTypeGroupC'')'
+        pointTypeJupiterGroupC:
+          type: string
+          description: '1=boringer, 2=other ... Codelist=''PointTypeJupiterGroupC'''
+        coordinateQualityC:
+          type: string
+          description: codelist=CoordinateQualityC
+        coordinateQualityT:
+          type: string
+        GISlegendC:
+          type: string
+        GISlegendT:
+          type: string
+        Well:
+          type: object
+          properties:
+            DGU:
+              type: string
+            purposeC:
+              type: string
+              description: codelist='pointPurposeC'
+            purposeT:
+              type: string
+            useC:
+              type: string
+              description: codelist='PointUseC'
+            useT:
+              type: string
+            WellTopTypeC:
+              type: string
+              description: codelist='WellTopTypeC'
+            WellTopTypeT:
+              type: string
+            isAbandoned:
+              type: boolean
+            contractorId:
+              type: string
+              description: GUID codelist='contractorC'
+              maxLength: 36
+            contractorT:
+              type: string
+            geoCompany:
+              type: string
+              description: 'geology-company '
+            abandonDate:
+              type: string
+            hasIntakes:
+              type: boolean
+        Intakes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Intake'
     Project:
       description: ''
       type: object
