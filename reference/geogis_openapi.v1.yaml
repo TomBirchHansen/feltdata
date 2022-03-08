@@ -40,7 +40,7 @@ paths:
         - $ref: '#/components/parameters/projectNo'
         - $ref: '#/components/parameters/distance'
         - schema:
-            type: array
+            type: string
             deprecated: true
           in: query
           name: geometry
@@ -292,7 +292,8 @@ paths:
             type: array
           in: query
           name: pointTypeC
-          description: the type of the samplesite
+          description: the type of the samplesite. Pipedelimited
+          style: pipeDelimited
         - $ref: '#/components/parameters/distance'
         - schema:
             type: boolean
@@ -848,30 +849,7 @@ paths:
                 - projectId
                 - pointNo
                 - pointTypeC
-            examples:
-              example-1:
-                value:
-                  projectId: A1881AC5-3776-4BA6-AF79-3B6DC302AF31
-                  pointid: DA881AC5-4776-4BA6-AF79-3B6DC302AF37
-                  pointNo: string
-                  startDate: string
-                  endDate: string
-                  phaseId: string
-                  pointTypeC: string
-                  descriptionLocation: string
-                  description: string
-                  pointStatusC: string
-                  x: string
-                  'y': string
-                  z: string
-                  Well:
-                    DGU: string
-                    purposeC: string
-                    useC: string
-                    WellTopTypeC: string
-                    contractorId: string
-                    geoCompany: string
-                    abandonDate: string
+            examples: {}
         description: ''
       tags:
         - Endpoints
@@ -1799,7 +1777,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Intake'
-    Point - copy:
+    point_intakes:
       title: Points including intakes
       type: object
       description: point data including intakes
@@ -2160,16 +2138,7 @@ components:
                 sampleBottom_m:
                   type: number
       x-internal: true
-  securitySchemes:
-    API Key - 1:
-      type: oauth2
-      description: ''
-      flows:
-        clientCredentials:
-          refreshUrl: ''
-          scopes:
-            openid: ''
-          tokenUrl: 'https://log-in.test.miljoeportal.dk/runtime/oauth2/token.idp'
+  securitySchemes: {}
   parameters:
     projectNo:
       name: projectNo
