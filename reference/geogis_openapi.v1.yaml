@@ -1423,6 +1423,8 @@ components:
           $ref: '#/components/schemas/Intake'
         project:
           $ref: '#/components/schemas/Project'
+        GISlegend:
+          type: string
         LastWaterlevel:
           type: object
           description: Last waterlevel measurements
