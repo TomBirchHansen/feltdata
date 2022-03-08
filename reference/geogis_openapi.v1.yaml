@@ -264,9 +264,7 @@ paths:
                 type: object
                 properties: {}
       operationId: get-samplesite
-      description: |-
-        get all samplesites that match query parameters. 
-        Parameters lat,long and distance are used to get records within distance from the position.
+      description: 'get all samplesites that match query parameters. Parameters lat,long and distance are used to get records within distance from the position.'
       parameters:
         - schema:
             type: string
@@ -747,6 +745,10 @@ paths:
                       type: array
                       items:
                         $ref: '#/components/schemas/fieldmeasurement_input'
+                    dataTimeStamp:
+                      type: string
+                      description: date-time for when data was extracted from database
+                      format: date-time
                   required:
                     - sampleId
                     - sampleSiteId
@@ -948,7 +950,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Point'
-      operationId: get-point-pointId-'
+      operationId: get-point-pointId'
       description: Get point data
     patch:
       summary: 'Point PATCH {pointId}'
@@ -1043,6 +1045,10 @@ paths:
                       type: string
                     abandonDate:
                       type: string
+                dataTimeStamp:
+                  type: string
+                  format: date-time
+                  description: date-time of original data from database
               required:
                 - pointNo
                 - projectId
@@ -1216,6 +1222,10 @@ paths:
                   type: number
                 diameter_mm:
                   type: string
+                dataTimeStamp:
+                  type: string
+                  format: date-time
+                  description: timestamp of original data
               required:
                 - intakeNo
         description: ''
