@@ -28,14 +28,14 @@ paths:
                     type: integer
                   maxRecordsExceeded:
                     type: boolean
-                  Projects:
+                  projects:
                     type: array
                     items:
                       $ref: '#/components/schemas/Project'
               examples: {}
         '400':
           description: Bad Request
-      operationId: get-project-find
+      operationId: Project_FindProjects
       parameters:
         - $ref: '#/components/parameters/projectNo'
         - $ref: '#/components/parameters/distance'
@@ -69,12 +69,13 @@ paths:
           description: y utm32euref89
       description: Returns projects matching query parameters.
       tags:
-        - Endpoints
+        - Project
     parameters: []
   '/project/{projectId}':
     parameters:
       - schema:
           type: string
+          format: uuid
         name: projectId
         in: path
         required: true
@@ -92,24 +93,24 @@ paths:
                 example-1:
                   value:
                     projectId: string
-                    ProjectData:
+                    projectData:
                       projectId: DA881AC5-4776-4BA6-AF79-3B6DC302AF37
                       projectNo: string
                       projectTitle: string
-                      x: string
-                      'y': string
+                      x: number
+                      y: number
                       geometry: string
                       lat: string
                       long: string
                       jarNo: string
-                      Address: string
+                      address: string
                       contactRegion: string
-                      InvoicePersonReference: string
+                      invoicePersonReference: string
                       primaryLaboratoryId: string
                       noteToSampler: string
                       caseNumber: string
                       projectManager: string
-                    ProjectPhases:
+                    projectPhases:
                       - phaseId: string
                         name: string
                         type: string
@@ -119,7 +120,7 @@ paths:
                         companyId: string
                         companyT: string
                         projectId: string
-                    SampleSites:
+                    sampleSites:
                       - sampleSiteId: string
                         sampleSiteLabel: string
                         sampleSiteType: string
@@ -135,7 +136,7 @@ paths:
                           phaseId: DA881AC5-4776-4BA6-AF79-3B6DC302AF37
                           phaseT: string
                           x: 0
-                          'y': 0
+                          y: 0
                           z: 0
                           dataowner: string
                           StatusC: string
@@ -144,14 +145,14 @@ paths:
                           pointTypeJupiterGroupC: string
                           coordinateQualityC: string
                           coordinateQualityT: string
-                          Well:
-                            DGU: string
+                          well:
+                            dgu: string
                             purposeC: string
                             purposeT: string
                             useC: string
                             useT: string
-                            WellTopTypeC: string
-                            WellTopTypeT: string
+                            wellTopTypeC: string
+                            wellTopTypeT: string
                             isAbandoned: true
                             contractorId: string
                             contractorT: string
@@ -174,20 +175,20 @@ paths:
                           projectId: DA881AC5-4776-4BA6-AF79-3B6DC302AF37
                           projectNo: string
                           projectTitle: string
-                          x: string
-                          'y': string
+                          x: 0
+                          y: 0
                           geometry: string
                           lat: string
                           long: string
                           jarNo: string
-                          Address: string
+                          address: string
                           contactRegion: string
-                          InvoicePersonReference: string
+                          invoicePersonReference: string
                           primaryLaboratoryId: string
                           noteToSampler: string
                           caseNumber: string
                           projectManager: string
-                        LastWaterlevel:
+                        lastWaterlevel:
                           date: string
                           waterlevel: string
                           depth: string
@@ -196,7 +197,7 @@ paths:
                           situationT: string
                           extremeC: string
                           extremeT: string
-                        LastSample:
+                        lastSample:
                           date: '2012-04-23T18:25:43.511Z'
                           sampledBy: string
                           MatrixC: string
@@ -229,15 +230,15 @@ paths:
                         type: string
                         minLength: 1
                       x: {}
-                      'y': {}
+                      y: {}
                 required:
                   - location
               examples: {}
-      operationId: get-project
+      operationId: Project_GetProject
       description: Returns the information of a project by its projectId
       parameters: []
       tags:
-        - Endpoints
+        - Project
   /samplesite:
     get:
       summary: Samplesite GET
@@ -254,7 +255,7 @@ paths:
                     type: integer
                   maxRecordsExceeded:
                     type: boolean
-                  SampleSites:
+                  sampleSites:
                     type: array
                     items:
                       $ref: '#/components/schemas/SampleSite'
@@ -263,31 +264,38 @@ paths:
               schema:
                 type: object
                 properties: {}
-      operationId: get-samplesite
-      description: 'get all samplesites that match query parameters. Parameters lat,long and distance are used to get records within distance from the position.'
+      operationId: Samplesite_FindSamplesites
+      description: >-
+        get all samplesites that match query parameters. Parameters lat,long and
+        distance are used to get records within distance from the position.
       parameters:
         - schema:
             type: string
+            format: uuid
           in: query
-          name: projectid
-          description: GUID of projectid
+          name: projectId
+          description: GUID of projectId
         - schema:
             type: string
           in: query
-          name: DGU
+          name: dgu
           description: DGU number of borehole
         - schema:
             type: string
+            format: date-time
           in: query
           name: startDate
           description: startdate must be less than
         - schema:
             type: string
+            format: date-time
           in: query
           name: endDate
           description: enddate must be later than
         - schema:
             type: array
+            items:
+              type: string
           in: query
           name: pointTypeC
           description: the type of the samplesite. Pipedelimited
@@ -320,6 +328,7 @@ paths:
           description: projects case number
         - schema:
             type: string
+            format: uuid
           in: query
           name: phaseId
           description: phaseId matching the samplesites
@@ -332,99 +341,21 @@ paths:
             type: string
           in: query
           name: pointTypeJupiterGroupC
-          description: '1=boringer, 2=jord,3=poreluft,4=indeklima,5=tilsyn,7=recipient,9=andet'
+          description: >-
+            1=boringer,
+            2=jord,3=poreluft,4=indeklima,5=tilsyn,7=recipient,9=andet
         - schema:
             type: number
           in: query
           name: x
           description: x coordinate
         - schema:
-            type: string
+            type: number
           in: query
           name: 'y'
           description: y coordinate
       tags:
-        - Endpoints
-    put:
-      summary: Samplesite PUT (deprecated)
-      operationId: put-samplesite
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SampleSite'
-              examples: {}
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-      description: create new samplesite. Returns the created samplesite object if OK
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: ''
-              type: object
-              properties:
-                SamplesiteId:
-                  type: string
-                  format: uuid
-                projectId:
-                  type: string
-                  format: uuid
-                IsIntake:
-                  type: boolean
-                Intake:
-                  type: object
-                  properties:
-                    pointId:
-                      type: string
-                      description: |
-                        GUID of samplesite for well
-                      format: uuid
-                    intakeno:
-                      type: number
-                    intake:
-                      type: string
-                    depth:
-                      type: string
-                    diameter_mm:
-                      type: string
-                Well:
-                  type: object
-                  properties:
-                    DGU:
-                      type: string
-                    depth:
-                      type: string
-                sampleSiteNo:
-                  type: string
-                description:
-                  type: string
-                startDate:
-                  type: string
-                endDate:
-                  type: string
-                samplesiteTypeC:
-                  type: string
-                  description: . Irrelevant
-                phaseId:
-                  type: string
-              required:
-                - SamplesiteId
-                - projectId
-                - IsIntake
-            examples: {}
-        description: ''
-      deprecated: true
-      x-internal: true
-      tags:
-        - Endpoints
+        - Samplesite
   '/samplesite/{samplesiteId}':
     get:
       summary: 'Samplesite GET {samplesiteId}'
@@ -440,17 +371,18 @@ paths:
           description: Unauthorized
         '404':
           description: Not Found
-      operationId: get-samplesite-samplesiteid
+      operationId: Samplesite_GetSamplesite
       description: Get details of samplesite (geogis point and or intake)
       parameters: []
       tags:
-        - Endpoints
+        - Samplesite
     parameters:
       - schema:
           type: string
+          format: uuid
         name: samplesiteId
         in: path
-        description: GUID of samplesite (geogis pointid or intakeid)
+        description: GUID of samplesite (geogis pointId or intakeId)
         required: true
   /sample:
     get:
@@ -474,7 +406,7 @@ paths:
           headers: {}
         '400':
           description: Bad Request
-      operationId: get-sample
+      operationId: Sample_FindSamples
       parameters:
         - schema:
             type: string
@@ -488,28 +420,32 @@ paths:
           description: returns samples for specified laboratory
         - schema:
             type: string
+            format: date-time
           in: query
           name: StartDate
           description: returns samples sampled after date
         - schema:
             type: string
+            format: date-time
           in: query
           name: endDate
           description: returns samples sampled before date
         - schema:
             type: string
+            format: uuid
           in: query
           name: projectId
         - schema:
             type: string
+            format: uuid
           in: query
           name: sampleSiteId
       description: get all samples matching parameters
       tags:
-        - Endpoints
+        - Sample
     put:
       summary: Sample PUT
-      operationId: put-sample
+      operationId: Sample_PutSample
       responses:
         '200':
           description: OK
@@ -533,7 +469,7 @@ paths:
                 sampleSiteId:
                   type: string
                   minLength: 1
-                  description: Id of the sampleSite (pointid or intakeid)
+                  description: Id of the sampleSite (pointId or intakeId)
                   format: uuid
                 sampleLabel:
                   type: string
@@ -546,7 +482,7 @@ paths:
                   type: string
                 start:
                   type: string
-                  format: uuid
+                  format: date-time
                 end:
                   type: string
                   format: date-time
@@ -576,10 +512,10 @@ paths:
         description: data for the new sample
       description: create new sample
       tags:
-        - Endpoints
+        - Sample
   '/sample/{sampleId}':
     get:
-      summary: 'Sample GET {sampleId}'
+      summary: 'Sample GET sampleId'
       responses:
         '200':
           description: OK
@@ -589,19 +525,20 @@ paths:
                 $ref: '#/components/schemas/Sample'
         '400':
           description: Bad Request
-      operationId: get-sample-sampleId
+      operationId: Sample_GetSample
       description: get data for specific sample.
       tags:
-        - Endpoints
+        - Sample
     parameters:
       - schema:
           type: string
+          format: uuid
         name: sampleId
         in: path
         required: true
     patch:
       summary: 'Sample PATCH {sampleId}'
-      operationId: patch-sample-sampleid
+      operationId: Sample_PatchSample
       responses:
         '200':
           description: OK
@@ -615,7 +552,7 @@ paths:
                     sampleId: 5c4a81f0-8df5-49c5-ae5b-8065332edd7d
                     sampleLabel: string
                     matrixC: string
-                    matricT: string
+                    matrixT: string
                     sampledBy: Anders And
                     sampleBarcode: string
                     sampleSiteId: 06408910-b477-4287-bdf8-64758448bca5
@@ -656,7 +593,7 @@ paths:
                       phaseId: 0ad391c4-95b8-47f9-85a6-2edccf8f12cc
                       phaseT: string
                       x: 0
-                      'y': 0
+                      y: 0
                       z: 0
                       dataowner: string
                       StatusC: string
@@ -665,14 +602,14 @@ paths:
                       pointTypeJupiterGroupC: string
                       coordinateQualityC: string
                       coordinateQualityT: string
-                      Well:
-                        DGU: string
+                      well:
+                        dgu: string
                         purposeC: string
                         purposeT: string
                         useC: string
                         useT: string
-                        WellTopTypeC: string
-                        WellTopTypeT: string
+                        wellTopTypeC: string
+                        wellTopTypeT: string
                         isAbandoned: true
                         contractorId: string
                         contractorT: string
@@ -706,12 +643,10 @@ paths:
                   properties:
                     sampleId:
                       type: string
-                      minLength: 36
-                      maxLength: 36
+                      format: uuid
                     sampleSiteId:
                       type: string
-                      minLength: 36
-                      maxLength: 36
+                      format: uuid
                     sampleLabel:
                       type: string
                     matrixC:
@@ -754,20 +689,20 @@ paths:
                     - sampleSiteId
             examples: {}
       tags:
-        - Endpoints
+        - Sample
     delete:
       summary: 'Sample DELETE {sampleId}'
-      operationId: delete-sample-sampleId
+      operationId: Sample_DeleteSample
       responses:
         '200':
           description: OK
       tags:
-        - Endpoints
+        - Sample
       description: 'Delete specified sample. Validation will restrict '
   /point:
     put:
       summary: Point PUT
-      operationId: put-point
+      operationId: Point_PutPoint
       responses:
         '200':
           description: OK
@@ -782,31 +717,36 @@ paths:
                     $ref: '#/components/schemas/Point'
         '201':
           description: Created
-      description: Create new point (well or other). Response is samplesite object with the created point as a samplesite (Pointid becomes the samplesiteId). Response is also returned as point-object.
+      description: >-
+        Create new point (well or other). Response is samplesite object with the
+        created point as a samplesite (Pointid becomes the samplesiteId).
+        Response is also returned as point-object.
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                pointid:
+                pointId:
                   type: string
-                  description: GUID of new pointid. If empty a new GUID is returned in the response.
+                  description: >-
+                    GUID of new pointId. If empty a new GUID is returned in the
+                    response.
                   format: uuid
                 projectId:
                   type: string
-                  description: the projectid where the point is to be created on.
+                  description: the projectId where the point is to be created on.
                   format: uuid
                 pointNo:
                   type: string
                   example: IK2
                 startDate:
                   type: string
-                  format: date
+                  format: date-time
                 endDate:
                   type: string
+                  format: date-time
                   description: for wells this is the drill-date
-                  format: date
                 phaseId:
                   type: string
                   format: uuid
@@ -821,23 +761,23 @@ paths:
                   type: string
                   description: 'codelist: pointStatusC'
                 x:
-                  type: string
-                'y':
-                  type: string
+                  type: number
+                y:
+                  type: number
                 z:
-                  type: string
-                Well:
+                  type: number
+                well:
                   type: object
                   description: Wellspecific data
                   properties:
-                    DGU:
+                    dgu:
                       type: string
                       description: DGU number
                     purposeC:
                       type: string
                     useC:
                       type: string
-                    WellTopTypeC:
+                    wellTopTypeC:
                       type: string
                     contractorId:
                       type: string
@@ -847,6 +787,7 @@ paths:
                       type: string
                     abandonDate:
                       type: string
+                      format: date-time
               required:
                 - projectId
                 - pointNo
@@ -854,10 +795,10 @@ paths:
             examples: {}
         description: ''
       tags:
-        - Endpoints
+        - Sample
     get:
       summary: Point GET
-      operationId: get-point
+      operationId: Point_FindPoints
       responses:
         '200':
           description: OK
@@ -884,10 +825,13 @@ paths:
               schema:
                 type: object
                 properties: {}
-      description: returns points matching query parameters. Minimum one criteria must be provided
+      description: >-
+        returns points matching query parameters. Minimum one criteria must be
+        provided
       parameters:
         - schema:
             type: string
+            format: uuid
           in: query
           name: projectId
         - schema:
@@ -913,7 +857,9 @@ paths:
             type: string
           in: query
           name: pointTypeJupiterGroupC
-          description: '1=boringer, 2=jord,3=poreluft,4=indeklima,5=tilsyn,7=recipient,9=andet'
+          description: >-
+            1=boringer,
+            2=jord,3=poreluft,4=indeklima,5=tilsyn,7=recipient,9=andet
         - schema:
             type: boolean
           in: query
@@ -931,18 +877,19 @@ paths:
           in: query
           name: hasIntake
       tags:
-        - Endpoints
+        - Sample
   '/point/{pointId}':
     parameters:
       - schema:
           type: string
+          format: uuid
         name: pointId
         in: path
         required: true
     get:
       summary: 'Point GET {pointId}'
       tags:
-        - Endpoints
+        - Point
       responses:
         '200':
           description: OK
@@ -950,11 +897,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Point'
-      operationId: get-point-pointId'
+      operationId: Point_GetPoint
       description: Get point data
     patch:
       summary: 'Point PATCH {pointId}'
-      operationId: patch-point-pointId
+      operationId: Point_PatchPoint
       responses:
         '200':
           description: OK
@@ -981,14 +928,14 @@ paths:
                   pointTypeT: string
                   phaseId: string
                   phaseT: string
-                  Well:
-                    DGU: string
+                  well:
+                    dgu: string
                     purposeC: string
                     purposeT: string
                     useC: string
                     useT: string
-                    WellTopTypeC: string
-                    WellTopTypeT: string
+                    wellTopTypeC: string
+                    wellTopTypeT: string
                     isAbandoned: true
                     contractorId: string
                     contractorT: string
@@ -996,7 +943,7 @@ paths:
                     abandonDate: string
                     hasIntakes: true
                   x: 0
-                  'y': 0
+                  y: 0
                   z: 0
                   dataowner: string
                   StatusC: string
@@ -1012,14 +959,17 @@ paths:
                   type: string
                 startDate:
                   type: string
+                  format: date-time
                 endDate:
                   type: string
+                  format: date-time
                 projectId:
                   type: string
                 pointTypeC:
                   type: string
                 phaseId:
                   type: string
+                  format: uuid
                 PointStatusC:
                   type: string
                 x:
@@ -1028,16 +978,16 @@ paths:
                   type: number
                 z:
                   type: number
-                Well:
+                well:
                   type: object
                   properties:
-                    DGU:
+                    dgu:
                       type: string
                     purposeC:
                       type: string
                     useC:
                       type: string
-                    WellTopTypeC:
+                    wellTopTypeC:
                       type: string
                     contractorId:
                       type: string
@@ -1045,6 +995,7 @@ paths:
                       type: string
                     abandonDate:
                       type: string
+                      format: date-time
                 dataTimeStamp:
                   type: string
                   format: date-time
@@ -1054,10 +1005,10 @@ paths:
                 - projectId
             examples: {}
       tags:
-        - Endpoints
+        - Point
     delete:
       summary: 'Point DELETE {pointId}'
-      operationId: delete-point-pointId
+      operationId: Point_DeletePoint
       responses:
         '200':
           description: OK
@@ -1067,11 +1018,11 @@ paths:
           description: Not Found
       description: delete point
       tags:
-        - Endpoints
+        - Point
   /intake:
     put:
       summary: Intake PUT
-      operationId: put-intake
+      operationId: Intake_PutIntake
       responses:
         '200':
           description: OK
@@ -1083,7 +1034,9 @@ paths:
                   intake:
                     $ref: '#/components/schemas/Intake'
               examples: {}
-      description: create new intake on a well (pointId). Returns data as samplesite-object (intakeid becomes samplesiteId) and also as intake-object
+      description: >-
+        create new intake on a well (pointId). Returns data as samplesite-object
+        (intakeId becomes samplesiteId) and also as intake-object
       requestBody:
         content:
           application/json:
@@ -1092,8 +1045,10 @@ paths:
               properties:
                 pointId:
                   type: string
+                  format: uuid
                 intakeId:
                   type: string
+                  format: uuid
                 intakeNo:
                   type: integer
                 intakeName:
@@ -1108,11 +1063,11 @@ paths:
                 - pointId
         description: ''
       tags:
-        - Endpoints
+        - Intake
     parameters: []
     get:
       summary: Intake GET
-      operationId: get-intake
+      operationId: Intake_FindIntakes
       responses:
         '200':
           description: OK
@@ -1125,25 +1080,27 @@ paths:
                     type: integer
                   maxRecordsExceeded:
                     type: boolean
-                  Intakes:
+                  intakes:
                     type: array
                     items:
                       type: object
                       properties:
-                        IntakeData:
+                        intakeData:
                           $ref: '#/components/schemas/Intake'
-                        PointData:
+                        pointData:
                           $ref: '#/components/schemas/Point'
-                        ProjectData:
+                        projectData:
                           $ref: '#/components/schemas/Project'
       parameters:
         - schema:
             type: string
+            format: uuid
           in: query
           name: pointId
           description: GUID of pointId
         - schema:
             type: string
+            format: uuid
           in: query
           name: projectId
           description: GUID of projectId
@@ -1153,11 +1110,12 @@ paths:
           name: projectNo
       description: returns intakes matching query parameters
       tags:
-        - Endpoints
+        - Intake
   '/intake/{intakeId}':
     parameters:
       - schema:
           type: string
+          format: uuid
         name: intakeId
         in: path
         required: true
@@ -1171,13 +1129,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Intake'
-      operationId: get-intake-intakeId
+      operationId: Intake_GetIntake
       description: GET data on Intake
       tags:
-        - Endpoints
+        - Intake
     patch:
       summary: 'Intake Patch {IntakeId}'
-      operationId: patch-intake-intakeId
+      operationId: Intake_PatchIntake
       responses:
         '200':
           description: OK
@@ -1186,7 +1144,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Intake'
               examples: {}
-      description: update intake data. Note that validation rule may limit what data can be modified
+      description: >-
+        update intake data. Note that validation rule may limit what data can be
+        modified
       requestBody:
         content:
           application/json:
@@ -1198,7 +1158,7 @@ paths:
                   intakeNo: 0
                   intakeName: string
                   description: string
-                  screenNo: string
+                  screenNo: 0
                   top: 0
                   bottom: 0
                   depth1: 0
@@ -1211,7 +1171,7 @@ paths:
                 description:
                   type: string
                 screenNo:
-                  type: string
+                  type: integer
                 top:
                   type: number
                 bottom:
@@ -1221,7 +1181,7 @@ paths:
                 depth2:
                   type: number
                 diameter_mm:
-                  type: string
+                  type: integer
                 dataTimeStamp:
                   type: string
                   format: date-time
@@ -1230,10 +1190,10 @@ paths:
                 - intakeNo
         description: ''
       tags:
-        - Endpoints
+        - Intake
     delete:
       summary: 'Intake DELETE {IntakeId}'
-      operationId: delete-intake-intakeId
+      operationId: Intake_DeleteIntake
       responses:
         '200':
           description: OK
@@ -1241,7 +1201,7 @@ paths:
           description: Bad Request
       description: Delete IntakeId
       tags:
-        - Endpoints
+        - Intake
   /codeListOverview:
     get:
       summary: CodeListOverview GET
@@ -1251,23 +1211,26 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    listId:
-                      type: string
-                    listDescription:
-                      type: string
-                    stancodeListNo:
-                      type: string
-      operationId: get-codeListOverview
+                type: object
+                properties:
+                  codelistoverview:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        listId:
+                          type: string
+                        listDescription:
+                          type: string
+                        stancodeListNo:
+                          type: string
+      operationId: CodeList_GetCodeListOverview
       description: Overview of all codelists
       tags:
-        - Endpoints
+        - CodeList
   '/codeList/{listId}':
     get:
-      summary: 'codeList GET {listId}'
+      summary: 'CodeList GET'
       responses:
         '200':
           description: OK
@@ -1360,7 +1323,7 @@ paths:
                           type: string
                           prefix: string
                           jupiterId: string
-      operationId: get-codeList
+      operationId: CodeList_GetCodeList
       description: get codevalues used in endpoints. Only for simple list-tables
       parameters:
         - schema:
@@ -1376,19 +1339,21 @@ paths:
           name: Setup
           description: show rows with specified setup (language). Default is DK
       tags:
-        - Endpoints
+        - CodeList
     parameters:
       - schema:
           type: string
         name: listId
         in: path
         required: true
-        description: the ID of the list to return. "all" returns all lists
+        description: the ID of the list to return. "null" returns all lists
 components:
   schemas:
     Project_Detailed:
       title: Project detailed
-      description: A project (also called location) consists of one or many samplesites (boreholes ect)
+      description: >-
+        A project (also called location) consists of one or many samplesites
+        (boreholes ect)
       x-examples: {}
       x-tags:
         - objects
@@ -1396,13 +1361,14 @@ components:
       properties:
         projectId:
           type: string
-        ProjectData:
+          format: uuid
+        projectData:
           $ref: '#/components/schemas/Project'
-        ProjectPhases:
+        projectPhases:
           type: array
           items:
             $ref: '#/components/schemas/ProjectPhase'
-        SampleSites:
+        sampleSites:
           type: array
           items:
             $ref: '#/components/schemas/SampleSite'
@@ -1420,7 +1386,8 @@ components:
       properties:
         sampleSiteId:
           type: string
-          description: either a geogis pointid or intakeid
+          format: uuid
+          description: either a geogis pointId or intakeId
         sampleSiteLabel:
           type: string
           description: 'auto formattet label: DGU:pointno-intakeno'
@@ -1433,14 +1400,15 @@ components:
           $ref: '#/components/schemas/Intake'
         project:
           $ref: '#/components/schemas/Project'
-        GISlegend:
+        gisLegend:
           type: string
-        LastWaterlevel:
+        lastWaterlevel:
           type: object
           description: Last waterlevel measurements
           properties:
             date:
               type: string
+              format: date-time
             waterlevel:
               type: string
             depth:
@@ -1450,7 +1418,9 @@ components:
               type: string
             situationC:
               type: string
-              description: codevalue for waterlevel situation. (codelist='waterlevelSituationC')
+              description: >-
+                codevalue for waterlevel situation.
+                (codelist='waterlevelSituationC')
             situationT:
               type: string
               description: 'code-text for situation. example ''Ro'', ''Drift'''
@@ -1460,7 +1430,7 @@ components:
             extremeT:
               type: string
               description: 'code-text for extreme. Example: ''overløb'', ''normal'''
-        LastSample:
+        lastSample:
           type: object
           properties:
             date:
@@ -1481,97 +1451,6 @@ components:
         - sampleSiteId
         - sampleSiteLabel
         - project
-    Sample_alt:
-      title: Sample_alt_DEPRECATED
-      type: object
-      description: Samples taken to be analysed
-      x-examples: {}
-      x-tags:
-        - objects
-      properties:
-        Sample:
-          type: object
-          properties:
-            sampleId:
-              type: string
-            sampleLabel:
-              type: string
-            matrixC:
-              description: Stancode list 1183. Air/water/soil
-              type: string
-            matricT:
-              type: string
-              description: Stancode list 1183
-            sampledBy:
-              type: string
-            sampleBarcode:
-              type: string
-            sampleSiteId:
-              type: string
-            sampleSiteName:
-              type: string
-              description: districptive name of samplesite.
-            start:
-              type: string
-              format: date-time
-            end:
-              type: string
-              format: date-time
-            laboratoryId:
-              type: string
-            laboratoryName:
-              type: string
-            equipmentC:
-              type: string
-              description: 'Stancode list 1006. "orsarør","kulrør","canister" ect.'
-            equipmentT:
-              type: string
-              description: Stancode list 1006
-            IntakeNo:
-              type: number
-            IntakeName:
-              type: string
-            sampleTop_m:
-              type: number
-              format: double
-            sampleBottom_m:
-              type: number
-              format: double
-              description: sampled end datetime
-            FieldRemark:
-              type: string
-              description: Remark from the field
-            remark:
-              type: string
-              description: generic remark of sample
-            fieldMeasurements:
-              type: array
-              items:
-                type: object
-                properties:
-                  parameterC:
-                    type: string
-                  parameterT:
-                    type: string
-                  value:
-                    type: string
-                  unitT:
-                    type: string
-                  unitC:
-                    type: string
-                  methodT:
-                    type: string
-                  methodC:
-                    type: string
-                  accredited:
-                    type: integer
-                  analysisID:
-                    type: string
-                    description: generated GUID for the record.
-          required:
-            - sampleId
-            - sampleSiteId
-      x-internal: true
     Sample:
       title: Sample
       type: object
@@ -1588,7 +1467,7 @@ components:
         matrixC:
           description: (codelist='analysisMatrixC') Stancode list 1183. Air/water/soil
           type: string
-        matricT:
+        matrixT:
           type: string
           description: Stancode list 1183
         sampledBy:
@@ -1601,7 +1480,9 @@ components:
           format: uuid
         sampleSiteLabel:
           type: string
-          description: 'generated destricptive name of samplesite (pointno + intake). For instance: B201-1 '
+          description: >-
+            generated destricptive name of samplesite (pointno + intake). For
+            instance: B201-1 
         start:
           type: string
           format: date-time
@@ -1711,6 +1592,7 @@ components:
           format: date-time
         projectId:
           type: string
+          format: uuid
         pointTypeC:
           type: string
           description: codelist='pointTypeC'
@@ -1724,7 +1606,7 @@ components:
           description: text description of projectphase
         x:
           type: number
-        'y':
+        y:
           type: number
         z:
           type: number
@@ -1737,7 +1619,9 @@ components:
           type: string
         pointTypeGroup:
           type: string
-          description: 'Boring, Jordforurening, poreluft, indeklima, recipient ect (codelist=''pointTypeGroupC'')'
+          description: >-
+            Boring, Jordforurening, poreluft, indeklima, recipient ect
+            (codelist='pointTypeGroupC')
         pointTypeJupiterGroupC:
           type: string
           description: '1=boringer, 2=other ... Codelist=''PointTypeJupiterGroupC'''
@@ -1746,14 +1630,14 @@ components:
           description: codelist=CoordinateQualityC
         coordinateQualityT:
           type: string
-        GISlegendC:
+        gisLegendC:
           type: string
-        GISlegendT:
+        gisLegendT:
           type: string
-        Well:
+        well:
           type: object
           properties:
-            DGU:
+            dgu:
               type: string
             purposeC:
               type: string
@@ -1765,10 +1649,10 @@ components:
               description: codelist='PointUseC'
             useT:
               type: string
-            WellTopTypeC:
+            wellTopTypeC:
               type: string
               description: codelist='WellTopTypeC'
-            WellTopTypeT:
+            wellTopTypeT:
               type: string
             isAbandoned:
               type: boolean
@@ -1783,6 +1667,7 @@ components:
               description: 'geology-company '
             abandonDate:
               type: string
+              format: date-time
             hasIntakes:
               type: boolean
     point_intakes:
@@ -1807,6 +1692,7 @@ components:
           format: date-time
         projectId:
           type: string
+          format: uuid
         pointTypeC:
           type: string
           description: codelist='pointTypeC'
@@ -1820,7 +1706,7 @@ components:
           description: text description of projectphase
         x:
           type: number
-        'y':
+        y:
           type: number
         z:
           type: number
@@ -1833,7 +1719,9 @@ components:
           type: string
         pointTypeGroup:
           type: string
-          description: 'Boring, Jordforurening, poreluft, indeklima, recipient ect (codelist=''pointTypeGroupC'')'
+          description: >-
+            Boring, Jordforurening, poreluft, indeklima, recipient ect
+            (codelist='pointTypeGroupC')
         pointTypeJupiterGroupC:
           type: string
           description: '1=boringer, 2=other ... Codelist=''PointTypeJupiterGroupC'''
@@ -1842,14 +1730,14 @@ components:
           description: codelist=CoordinateQualityC
         coordinateQualityT:
           type: string
-        GISlegendC:
+        gisLegendC:
           type: string
-        GISlegendT:
+        gisLegendT:
           type: string
-        Well:
+        well:
           type: object
           properties:
-            DGU:
+            dgu:
               type: string
             purposeC:
               type: string
@@ -1861,10 +1749,10 @@ components:
               description: codelist='PointUseC'
             useT:
               type: string
-            WellTopTypeC:
+            wellTopTypeC:
               type: string
               description: codelist='WellTopTypeC'
-            WellTopTypeT:
+            wellTopTypeT:
               type: string
             isAbandoned:
               type: boolean
@@ -1881,7 +1769,7 @@ components:
               type: string
             hasIntakes:
               type: boolean
-        Intakes:
+        intakes:
           type: array
           items:
             $ref: '#/components/schemas/Intake'
@@ -1894,13 +1782,13 @@ components:
             projectId: string
             projectNo: string
             projectTitle: string
-            x: string
-            'y': string
+            x: number
+            y: number
             geometry: string
             lat: string
             long: string
             jarNo: string
-            Address: string
+            address: string
             contactregion: string
             personReference: string
             primaryLaboratory: string
@@ -1918,18 +1806,18 @@ components:
         projectTitle:
           type: string
         x:
-          type: string
-        'y':
-          type: string
+          type: number
+        y:
+          type: number
         geometry:
           type: string
         jarNo:
           type: string
-        Address:
+        address:
           type: string
         contactRegion:
           type: string
-        InvoicePersonReference:
+        invoicePersonReference:
           type: string
         primaryLaboratoryId:
           type: string
@@ -2008,6 +1896,7 @@ components:
       properties:
         measurementId:
           type: string
+          format: uuid
           description: GUID of record
         parameterC:
           type: string
@@ -2028,54 +1917,6 @@ components:
       required:
         - parameterC
         - unitC
-    analysisvalue:
-      title: analysisvalue
-      type: object
-      x-internal: true
-      description: analysisvalues
-      properties:
-        valueId:
-          type: string
-          description: GUID of value record
-        parameterId:
-          type: string
-        parameterT:
-          type: string
-        attributeC:
-          type: string
-        attributeT:
-          type: string
-        value:
-          type: number
-        unitC:
-          type: string
-        unitT:
-          type: string
-        valueText:
-          type: string
-        laboratoryId:
-          type: string
-        laboratoryT:
-          type: string
-        methodC:
-          type: string
-        methodT:
-          type: string
-        detectionLimit:
-          type: number
-        uncertainty:
-          type: number
-        remark:
-          type: string
-        siteC:
-          type: string
-        siteT:
-          type: string
-        sampleId:
-          type: string
-          description: GUID of sample
-      x-tags:
-        - objects
     ProjectPhase:
       title: ProjectPhase
       type: object
@@ -2085,14 +1926,17 @@ components:
       properties:
         phaseId:
           type: string
+          format: uuid
         name:
           type: string
         type:
           type: string
         start:
           type: string
+          format: date-time
         end:
           type: string
+          format: date-time
         label:
           type: string
         companyId:
@@ -2101,51 +1945,7 @@ components:
           type: string
         projectId:
           type: string
-    fieldMeasurementOLD:
-      title: fieldMeasurementOLD
-      type: object
-      properties:
-        water:
-          type: object
-          properties:
-            temperature:
-              type: number
-            conductivity_mSm:
-              type: number
-            pH:
-              type: number
-            redox_mV:
-              type: number
-            pumpYield_m3h:
-              type: number
-              description: pumping yield in m3h
-            prePump_l:
-              type: number
-              description: prepumping in litres
-            waterlevelCalm_m:
-              type: number
-            waterlevelInUse_m:
-              type: number
-            air-orsa:
-              type: object
-              properties:
-                sampleMinutes:
-                  type: integer
-            air-coal:
-              type: object
-              properties:
-                airVolume_l:
-                  type: number
-                counterPressure_mbar:
-                  type: number
-            soil:
-              type: object
-              properties:
-                sampleTop_m:
-                  type: number
-                sampleBottom_m:
-                  type: number
-      x-internal: true
+          format: uuid
   securitySchemes: {}
   parameters:
     projectNo:
@@ -2188,6 +1988,3 @@ components:
             properties:
               id:
                 type: string
-tags:
-  - name: geogis
-  - name: Endpoints
