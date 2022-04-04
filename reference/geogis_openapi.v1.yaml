@@ -1913,9 +1913,11 @@ components:
         start:
           type: string
           format: date-time
+          nullable: true
         end:
           type: string
           format: date-time
+          nullable: true
         label:
           type: string
         companyId:
