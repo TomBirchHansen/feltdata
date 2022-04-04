@@ -98,7 +98,7 @@ paths:
                       projectNo: string
                       projectTitle: string
                       x: number
-                      y: number
+                      'y': number
                       geometry: string
                       lat: string
                       long: string
@@ -136,7 +136,7 @@ paths:
                           phaseId: DA881AC5-4776-4BA6-AF79-3B6DC302AF37
                           phaseT: string
                           x: 0
-                          y: 0
+                          'y': 0
                           z: 0
                           dataowner: string
                           StatusC: string
@@ -176,7 +176,7 @@ paths:
                           projectNo: string
                           projectTitle: string
                           x: 0
-                          y: 0
+                          'y': 0
                           geometry: string
                           lat: string
                           long: string
@@ -230,7 +230,7 @@ paths:
                         type: string
                         minLength: 1
                       x: {}
-                      y: {}
+                      'y': {}
                 required:
                   - location
               examples: {}
@@ -265,9 +265,7 @@ paths:
                 type: object
                 properties: {}
       operationId: Samplesite_FindSamplesites
-      description: >-
-        get all samplesites that match query parameters. Parameters lat,long and
-        distance are used to get records within distance from the position.
+      description: 'get all samplesites that match query parameters. Parameters lat,long and distance are used to get records within distance from the position.'
       parameters:
         - schema:
             type: string
@@ -341,9 +339,7 @@ paths:
             type: string
           in: query
           name: pointTypeJupiterGroupC
-          description: >-
-            1=boringer,
-            2=jord,3=poreluft,4=indeklima,5=tilsyn,7=recipient,9=andet
+          description: '1=boringer, 2=jord,3=poreluft,4=indeklima,5=tilsyn,7=recipient,9=andet'
         - schema:
             type: number
           in: query
@@ -515,7 +511,7 @@ paths:
         - Sample
   '/sample/{sampleId}':
     get:
-      summary: 'Sample GET sampleId'
+      summary: Sample GET sampleId
       responses:
         '200':
           description: OK
@@ -593,7 +589,7 @@ paths:
                       phaseId: 0ad391c4-95b8-47f9-85a6-2edccf8f12cc
                       phaseT: string
                       x: 0
-                      y: 0
+                      'y': 0
                       z: 0
                       dataowner: string
                       StatusC: string
@@ -717,10 +713,7 @@ paths:
                     $ref: '#/components/schemas/Point'
         '201':
           description: Created
-      description: >-
-        Create new point (well or other). Response is samplesite object with the
-        created point as a samplesite (Pointid becomes the samplesiteId).
-        Response is also returned as point-object.
+      description: Create new point (well or other). Response is samplesite object with the created point as a samplesite (Pointid becomes the samplesiteId). Response is also returned as point-object.
       requestBody:
         content:
           application/json:
@@ -729,9 +722,7 @@ paths:
               properties:
                 pointId:
                   type: string
-                  description: >-
-                    GUID of new pointId. If empty a new GUID is returned in the
-                    response.
+                  description: GUID of new pointId. If empty a new GUID is returned in the response.
                   format: uuid
                 projectId:
                   type: string
@@ -762,7 +753,7 @@ paths:
                   description: 'codelist: pointStatusC'
                 x:
                   type: number
-                y:
+                'y':
                   type: number
                 z:
                   type: number
@@ -825,9 +816,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      description: >-
-        returns points matching query parameters. Minimum one criteria must be
-        provided
+      description: returns points matching query parameters. Minimum one criteria must be provided
       parameters:
         - schema:
             type: string
@@ -857,9 +846,7 @@ paths:
             type: string
           in: query
           name: pointTypeJupiterGroupC
-          description: >-
-            1=boringer,
-            2=jord,3=poreluft,4=indeklima,5=tilsyn,7=recipient,9=andet
+          description: '1=boringer, 2=jord,3=poreluft,4=indeklima,5=tilsyn,7=recipient,9=andet'
         - schema:
             type: boolean
           in: query
@@ -943,7 +930,7 @@ paths:
                     abandonDate: string
                     hasIntakes: true
                   x: 0
-                  y: 0
+                  'y': 0
                   z: 0
                   dataowner: string
                   StatusC: string
@@ -1034,9 +1021,7 @@ paths:
                   intake:
                     $ref: '#/components/schemas/Intake'
               examples: {}
-      description: >-
-        create new intake on a well (pointId). Returns data as samplesite-object
-        (intakeId becomes samplesiteId) and also as intake-object
+      description: create new intake on a well (pointId). Returns data as samplesite-object (intakeId becomes samplesiteId) and also as intake-object
       requestBody:
         content:
           application/json:
@@ -1144,9 +1129,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Intake'
               examples: {}
-      description: >-
-        update intake data. Note that validation rule may limit what data can be
-        modified
+      description: update intake data. Note that validation rule may limit what data can be modified
       requestBody:
         content:
           application/json:
@@ -1230,7 +1213,7 @@ paths:
         - CodeList
   '/codeList/{listId}':
     get:
-      summary: 'CodeList GET'
+      summary: CodeList GET
       responses:
         '200':
           description: OK
@@ -1265,9 +1248,11 @@ paths:
                               type: string
                               format: date-time
                               example: '2018-03-20T09:12:28Z'
+                              nullable: true
                             endDate:
                               type: string
                               format: date-time
+                              nullable: true
                             stancodeNo:
                               type: string
                             remark:
@@ -1351,9 +1336,7 @@ components:
   schemas:
     Project_Detailed:
       title: Project detailed
-      description: >-
-        A project (also called location) consists of one or many samplesites
-        (boreholes ect)
+      description: A project (also called location) consists of one or many samplesites (boreholes ect)
       x-examples: {}
       x-tags:
         - objects
@@ -1418,9 +1401,7 @@ components:
               type: string
             situationC:
               type: string
-              description: >-
-                codevalue for waterlevel situation.
-                (codelist='waterlevelSituationC')
+              description: codevalue for waterlevel situation. (codelist='waterlevelSituationC')
             situationT:
               type: string
               description: 'code-text for situation. example ''Ro'', ''Drift'''
@@ -1480,17 +1461,17 @@ components:
           format: uuid
         sampleSiteLabel:
           type: string
-          description: >-
-            generated destricptive name of samplesite (pointno + intake). For
-            instance: B201-1 
+          description: 'generated destricptive name of samplesite (pointno + intake). For instance: B201-1 '
         start:
           type: string
           format: date-time
           description: datetime for when sampling was started.
+          nullable: true
         end:
           type: string
           format: date-time
           description: 'datetime for when sampling was finished. '
+          nullable: true
         laboratoryId:
           type: string
           description: stancode 1025 codelist=AnalysisLaboratoryC
@@ -1587,9 +1568,11 @@ components:
         startDate:
           type: string
           format: date-time
+          nullable: true
         endDate:
           type: string
           format: date-time
+          nullable: true
         projectId:
           type: string
           format: uuid
@@ -1606,7 +1589,7 @@ components:
           description: text description of projectphase
         x:
           type: number
-        y:
+        'y':
           type: number
         z:
           type: number
@@ -1619,9 +1602,7 @@ components:
           type: string
         pointTypeGroup:
           type: string
-          description: >-
-            Boring, Jordforurening, poreluft, indeklima, recipient ect
-            (codelist='pointTypeGroupC')
+          description: 'Boring, Jordforurening, poreluft, indeklima, recipient ect (codelist=''pointTypeGroupC'')'
         pointTypeJupiterGroupC:
           type: string
           description: '1=boringer, 2=other ... Codelist=''PointTypeJupiterGroupC'''
@@ -1668,6 +1649,7 @@ components:
             abandonDate:
               type: string
               format: date-time
+              nullable: true
             hasIntakes:
               type: boolean
     point_intakes:
@@ -1706,7 +1688,7 @@ components:
           description: text description of projectphase
         x:
           type: number
-        y:
+        'y':
           type: number
         z:
           type: number
@@ -1719,9 +1701,7 @@ components:
           type: string
         pointTypeGroup:
           type: string
-          description: >-
-            Boring, Jordforurening, poreluft, indeklima, recipient ect
-            (codelist='pointTypeGroupC')
+          description: 'Boring, Jordforurening, poreluft, indeklima, recipient ect (codelist=''pointTypeGroupC'')'
         pointTypeJupiterGroupC:
           type: string
           description: '1=boringer, 2=other ... Codelist=''PointTypeJupiterGroupC'''
@@ -1783,7 +1763,7 @@ components:
             projectNo: string
             projectTitle: string
             x: number
-            y: number
+            'y': number
             geometry: string
             lat: string
             long: string
@@ -1807,7 +1787,7 @@ components:
           type: string
         x:
           type: number
-        y:
+        'y':
           type: number
         geometry:
           type: string
