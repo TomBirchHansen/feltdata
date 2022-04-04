@@ -97,8 +97,8 @@ paths:
                       projectId: DA881AC5-4776-4BA6-AF79-3B6DC302AF37
                       projectNo: string
                       projectTitle: string
-                      x: 545433.0
-                      'y': 6555555.0
+                      x: 545433
+                      'y': 6555555
                       geometry: string
                       lat: string
                       long: string
@@ -1974,3 +1974,10 @@ components:
             properties:
               id:
                 type: string
+tags:
+  - name: CodeList
+  - name: Intake
+  - name: Point
+  - name: Project
+  - name: Sample
+  - name: Samplesite
