@@ -1471,7 +1471,6 @@ components:
           type: string
           format: date-time
           description: 'datetime for when sampling was finished. '
-          nullable: true
         laboratoryId:
           type: string
           description: stancode 1025 codelist=AnalysisLaboratoryC
