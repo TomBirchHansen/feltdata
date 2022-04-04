@@ -486,9 +486,11 @@ paths:
                 laboratoryId:
                   type: string
                   description: 'codelist: "analyisLaboratoryC"'
+                  nullable: true
                 equipmentC:
                   type: string
                   description: 'codelist: analysisEquipmentC'
+                  nullable: true
                 sampleTop_m:
                   type: number
                   description: depth from terrain to top of sample in meters
@@ -662,10 +664,10 @@ paths:
                       description: sampling f
                     laboratoryId:
                       type: string
-                    laboratoryName:
-                      type: string
+                      nullable: true
                     equipmentC:
                       type: string
+                      nullable: true
                     sampleTop_m:
                       type: number
                     sampleBottom_m:
@@ -745,6 +747,7 @@ paths:
                 phaseId:
                   type: string
                   format: uuid
+                  nullable: true
                 pointTypeC:
                   type: string
                 descriptionLocation:
@@ -755,6 +758,7 @@ paths:
                 pointStatusC:
                   type: string
                   description: 'codelist: pointStatusC'
+                  nullable: true
                 x:
                   type: number
                 'y':
@@ -770,14 +774,18 @@ paths:
                       description: DGU number
                     purposeC:
                       type: string
+                      nullable: true
                     useC:
                       type: string
+                      nullable: true
                     wellTopTypeC:
                       type: string
+                      nullable: true
                     contractorId:
                       type: string
                       description: 'codelist:contractorC'
                       format: uuid
+                      nullable: true
                     geoCompany:
                       type: string
                     abandonDate:
@@ -962,8 +970,10 @@ paths:
                 phaseId:
                   type: string
                   format: uuid
+                  nullable: true
                 PointStatusC:
                   type: string
+                  nullable: true
                 x:
                   type: number
                 'y':
@@ -977,17 +987,22 @@ paths:
                       type: string
                     purposeC:
                       type: string
+                      nullable: true
                     useC:
                       type: string
+                      nullable: true
                     wellTopTypeC:
                       type: string
+                      nullable: true
                     contractorId:
                       type: string
+                      nullable: true
                     geoCompany:
                       type: string
                     abandonDate:
                       type: string
                       format: date-time
+                      nullable: true
                 dataTimeStamp:
                   type: string
                   format: date-time
@@ -1896,6 +1911,7 @@ components:
           example: '20'
         methodC:
           type: string
+          nullable: true
         remark:
           type: string
       required:
