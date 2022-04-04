@@ -92,13 +92,13 @@ paths:
               examples:
                 example-1:
                   value:
-                    projectId: string
+                    projectId: DA881AC5-4776-4BA6-AF79-3B6DC302AF37
                     projectData:
                       projectId: DA881AC5-4776-4BA6-AF79-3B6DC302AF37
                       projectNo: string
                       projectTitle: string
-                      x: number
-                      'y': number
+                      x: 545433.0
+                      'y': 6555555.0
                       geometry: string
                       lat: string
                       long: string
@@ -111,17 +111,17 @@ paths:
                       caseNumber: string
                       projectManager: string
                     projectPhases:
-                      - phaseId: string
+                      - phaseId: DA881AC5-4776-4BA6-AF79-3B6DC302AF37
                         name: string
                         type: string
-                        start: string
-                        end: string
+                        start: '2019-08-24T14:15:22Z'
+                        end: '2019-08-24T14:15:22Z'
                         label: string
                         companyId: string
                         companyT: string
-                        projectId: string
+                        projectId: AA881AC5-4776-4BA6-AF79-3B6DC302AF37
                     sampleSites:
-                      - sampleSiteId: string
+                      - sampleSiteId: DA881AC5-4776-4BA6-AF79-3B6DC302AF37
                         sampleSiteLabel: string
                         sampleSiteType: string
                         point:
@@ -130,7 +130,7 @@ paths:
                           description: string
                           startDate: '2019-08-24T14:15:22Z'
                           endDate: '2019-08-24T14:15:22Z'
-                          projectId: string
+                          projectId: DA881AC5-4776-4BA6-AF79-3B6DC302AF37
                           pointTypeC: string
                           pointTypeT: string
                           phaseId: DA881AC5-4776-4BA6-AF79-3B6DC302AF37
@@ -157,7 +157,7 @@ paths:
                             contractorId: string
                             contractorT: string
                             geoCompany: string
-                            abandonDate: string
+                            abandonDate: '2019-08-24T14:15:22Z'
                             hasIntakes: true
                         intake:
                           intakeId: DA881AC5-4776-4BA6-AF79-3B6DC302AF37
@@ -189,7 +189,7 @@ paths:
                           caseNumber: string
                           projectManager: string
                         lastWaterlevel:
-                          date: string
+                          date: '2019-08-24T14:15:22Z'
                           waterlevel: string
                           depth: string
                           referencelevel: string
@@ -585,7 +585,7 @@ paths:
                       description: string
                       startDate: '2019-08-24T14:15:22Z'
                       endDate: '2019-08-24T14:15:22Z'
-                      projectId: string
+                      projectId: DA881AC5-4776-4BA6-AF79-3B6DC302AF37
                       pointTypeC: string
                       pointTypeT: string
                       phaseId: 0ad391c4-95b8-47f9-85a6-2edccf8f12cc
@@ -612,7 +612,7 @@ paths:
                         contractorId: string
                         contractorT: string
                         geoCompany: string
-                        abandonDate: string
+                        abandonDate: '2019-08-24T14:15:22Z'
                         hasIntakes: true
                     FieldMeasurements:
                       - measurementId: ECC648E1-313E-4835-BF21-91BA57877786
@@ -1842,7 +1842,7 @@ components:
           example: benzen
         value:
           type: number
-          example: '0.023'
+          example: 0.023
           format: double
         unitC:
           type: string
