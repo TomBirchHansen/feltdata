@@ -1428,11 +1428,14 @@ components:
               format: date-time
             waterlevel:
               type: number
+              nullable: true
             depth:
               type: number
               description: depth reading in meters
+              nullable: true
             referencelevel:
               type: number
+              nullable: true
             situationC:
               type: string
               description: codevalue for waterlevel situation. (codelist='waterlevelSituationC')
@@ -1578,24 +1581,30 @@ components:
           type: integer
           description: only relevant in special cases
           example: 1
+          nullable: true
         top:
           type: number
           description: top of intakepipe in meters above terrain
+          nullable: true
         bottom:
           type: number
           description: 'debth in meters from terrain to bottom of intakepipe '
+          nullable: true
         depth1:
           type: number
           description: depth to top of filterintake from terrain
+          nullable: true
         depth2:
           type: number
           description: depth to top of filterintake from terrain
+          nullable: true
         pointId:
           type: string
           format: uuid
         diameter_mm:
           type: number
           description: diameter of pipe
+          nullable: true
     Point:
       title: Point
       type: object
@@ -1733,9 +1742,11 @@ components:
         startDate:
           type: string
           format: date-time
+          nullable: true
         endDate:
           type: string
           format: date-time
+          nullable: true
         projectId:
           type: string
           format: uuid
@@ -1747,22 +1758,28 @@ components:
         phaseId:
           type: string
           format: uuid
+          nullable: true
         phaseT:
           type: string
           description: text description of projectphase
         x:
           type: number
+          nullable: true
         'y':
           type: number
+          nullable: true
         z:
           type: number
+          nullable: true
         dataowner:
           type: string
         StatusC:
           type: string
           description: codelist='pointStatusC'
+          nullable: true
         StatusT:
           type: string
+          nullable: true
         pointTypeGroup:
           type: string
           description: 'Boring, Jordforurening, poreluft, indeklima, recipient ect (codelist=''pointTypeGroupC'')'
@@ -1772,8 +1789,10 @@ components:
         coordinateQualityC:
           type: string
           description: codelist=CoordinateQualityC
+          nullable: true
         coordinateQualityT:
           type: string
+          nullable: true
         gisLegendC:
           type: string
         gisLegendT:
@@ -1786,31 +1805,40 @@ components:
             purposeC:
               type: string
               description: codelist='pointPurposeC'
+              nullable: true
             purposeT:
               type: string
+              nullable: true
             useC:
               type: string
               description: codelist='PointUseC'
+              nullable: true
             useT:
               type: string
+              nullable: true
             wellTopTypeC:
               type: string
               description: codelist='WellTopTypeC'
+              nullable: true
             wellTopTypeT:
               type: string
+              nullable: true
             isAbandoned:
               type: boolean
             contractorId:
               type: string
               description: GUID codelist='contractorC'
               maxLength: 36
+              nullable: true
             contractorT:
               type: string
+              nullable: true
             geoCompany:
               type: string
               description: 'geology-company '
             abandonDate:
               type: string
+              nullable: true
             hasIntakes:
               type: boolean
         intakes:
@@ -1820,24 +1848,7 @@ components:
     Project:
       description: ''
       type: object
-      x-examples:
-        example-1:
-          value:
-            projectId: string
-            projectNo: string
-            projectTitle: string
-            x: number
-            'y': number
-            geometry: string
-            lat: string
-            long: string
-            jarNo: string
-            address: string
-            contactregion: string
-            personReference: string
-            primaryLaboratory: string
-            noteForSampler: string
-            caseNumber: string
+      x-examples: {}
       title: Project
       x-tags:
         - objects
@@ -1851,8 +1862,10 @@ components:
           type: string
         x:
           type: number
+          nullable: true
         'y':
           type: number
+          nullable: true
         geometry:
           type: string
         jarNo:
@@ -1866,6 +1879,7 @@ components:
         primaryLaboratoryId:
           type: string
           description: 'codelist:analysisLaboratoryC'
+          nullable: true
         noteToSampler:
           type: string
           description: generic information to the sampler regarding the project/site
@@ -1880,13 +1894,18 @@ components:
         - objects
       description: field measurement data
       x-examples:
-        example-1:
+        example-2:
           measurementId: ECC648E1-313E-4835-BF21-91BA57877786
-          parameterC: '13'
-          value: 7
-          unitC: '5'
-          methodC: ''
-          remark: test
+          parameterC: '215'
+          parameterT: benzen
+          value: 0.023
+          unitC: '20'
+          unitT: ug/l
+          attributeC: null
+          attributeT: null
+          methodC: '10'
+          methodT: DS 220
+          remark: string
       properties:
         measurementId:
           type: string
@@ -1915,16 +1934,20 @@ components:
           type: string
           description: codelist 'AttributeC'
           example: '7'
+          nullable: true
         attributeT:
           type: string
           example: '='
+          nullable: true
         methodC:
           type: string
           description: codelist 'AnalysisUnitC'
           example: '10'
+          nullable: true
         methodT:
           type: string
           example: DS 220
+          nullable: true
         remark:
           type: string
       required:
@@ -1947,6 +1970,7 @@ components:
           description: stancode 1008
         attributeC:
           type: string
+          nullable: true
         value:
           type: number
           example: 0.23
@@ -1988,8 +2012,10 @@ components:
           type: string
         companyId:
           type: string
+          nullable: true
         companyT:
           type: string
+          nullable: true
         projectId:
           type: string
           format: uuid
