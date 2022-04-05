@@ -507,6 +507,7 @@ paths:
                   $ref: '#/components/schemas/fieldmeasurement_input'
               required:
                 - sampleSiteId
+                - matrixC
                 - end
             examples: {}
         description: data for the new sample
@@ -658,6 +659,7 @@ paths:
                     start:
                       type: string
                       format: date-time
+                      nullable: true
                     end:
                       type: string
                       format: date-time
@@ -761,10 +763,13 @@ paths:
                   nullable: true
                 x:
                   type: number
+                  nullable: true
                 'y':
                   type: number
+                  nullable: true
                 z:
                   type: number
+                  nullable: true
                 well:
                   type: object
                   description: Wellspecific data
@@ -960,9 +965,11 @@ paths:
                 startDate:
                   type: string
                   format: date-time
+                  nullable: true
                 endDate:
                   type: string
                   format: date-time
+                  nullable: true
                 projectId:
                   type: string
                 pointTypeC:
@@ -976,10 +983,13 @@ paths:
                   nullable: true
                 x:
                   type: number
+                  nullable: true
                 'y':
                   type: number
+                  nullable: true
                 z:
                   type: number
+                  nullable: true
                 well:
                   type: object
                   properties:
@@ -1010,6 +1020,7 @@ paths:
               required:
                 - pointNo
                 - projectId
+                - pointTypeC
             examples: {}
       tags:
         - Point
@@ -1060,12 +1071,15 @@ paths:
                   type: string
                 diameter_mm:
                   type: integer
+                  nullable: true
                 description:
                   type: string
                 screenNo:
                   type: integer
+                  nullable: true
               required:
                 - pointId
+                - intakeNo
         description: ''
       tags:
         - Intake
@@ -1413,24 +1427,28 @@ components:
               type: string
               format: date-time
             waterlevel:
-              type: string
+              type: number
             depth:
-              type: string
+              type: number
               description: depth reading in meters
             referencelevel:
-              type: string
+              type: number
             situationC:
               type: string
               description: codevalue for waterlevel situation. (codelist='waterlevelSituationC')
+              nullable: true
             situationT:
               type: string
               description: 'code-text for situation. example ''Ro'', ''Drift'''
+              nullable: true
             extremeC:
               type: string
               description: code for extreme. (codelist='waterlevelExtremeC')
+              nullable: true
             extremeT:
               type: string
               description: 'code-text for extreme. Example: ''overløb'', ''normal'''
+              nullable: true
         lastSample:
           type: object
           properties:
@@ -1442,9 +1460,11 @@ components:
             MatrixC:
               type: string
               description: (codelist='analysisMatrixC')
+              nullable: true
             MatrixT:
               type: string
               description: code-text for medium. example 'jord'
+              nullable: true
             sampleId:
               type: string
               format: uuid
@@ -1494,14 +1514,18 @@ components:
         laboratoryId:
           type: string
           description: stancode 1025 codelist=AnalysisLaboratoryC
+          nullable: true
         laboratoryName:
           type: string
+          nullable: true
         equipmentC:
           type: string
           description: 'codetype=''analysisEquipmentC'' for '
+          nullable: true
         equipmentT:
           type: string
           description: 'Stancode list 1006  '
+          nullable: true
         IntakeNo:
           type: number
         IntakeName:
@@ -1529,6 +1553,8 @@ components:
           items:
             $ref: '#/components/schemas/fieldmeasurement'
       required:
+        - sampleId
+        - matrixC
         - end
     Intake:
       title: Intake
@@ -1598,27 +1624,36 @@ components:
         pointTypeC:
           type: string
           description: codelist='pointTypeC'
+          nullable: true
         pointTypeT:
           type: string
+          nullable: true
         phaseId:
           type: string
           format: uuid
+          nullable: true
         phaseT:
           type: string
           description: text description of projectphase
+          nullable: true
         x:
           type: number
+          nullable: true
         'y':
           type: number
+          nullable: true
         z:
           type: number
+          nullable: true
         dataowner:
           type: string
         StatusC:
           type: string
           description: codelist='pointStatusC'
+          nullable: true
         StatusT:
           type: string
+          nullable: true
         pointTypeGroup:
           type: string
           description: 'Boring, Jordforurening, poreluft, indeklima, recipient ect (codelist=''pointTypeGroupC'')'
@@ -1628,8 +1663,10 @@ components:
         coordinateQualityC:
           type: string
           description: codelist=CoordinateQualityC
+          nullable: true
         coordinateQualityT:
           type: string
+          nullable: true
         gisLegendC:
           type: string
         gisLegendT:
@@ -1642,26 +1679,34 @@ components:
             purposeC:
               type: string
               description: codelist='pointPurposeC'
+              nullable: true
             purposeT:
               type: string
+              nullable: true
             useC:
               type: string
               description: codelist='PointUseC'
+              nullable: true
             useT:
               type: string
+              nullable: true
             wellTopTypeC:
               type: string
               description: codelist='WellTopTypeC'
+              nullable: true
             wellTopTypeT:
               type: string
+              nullable: true
             isAbandoned:
               type: boolean
             contractorId:
               type: string
               description: GUID codelist='contractorC'
               maxLength: 36
+              nullable: true
             contractorT:
               type: string
+              nullable: true
             geoCompany:
               type: string
               description: 'geology-company '
