@@ -1858,8 +1858,10 @@ components:
           format: uuid
         projectNo:
           type: string
+          example: 741-00001
         projectTitle:
           type: string
+          example: Vestergade 1 renseri
         x:
           type: number
           nullable: true
@@ -1872,6 +1874,7 @@ components:
           type: string
         address:
           type: string
+          example: 'Vestergade 1, 9000'
         contactRegion:
           type: string
         invoicePersonReference:
