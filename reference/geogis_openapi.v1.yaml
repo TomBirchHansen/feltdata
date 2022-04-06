@@ -972,6 +972,7 @@ paths:
                   nullable: true
                 projectId:
                   type: string
+                  format: uuid
                 pointTypeC:
                   type: string
                 phaseId:
