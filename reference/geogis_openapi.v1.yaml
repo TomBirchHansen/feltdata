@@ -770,6 +770,8 @@ paths:
                 z:
                   type: number
                   nullable: true
+                markedForSampling:
+                  type: boolean
                 well:
                   type: object
                   description: Wellspecific data
@@ -1443,6 +1445,8 @@ components:
           $ref: '#/components/schemas/Project'
         gisLegend:
           type: string
+        markedForSampling:
+          type: boolean
         lastWaterlevel:
           type: object
           description: Last waterlevel measurements
