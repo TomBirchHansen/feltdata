@@ -190,9 +190,9 @@ paths:
                           projectManager: string
                         lastWaterlevel:
                           date: '2019-08-24T14:15:22Z'
-                          waterlevel: string
-                          depth: string
-                          referencelevel: string
+                          waterlevel: 0.4
+                          depth: 2
+                          referencelevel: 2
                           situationC: string
                           situationT: string
                           extremeC: string
@@ -801,7 +801,30 @@ paths:
                 - projectId
                 - pointNo
                 - pointTypeC
-            examples: {}
+            examples:
+              example-1:
+                value:
+                  pointId: 20a7be04-0667-469f-8fa4-da6cf02369c8
+                  projectId: 5a8591dd-4039-49df-9202-96385ba3eff8
+                  pointNo: IK2
+                  startDate: '2019-08-24T14:15:22Z'
+                  endDate: '2019-08-24T14:15:22Z'
+                  phaseId: 0ad391c4-95b8-47f9-85a6-2edccf8f12cc
+                  pointTypeC: string
+                  descriptionLocation: string
+                  description: string
+                  pointStatusC: string
+                  x: 0
+                  'y': 0
+                  z: 0
+                  well:
+                    dgu: string
+                    purposeC: string
+                    useC: string
+                    wellTopTypeC: string
+                    contractorId: 8e641c22-41f4-4818-ae43-d2cb9b53e3d7
+                    geoCompany: string
+                    abandonDate: '2019-08-24T14:15:22Z'
         description: ''
       tags:
         - Sample
@@ -1684,6 +1707,9 @@ components:
           type: string
         gisLegendT:
           type: string
+        markedForSampling:
+          type: boolean
+          description: is the point marked to be sampled?
         well:
           type: object
           properties:
