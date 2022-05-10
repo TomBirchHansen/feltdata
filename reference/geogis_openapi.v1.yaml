@@ -1016,6 +1016,12 @@ paths:
                 z:
                   type: number
                   nullable: true
+                markedForSampling:
+                  type: string
+                dataTimeStamp:
+                  type: string
+                  format: date-time
+                  description: date-time of original data from database
                 well:
                   type: object
                   properties:
@@ -1039,10 +1045,6 @@ paths:
                       type: string
                       format: date-time
                       nullable: true
-                dataTimeStamp:
-                  type: string
-                  format: date-time
-                  description: date-time of original data from database
               required:
                 - pointNo
                 - projectId
