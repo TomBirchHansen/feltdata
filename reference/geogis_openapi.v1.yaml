@@ -431,11 +431,13 @@ paths:
             format: uuid
           in: query
           name: projectId
+          description: projectId
         - schema:
             type: string
             format: uuid
           in: query
           name: sampleSiteId
+          description: sampleSiteId
       description: get all samples matching parameters
       tags:
         - Sample
@@ -840,6 +842,7 @@ paths:
             application/json:
               schema:
                 type: object
+                description: stats
                 properties:
                   recordsFound:
                     type: integer
@@ -866,10 +869,12 @@ paths:
             format: uuid
           in: query
           name: projectId
+          description: projectId
         - schema:
             type: string
           in: query
           name: projectNo
+          description: projectNo
         - schema:
             type: number
           in: query
@@ -894,18 +899,22 @@ paths:
             type: boolean
           in: query
           name: isNotAbandoned
+          description: is not abandoned
         - schema:
             type: boolean
           in: query
           name: isWell
+          description: is well
         - schema:
             type: string
           in: query
           name: pointStatusC
+          description: pointStatus code
         - schema:
             type: boolean
           in: query
           name: hasIntake
+          description: has Intake
       tags:
         - Sample
   '/point/{pointId}':
@@ -1155,6 +1164,7 @@ paths:
             type: string
           in: query
           name: projectNo
+          description: projectNo
       description: returns intakes matching query parameters
       tags:
         - Intake
