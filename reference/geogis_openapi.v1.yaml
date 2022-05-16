@@ -485,9 +485,10 @@ paths:
                 end:
                   type: string
                   format: date-time
+                  nullable: true
                 laboratoryId:
                   type: string
-                  description: 'codelist: "analyisLaboratoryC"'
+                  description: 'codelist: "analysisLaboratoryC"'
                   nullable: true
                 equipmentC:
                   type: string
@@ -505,12 +506,13 @@ paths:
                 remark:
                   type: string
                   description: generic remark field
-                FieldMeasurements:
-                  $ref: '#/components/schemas/fieldmeasurement_input'
+                fieldMeasurements:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/fieldmeasurement_input'
               required:
                 - sampleSiteId
                 - matrixC
-                - end
             examples: {}
         description: data for the new sample
       description: create new sample
@@ -666,6 +668,7 @@ paths:
                       type: string
                       format: date-time
                       description: sampling f
+                      nullable: true
                     laboratoryId:
                       type: string
                       nullable: true
@@ -1554,6 +1557,7 @@ components:
           type: string
           format: date-time
           description: 'datetime for when sampling was finished. '
+          nullable: true
         laboratoryId:
           type: string
           description: stancode 1025 codelist=AnalysisLaboratoryC
@@ -1601,7 +1605,6 @@ components:
       required:
         - sampleId
         - matrixC
-        - end
     Intake:
       title: Intake
       type: object
