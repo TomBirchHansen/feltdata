@@ -1591,7 +1591,7 @@ components:
         remark:
           type: string
           description: generic remark of sample
-        allowRequision:
+        allowRequisition:
           type: boolean
           description: calculated field representing if new requisitions can be made on the sample
         Intake:
