@@ -473,7 +473,7 @@ paths:
                   type: string
                 matrixC:
                   type: string
-                  description: 'codelist: "analysisMatrixC"'
+                  description: 'codelist: "analysismatrixC"'
                 sampledBy:
                   type: string
                 sampleBarcode:
@@ -679,8 +679,10 @@ paths:
                       nullable: true
                     sampleTop_m:
                       type: number
+                      nullable: true
                     sampleBottom_m:
                       type: number
+                      nullable: true
                     fieldRemark:
                       type: string
                     remark:
