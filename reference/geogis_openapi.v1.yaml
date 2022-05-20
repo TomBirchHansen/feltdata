@@ -497,9 +497,11 @@ paths:
                 sampleTop_m:
                   type: number
                   description: depth from terrain to top of sample in meters
+                  nullable: true
                 sampleBottom_m:
                   type: number
                   description: depth i meters to bottom of sample (soilsamples)
+                  nullable: true
                 FieldRemark:
                   type: string
                   description: Remark from field worker
