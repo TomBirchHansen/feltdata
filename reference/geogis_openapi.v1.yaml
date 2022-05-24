@@ -1585,10 +1585,12 @@ components:
           type: number
           format: double
           description: depth to top of sample
+          nullable: true
         sampleBottom_m:
           type: number
           format: double
           description: depth to bottom of sample
+          nullable: true
         fieldRemark:
           type: string
           description: Remark from the field
