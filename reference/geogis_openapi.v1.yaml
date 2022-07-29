@@ -1001,8 +1001,10 @@ paths:
                   type: string
                 description:
                   type: string
+                  nullable: true
                 descriptionLocation:
                   type: string
+                  nullable: true
                 startDate:
                   type: string
                   format: date-time
@@ -1033,16 +1035,18 @@ paths:
                   type: number
                   nullable: true
                 markedForSampling:
-                  type: string
+                  type: boolean
                 dataTimeStamp:
                   type: string
                   format: date-time
                   description: date-time of original data from database
                 well:
                   type: object
+                  nullable: true
                   properties:
                     dgu:
                       type: string
+                      nullable: true
                     purposeC:
                       type: string
                       nullable: true
@@ -1057,6 +1061,7 @@ paths:
                       nullable: true
                     geoCompany:
                       type: string
+                      nullable: true
                     abandonDate:
                       type: string
                       format: date-time
