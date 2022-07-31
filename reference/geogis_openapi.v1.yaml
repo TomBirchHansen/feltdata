@@ -476,8 +476,10 @@ paths:
                   description: 'codelist: "analysismatrixC"'
                 sampledBy:
                   type: string
+                  nullable: true
                 sampleBarcode:
                   type: string
+                  nullable: true
                 start:
                   type: string
                   format: date-time
@@ -505,9 +507,11 @@ paths:
                 FieldRemark:
                   type: string
                   description: Remark from field worker
+                  nullable: true
                 remark:
                   type: string
                   description: generic remark field
+                  nullable: true
                 fieldMeasurements:
                   type: array
                   items:
@@ -660,8 +664,10 @@ paths:
                       type: string
                     sampledBy:
                       type: string
+                      nullable: true
                     sampleBarcode:
                       type: string
+                      nullable: true
                     start:
                       type: string
                       format: date-time
@@ -685,8 +691,11 @@ paths:
                       nullable: true
                     fieldRemark:
                       type: string
+                      nullable: true
                     remark:
                       type: string
+                      description: generic remark field
+                      nullable: true
                     fieldMeasurements:
                       type: array
                       items:
@@ -739,6 +748,7 @@ paths:
                   type: string
                   description: GUID of new pointId. If empty a new GUID is returned in the response.
                   format: uuid
+                  nullable: true
                 projectId:
                   type: string
                   description: the projectId where the point is to be created on.
@@ -764,8 +774,10 @@ paths:
                 descriptionLocation:
                   type: string
                   description: a description of the location of the point
+                  nullable: true
                 description:
                   type: string
+                  nullable: true
                 pointStatusC:
                   type: string
                   description: 'codelist: pointStatusC'
@@ -784,10 +796,12 @@ paths:
                 well:
                   type: object
                   description: Wellspecific data
+                  nullable: true
                   properties:
                     dgu:
                       type: string
                       description: DGU number
+                      nullable: true
                     purposeC:
                       type: string
                       nullable: true
@@ -804,6 +818,7 @@ paths:
                       nullable: true
                     geoCompany:
                       type: string
+                      nullable: true
                     abandonDate:
                       type: string
                       format: date-time
@@ -1004,6 +1019,7 @@ paths:
                   nullable: true
                 descriptionLocation:
                   type: string
+                  description: a description of the location of the point
                   nullable: true
                 startDate:
                   type: string
@@ -1114,6 +1130,8 @@ paths:
                 intakeId:
                   type: string
                   format: uuid
+                  description: if null a new guid is returned
+                  nullable: true
                 intakeNo:
                   type: integer
                 intakeName:
@@ -1123,6 +1141,7 @@ paths:
                   nullable: true
                 description:
                   type: string
+                  nullable: true
                 screenNo:
                   type: integer
                   nullable: true
@@ -1237,18 +1256,25 @@ paths:
                   type: string
                 description:
                   type: string
+                  nullable: true
                 screenNo:
                   type: integer
+                  nullable: true
                 top:
                   type: number
+                  nullable: true
                 bottom:
                   type: number
+                  nullable: true
                 depth1:
                   type: number
+                  nullable: true
                 depth2:
                   type: number
+                  nullable: true
                 diameter_mm:
                   type: integer
+                  nullable: true
                 dataTimeStamp:
                   type: string
                   format: date-time
@@ -1690,7 +1716,6 @@ components:
         pointTypeC:
           type: string
           description: codelist='pointTypeC'
-          nullable: true
         pointTypeT:
           type: string
           nullable: true
@@ -1740,6 +1765,9 @@ components:
         markedForSampling:
           type: boolean
           description: is the point marked to be sampled?
+        descriptionLocation:
+          type: string
+          description: a descripton of the points location
         well:
           type: object
           properties:
