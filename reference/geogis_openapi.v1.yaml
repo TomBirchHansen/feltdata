@@ -1770,6 +1770,7 @@ components:
           description: a descripton of the points location
         well:
           type: object
+          nullable: true
           properties:
             dgu:
               type: string
