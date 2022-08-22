@@ -1844,6 +1844,7 @@ components:
           description: codelist='pointTypeC'
         pointTypeT:
           type: string
+          nullable: true
         phaseId:
           type: string
           format: uuid
@@ -1851,6 +1852,7 @@ components:
         phaseT:
           type: string
           description: text description of projectphase
+          nullable: true
         x:
           type: number
           nullable: true
@@ -1886,8 +1888,15 @@ components:
           type: string
         gisLegendT:
           type: string
+        markedForSampling:
+          type: boolean
+          description: is the point marked to be sampled?
+        descriptionLocation:
+          type: string
+          description: a descripton of the points location
         well:
           type: object
+          nullable: true
           properties:
             dgu:
               type: string
@@ -1927,6 +1936,7 @@ components:
               description: 'geology-company '
             abandonDate:
               type: string
+              format: date-time
               nullable: true
             hasIntakes:
               type: boolean
