@@ -547,6 +547,7 @@ paths:
         name: sampleId
         in: path
         required: true
+        description: sampleId of sample
     patch:
       summary: 'Sample PATCH {sampleId}'
       operationId: Sample_PatchSample
@@ -947,6 +948,7 @@ paths:
         name: pointId
         in: path
         required: true
+        description: GUID Id of point
     get:
       summary: 'Point GET {pointId}'
       tags:
@@ -2165,8 +2167,14 @@ components:
                 type: string
 tags:
   - name: CodeList
+    description: Codelist
   - name: Intake
+    description: Intake
   - name: Point
+    description: Point
   - name: Project
+    description: Project
   - name: Sample
+    description: Sample
   - name: Samplesite
+    description: Samplesite
