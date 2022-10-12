@@ -853,7 +853,7 @@ paths:
                     abandonDate: '2019-08-24T14:15:22Z'
         description: ''
       tags:
-        - Sample
+        - Point
     get:
       summary: Point GET
       operationId: Point_FindPoints
@@ -938,7 +938,7 @@ paths:
           name: hasIntake
           description: has Intake
       tags:
-        - Sample
+        - Point
   '/point/{pointId}':
     parameters:
       - schema:
