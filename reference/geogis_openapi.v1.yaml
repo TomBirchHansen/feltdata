@@ -11,7 +11,7 @@ servers:
   - url: 'http://localhost:3000'
     description: testsite
   - description: Region Midt GeoGIS
-    url: 'https://geogisopenapi-test.rm.dk/v1/api'
+    url: 'https://geogisopenapi-test.rm.dk/v1'
 paths:
   /project:
     get:
@@ -1180,6 +1180,8 @@ paths:
                           $ref: '#/components/schemas/Point'
                         projectData:
                           $ref: '#/components/schemas/Project'
+                        '':
+                          type: string
       parameters:
         - schema:
             type: string
