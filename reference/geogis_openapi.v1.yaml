@@ -1437,6 +1437,11 @@ paths:
           in: query
           name: Setup
           description: show rows with specified setup (language). Default is DK
+        - schema:
+            type: boolean
+            default: false
+          in: query
+          name: ShowOnlySelectable
       tags:
         - CodeList
     parameters:
