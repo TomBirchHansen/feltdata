@@ -1379,6 +1379,9 @@ paths:
                               type: string
                             jupiterId:
                               type: string
+                            selectable:
+                              type: boolean
+                              description: is the value selectable in field-app on new records?
               examples:
                 example-1:
                   value:
