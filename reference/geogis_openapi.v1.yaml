@@ -458,7 +458,6 @@ paths:
         content:
           application/json:
             schema:
-              description: ''
               type: object
               properties:
                 sampleId:
@@ -471,6 +470,7 @@ paths:
                   format: uuid
                 sampleLabel:
                   type: string
+                  maxLength: 50
                 matrixC:
                   type: string
                   description: 'codelist: "analysismatrixC"'
