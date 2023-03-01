@@ -1445,6 +1445,7 @@ paths:
             default: false
           in: query
           name: ShowOnlySelectable
+          description: show only selectable values from table
       tags:
         - CodeList
     parameters:
