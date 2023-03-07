@@ -1442,7 +1442,7 @@ paths:
           description: show rows with specified setup (language). Default is DK
         - schema:
             type: boolean
-            default: false
+            default: true
           in: query
           name: ShowOnlySelectable
           description: show only selectable values from table
