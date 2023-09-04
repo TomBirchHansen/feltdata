@@ -1419,6 +1419,68 @@ paths:
         in: path
         required: true
         description: the ID of the list to return. "null" returns all lists
+  '/users(/{userId}':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    get:
+      summary: Get User
+      tags: []
+      responses: {}
+      operationId: get-users(-userId
+      x-stoplight:
+        id: 4o08q9t7h94yv
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                initialId:
+                  type: string
+                  x-stoplight:
+                    id: n2o4nv3i0imi2
+                  format: uuid
+                name:
+                  type: string
+                  x-stoplight:
+                    id: fhjdpatrsc1ct
+                '':
+                  type: string
+                  x-stoplight:
+                    id: nys6v4g2hcgt8
+                address:
+                  type: string
+                  x-stoplight:
+                    id: 90jv2i5eywz4j
+                postcode:
+                  type: string
+                  x-stoplight:
+                    id: 66zsmffxmi2rs
+                town:
+                  type: string
+                  x-stoplight:
+                    id: 5t45u58178xqj
+                telephone:
+                  type: string
+                  x-stoplight:
+                    id: 5k1o60dd3lz3y
+                email:
+                  type: string
+                  x-stoplight:
+                    id: 19w3nk06mugbo
+                invoiceReference:
+                  type: string
+                  x-stoplight:
+                    id: f6wtrbh9zs2jh
+                active:
+                  type: boolean
+                  x-stoplight:
+                    id: 10ljooz2fzurm
+                  default: false
 components:
   schemas:
     Project_Detailed:
