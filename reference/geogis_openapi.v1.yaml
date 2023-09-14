@@ -1430,7 +1430,7 @@ paths:
       summary: Get User
       tags: []
       responses: {}
-      operationId: get-users(-userId
+      operationId: get-users-userId
       x-stoplight:
         id: 4o08q9t7h94yv
       requestBody:
