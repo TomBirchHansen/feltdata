@@ -1437,7 +1437,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  initialId:
+                  initialsId:
                     type: string
                     x-stoplight:
                       id: 6ff18hjw42if8
@@ -1446,6 +1446,10 @@ paths:
                     type: string
                     x-stoplight:
                       id: dmljn3ghmx8jt
+                  initials:
+                    type: string
+                    x-stoplight:
+                      id: kjw9vmpt9bsx4
                   address:
                     type: string
                     x-stoplight:
