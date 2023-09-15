@@ -1429,58 +1429,66 @@ paths:
     get:
       summary: Get User
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  initialId:
+                    type: string
+                    x-stoplight:
+                      id: 6ff18hjw42if8
+                    format: uuid
+                  name:
+                    type: string
+                    x-stoplight:
+                      id: dmljn3ghmx8jt
+                  address:
+                    type: string
+                    x-stoplight:
+                      id: 75qwgetvlc2kp
+                  postcode:
+                    type: string
+                    x-stoplight:
+                      id: hakxhevc3slva
+                  town:
+                    type: string
+                    x-stoplight:
+                      id: ufpiietmgxwu8
+                  telephone:
+                    type: string
+                    x-stoplight:
+                      id: 1oc5uhozl51q3
+                  email:
+                    type: string
+                    x-stoplight:
+                      id: c0vzao8euskfy
+                  invoiceReference:
+                    type: string
+                    x-stoplight:
+                      id: 6n5fsvccrqh8z
+                  active:
+                    type: boolean
+                    x-stoplight:
+                      id: 4sx2wrgduh83m
+                  companyId:
+                    type: string
+                    x-stoplight:
+                      id: ljouzslkofqki
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
       operationId: get-users-userId
       x-stoplight:
         id: 4o08q9t7h94yv
       requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                initialId:
-                  type: string
-                  x-stoplight:
-                    id: n2o4nv3i0imi2
-                  format: uuid
-                name:
-                  type: string
-                  x-stoplight:
-                    id: fhjdpatrsc1ct
-                '':
-                  type: string
-                  x-stoplight:
-                    id: nys6v4g2hcgt8
-                address:
-                  type: string
-                  x-stoplight:
-                    id: 90jv2i5eywz4j
-                postcode:
-                  type: string
-                  x-stoplight:
-                    id: 66zsmffxmi2rs
-                town:
-                  type: string
-                  x-stoplight:
-                    id: 5t45u58178xqj
-                telephone:
-                  type: string
-                  x-stoplight:
-                    id: 5k1o60dd3lz3y
-                email:
-                  type: string
-                  x-stoplight:
-                    id: 19w3nk06mugbo
-                invoiceReference:
-                  type: string
-                  x-stoplight:
-                    id: f6wtrbh9zs2jh
-                active:
-                  type: boolean
-                  x-stoplight:
-                    id: 10ljooz2fzurm
-                  default: false
+        content: {}
 components:
   schemas:
     Project_Detailed:
