@@ -1127,16 +1127,21 @@ paths:
                       id: 0zbliibazrt32
                     default: false
                   intakes:
+                    type: array
                     x-stoplight:
-                      id: wn6msv83784vb
-                    type: object
-                    properties:
-                      intakeData:
-                        $ref: '#/components/schemas/Intake'
-                      pointData:
-                        $ref: '#/components/schemas/Point'
-                      projectData:
-                        $ref: '#/components/schemas/Project'
+                      id: h8wwr4w3vawwj
+                    items:
+                      x-stoplight:
+                        id: s8t9elqqxl1xe
+                      type:
+                        - object
+                      properties:
+                        intakeData:
+                          $ref: '#/components/schemas/Intake'
+                        pointData:
+                          $ref: '#/components/schemas/Point'
+                        projectData:
+                          $ref: '#/components/schemas/Project'
         '400':
           description: Bad Request
         '401':
