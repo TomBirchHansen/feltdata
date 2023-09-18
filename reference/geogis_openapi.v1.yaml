@@ -4,7 +4,7 @@ info:
   version: '1.0'
   description: API for GeoGIS field data
   contact:
-    name: Danske Regioner
+    name: Danske Regioner.
     url: 'http://www.danskeregioner.dk'
     email: tomhan@rm.dk
   license:
