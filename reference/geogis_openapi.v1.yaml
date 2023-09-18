@@ -1111,7 +1111,27 @@ paths:
       operationId: Intake_FindIntakes
       responses:
         '200':
-          $ref: '#/components/responses/unauthorised'
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  intakeData:
+                    $ref: '#/components/schemas/Intake'
+                  pointData:
+                    $ref: '#/components/schemas/Point'
+                  projectData:
+                    $ref: '#/components/schemas/Project'
+                  recordsFound:
+                    type: integer
+                    x-stoplight:
+                      id: rge6jnla2dwr5
+                  maxRecordsExceeded:
+                    type: boolean
+                    x-stoplight:
+                      id: 0zbliibazrt32
+                    default: false
         '400':
           description: Bad Request
         '401':
