@@ -1443,12 +1443,15 @@ paths:
     parameters:
       - schema:
           type: string
+          format: uuid
         name: userId
         in: path
         required: true
+        description: id of user
     get:
       summary: Get User
-      tags: []
+      tags:
+        - Intake
       responses:
         '200':
           description: OK
@@ -1513,6 +1516,7 @@ paths:
         id: 4o08q9t7h94yv
       requestBody:
         content: {}
+      description: Get data on specific user
 components:
   schemas:
     Project_Detailed:
@@ -2264,17 +2268,12 @@ components:
                 type: string
 tags:
   - name: CodeList
-    description: Codelist
   - name: Intake
-    description: Intake
   - name: Point
-    description: Point
   - name: Project
-    description: Project
   - name: Sample
-    description: Sample
   - name: Samplesite
-    description: Samplesite
+  - name: User
 security:
   - token:
       - openid
