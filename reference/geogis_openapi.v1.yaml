@@ -1126,7 +1126,6 @@ paths:
                     type: boolean
                     x-stoplight:
                       id: 0zbliibazrt32
-                    default: false
                   intakes:
                     type: array
                     x-stoplight:
