@@ -1116,6 +1116,7 @@ paths:
             application/json:
               schema:
                 type: object
+                additionalProperties: false
                 properties:
                   recordsFound:
                     type: integer
@@ -1133,8 +1134,7 @@ paths:
                     items:
                       x-stoplight:
                         id: s8t9elqqxl1xe
-                      type:
-                        - object
+                      type: object
                       properties:
                         intakeData:
                           $ref: '#/components/schemas/Intake'
