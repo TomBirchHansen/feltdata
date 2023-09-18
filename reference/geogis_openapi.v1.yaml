@@ -1141,6 +1141,7 @@ paths:
                           $ref: '#/components/schemas/Point'
                         projectData:
                           $ref: '#/components/schemas/Project'
+              examples: {}
         '400':
           description: Bad Request
         '401':
