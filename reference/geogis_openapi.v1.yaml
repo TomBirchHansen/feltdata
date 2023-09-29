@@ -1449,15 +1449,13 @@ paths:
         in: path
         required: true
         description: the ID of the list to return. "null" returns all lists
-  '/initials/{userId}':
+  '/initials/{initialId}':
     parameters:
       - schema:
           type: string
-          format: uuid
-        name: userId
+        name: initialId
         in: path
         required: true
-        description: id of user
     get:
       summary: Get Initials
       responses:
