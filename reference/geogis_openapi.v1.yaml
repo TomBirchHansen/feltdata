@@ -1449,7 +1449,7 @@ paths:
         in: path
         required: true
         description: the ID of the list to return. "null" returns all lists
-  '/users/{userId}':
+  '/initials/{userId}':
     parameters:
       - schema:
           type: string
@@ -1459,9 +1459,7 @@ paths:
         required: true
         description: id of user
     get:
-      summary: Get User
-      tags:
-        - Intake
+      summary: Get Initials
       responses:
         '200':
           description: OK
@@ -1521,12 +1519,12 @@ paths:
           description: Unauthorized
         '404':
           description: Not Found
-      operationId: get-users-userId
+      operationId: get-initials-initialId
       x-stoplight:
         id: 4o08q9t7h94yv
       requestBody:
         content: {}
-      description: Get data on specific user
+      description: Get data on specific user-initial
 components:
   schemas:
     Project_Detailed:
@@ -2278,12 +2276,12 @@ components:
                 type: string
 tags:
   - name: CodeList
+  - name: Initials
   - name: Intake
   - name: Point
   - name: Project
   - name: Sample
   - name: Samplesite
-  - name: User
 security:
   - token:
       - openid
