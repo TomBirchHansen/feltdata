@@ -1453,6 +1453,7 @@ paths:
     parameters:
       - schema:
           type: string
+          format: uuid
         name: initialId
         in: path
         required: true
