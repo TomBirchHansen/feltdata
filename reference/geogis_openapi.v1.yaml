@@ -2170,6 +2170,7 @@ components:
           nullable: true
         value:
           type: number
+          nullable: true
           example: 0.23
           format: double
         unitC:
