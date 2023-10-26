@@ -1457,6 +1457,7 @@ paths:
         name: initialId
         in: path
         required: true
+        description: id of initial
     get:
       summary: Get Initials
       responses:
