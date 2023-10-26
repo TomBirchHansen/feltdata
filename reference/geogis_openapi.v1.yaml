@@ -2116,6 +2116,7 @@ components:
           example: benzen
         value:
           type: number
+          nullable: true
           example: 0.023
           format: double
         unitC:
