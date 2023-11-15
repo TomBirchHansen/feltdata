@@ -1525,6 +1525,8 @@ paths:
       requestBody:
         content: {}
       description: Get data on specific user-initial
+      tags:
+        - Initials
 components:
   schemas:
     Project_Detailed:
