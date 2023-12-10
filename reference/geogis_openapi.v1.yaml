@@ -1773,6 +1773,16 @@ components:
           type: number
           description: diameter of pipe
           nullable: true
+        createdD:
+          type: string
+          x-stoplight:
+            id: onvemyi425xkn
+          format: date-time
+        updatedD:
+          type: string
+          x-stoplight:
+            id: dkt206ozfnl6a
+          format: date-time
     Point:
       title: Point
       type: object
@@ -1853,6 +1863,16 @@ components:
         descriptionLocation:
           type: string
           description: a descripton of the points location
+        createdD:
+          type: string
+          x-stoplight:
+            id: gksc2h2149mo6
+          format: date-time
+        updatedD:
+          type: string
+          x-stoplight:
+            id: xsy6r6liy5e88
+          format: date-time
         well:
           type: object
           nullable: true
