@@ -1716,6 +1716,11 @@ components:
         allowRequisition:
           type: boolean
           description: calculated field representing if new requisitions can be made on the sample
+        isEditable:
+          type: boolean
+          x-stoplight:
+            id: 1zf79nfig9m7v
+          description: is the sample editable? (if GeoGIS action='Godkendt' then no)
         Intake:
           $ref: '#/components/schemas/Intake'
         Point:
@@ -2239,6 +2244,37 @@ components:
         projectId:
           type: string
           format: uuid
+    Waterlevel:
+      title: Waterlevel
+      x-stoplight:
+        id: 3krq8mtjvggwr
+      x-tags:
+        - waterlevel
+      type: object
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: 09zmb59ug3feg
+          format: uuid
+        dateTime:
+          type: string
+          x-stoplight:
+            id: yyo7y6hwawvyv
+          format: date-time
+        reading:
+          type: number
+          x-stoplight:
+            id: irz04s4uj2k09
+          format: float
+          example: '4,23'
+        referenceLevel:
+          type: number
+          x-stoplight:
+            id: 3m4imone62tq3
+          format: float
+      required:
+        - id
   securitySchemes:
     token:
       type: oauth2
