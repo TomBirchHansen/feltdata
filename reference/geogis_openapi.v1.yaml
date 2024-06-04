@@ -2248,9 +2248,11 @@ components:
       title: Waterlevel
       x-stoplight:
         id: 3krq8mtjvggwr
-      x-tags:
-        - waterlevel
       type: object
+      x-tags:
+        - objects
+      required:
+        - id
       properties:
         id:
           type: string
@@ -2273,8 +2275,26 @@ components:
           x-stoplight:
             id: 3m4imone62tq3
           format: float
-      required:
-        - id
+        situationC:
+          type: string
+          x-stoplight:
+            id: xu1p7c1e9hl7t
+          nullable: true
+        situationT:
+          type: string
+          x-stoplight:
+            id: fpeal0xmy08xr
+          nullable: true
+        extremeC:
+          type: string
+          x-stoplight:
+            id: 8q4uf2d4dxvhl
+          nullable: true
+        extremeT:
+          type: string
+          x-stoplight:
+            id: 6f0l5f0ws7cxl
+          nullable: true
   securitySchemes:
     token:
       type: oauth2

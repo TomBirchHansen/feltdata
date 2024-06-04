@@ -21,6 +21,14 @@ For example:
  - parameterC
 
 
+##Analysissample
+
+The field AllowRequisition is to be used as an indicator if a requisition is allowed for the sample.
+The field is defined as the following in relation to the GeoGIS analysissample tabel:
+the value is true if alle of the following is true:
+- jupiterID is empty (sample as not been transfered to Jupiter)
+- The sample is not approved (action field)
+-‌‌ ‌ ‌T‌h‌e‌ ‌s‌a‌m‌p‌l‌e‌ ‌has a sampledate > currentdate-50 days
 
 
 
