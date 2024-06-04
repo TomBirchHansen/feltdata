@@ -28,7 +28,7 @@ The field is defined as the following in relation to the GeoGIS analysissample t
 the value is true if alle of the following is true:
 - jupiterID is empty (sample as not been transfered to Jupiter)
 - The sample is not approved (action field)
--‌‌ ‌ ‌T‌h‌e‌ ‌s‌a‌m‌p‌l‌e‌ ‌has a sampledate > currentdate-50 days
+- The sample hass a sampledate > currentdate-50 days
 
 
 
