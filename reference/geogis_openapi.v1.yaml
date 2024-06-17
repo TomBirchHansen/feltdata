@@ -2095,6 +2095,7 @@ components:
           type: string
           x-stoplight:
             id: hagymtqdm9jxx
+          nullable: true
         primaryLaboratoryId:
           type: string
           description: 'codelist:analysisLaboratoryC'
