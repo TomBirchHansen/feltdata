@@ -140,6 +140,7 @@ paths:
           description: GUID of projectid
         - schema:
             type: array
+            uniqueItems: false
           in: query
           name: DGU
           description: DGU number of borehole
