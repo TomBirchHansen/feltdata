@@ -9,6 +9,7 @@ info:
     email: tomhan@rm.dk
   license:
     name: none
+    url: "http://"
 servers:
   - url: 'http://localhost:3000'
     description: testsite
@@ -2314,7 +2315,7 @@ components:
           x-stoplight:
             id: irz04s4uj2k09
           format: float
-          example: '4,23'
+          example: 4.23
         referenceLevel:
           type: number
           x-stoplight:
@@ -2413,12 +2414,19 @@ components:
                 type: string
 tags:
   - name: CodeList
+    description: kodeliste
   - name: Initials
+    description: Initials
   - name: Intake
+    description: Intake
   - name: Point
+    description: Point
   - name: Project
+    description: Project
   - name: Sample
+    description: Sample
   - name: Samplesite
+    description: Samplesite
 security:
   - token:
       - openid
