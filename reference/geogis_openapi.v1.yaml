@@ -1754,12 +1754,23 @@ components:
           type: string
           x-stoplight:
             id: 6ok1m7ey8q3gc
+          format: date-time
           nullable: true
         updatedD:
           type: string
           x-stoplight:
             id: 5e1ud0pmvozib
           format: date-time
+          nullable: true
+        actionC:
+          type: string
+          x-stoplight:
+            id: tmi660tvz43hb
+          nullable: true
+        actionT:
+          type: string
+          x-stoplight:
+            id: j5lp080a0g4mo
           nullable: true
     Intake:
       title: Intake
