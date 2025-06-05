@@ -1561,6 +1561,10 @@ components:
       x-examples: {}
       x-tags:
         - objects
+      required:
+        - sampleSiteId
+        - sampleSiteLabel
+        - project
       properties:
         sampleSiteId:
           type: string
@@ -1634,10 +1638,18 @@ components:
             sampleId:
               type: string
               format: uuid
-      required:
-        - sampleSiteId
-        - sampleSiteLabel
-        - project
+        createdD:
+          type: string
+          x-stoplight:
+            id: 4wg0d7ic29hi5
+          format: date-time
+          nullable: true
+        updatedD:
+          type: string
+          x-stoplight:
+            id: e0eqber8cnxt7
+          format: date-time
+          nullable: true
     Sample:
       title: Sample
       type: object
@@ -1645,6 +1657,9 @@ components:
       x-examples: {}
       x-tags:
         - objects
+      required:
+        - sampleId
+        - matrixC
       properties:
         sampleId:
           type: string
@@ -1721,6 +1736,12 @@ components:
           x-stoplight:
             id: 1zf79nfig9m7v
           description: is the sample editable? (if GeoGIS action='Godkendt' then no)
+        PID:
+          type: number
+          x-stoplight:
+            id: 48zfyaf9pnpa7
+          description: max PID measurement value from sample
+          nullable: true
         Intake:
           $ref: '#/components/schemas/Intake'
         Point:
@@ -1729,9 +1750,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/fieldmeasurement'
-      required:
-        - sampleId
-        - matrixC
+        createdD:
+          type: string
+          x-stoplight:
+            id: 6ok1m7ey8q3gc
+          nullable: true
+        updatedD:
+          type: string
+          x-stoplight:
+            id: 5e1ud0pmvozib
+          format: date-time
+          nullable: true
     Intake:
       title: Intake
       type: object
@@ -1783,11 +1812,13 @@ components:
           x-stoplight:
             id: onvemyi425xkn
           format: date-time
+          nullable: true
         updatedD:
           type: string
           x-stoplight:
             id: dkt206ozfnl6a
           format: date-time
+          nullable: true
     Point:
       title: Point
       type: object
@@ -1873,11 +1904,13 @@ components:
           x-stoplight:
             id: gksc2h2149mo6
           format: date-time
+          nullable: true
         updatedD:
           type: string
           x-stoplight:
             id: xsy6r6liy5e88
           format: date-time
+          nullable: true
         well:
           type: object
           nullable: true
@@ -2295,6 +2328,18 @@ components:
           type: string
           x-stoplight:
             id: 6f0l5f0ws7cxl
+          nullable: true
+        createdD:
+          type: string
+          x-stoplight:
+            id: 2r8vwl4s08yux
+          format: date-time
+          nullable: true
+        updatedD:
+          type: string
+          x-stoplight:
+            id: 90ozg0447uev4
+          format: date-time
           nullable: true
   securitySchemes:
     token:
