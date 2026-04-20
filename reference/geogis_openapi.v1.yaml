@@ -1733,45 +1733,52 @@ paths:
                   type: string
                   x-stoplight:
                     id: 6omi5y473lzbp
+                  nullable: true
                 extremeC:
                   type: string
                   x-stoplight:
                     id: owc6vyqcurwta
+                  nullable: true
                 methodC:
                   type: string
                   x-stoplight:
                     id: potm2ux3211t3
+                  nullable: true
                 qualityC:
                   type: string
                   x-stoplight:
                     id: r1lb7m453xeeo
+                  nullable: true
                 phaseId:
                   type: string
                   x-stoplight:
                     id: 901maims7exjc
-                  format: uuid
+                  nullable: true
                 wBottom:
                   type: number
                   x-stoplight:
                     id: v2lu9ragb98jw
-                  format: float
+                  nullable: true
                 description:
                   type: string
                   x-stoplight:
                     id: yvrse1jpoecj3
+                  nullable: true
                 referenceLevel:
                   type: number
                   x-stoplight:
                     id: baqma8h9kox4i
-                  format: float
+                  nullable: true
                 souCompany:
                   type: string
                   x-stoplight:
                     id: cmpx3v3k8lzjo
+                  nullable: true
                 souInitials:
                   type: string
                   x-stoplight:
                     id: ek8lc4ofqzjxd
+                  nullable: true
         description: ''
     delete:
       summary: 'Waterlevel DELETE {valueId}'
