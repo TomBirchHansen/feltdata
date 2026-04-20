@@ -1555,6 +1555,12 @@ paths:
                       id: kaf69wjftyybn
                     items:
                       $ref: '#/components/schemas/Waterlevel'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
       operationId: get-waterlevel
       x-stoplight:
         id: s8ms5v01uakb3
@@ -1591,6 +1597,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Waterlevel'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
       operationId: put-waterlevel
       x-stoplight:
         id: 970qoar4maylk
@@ -1689,6 +1701,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Waterlevel'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
       operationId: get-waterlevel-valueId
       x-stoplight:
         id: 9484oy0gnswmq
@@ -1704,6 +1722,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Waterlevel'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
       operationId: patch-waterlevel-valueId
       x-stoplight:
         id: ijf1apejg9m1d
@@ -1787,6 +1811,8 @@ paths:
       responses:
         '200':
           description: OK
+        '400':
+          description: Bad Request
         '401':
           description: Unauthorized
         '403':
