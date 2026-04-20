@@ -2388,6 +2388,20 @@ components:
             id: u8byn6cimkggc
           format: float
           description: calculated waterlevel (pejlekote)
+        description:
+          type: string
+          x-stoplight:
+            id: vevlmypndegyq
+        souCompany:
+          type: string
+          x-stoplight:
+            id: bfuori8srn4mq
+          description: company name
+        souInitials:
+          type: string
+          x-stoplight:
+            id: dbmxcbz21w7an
+          description: initials of sampler
         createdD:
           type: string
           x-stoplight:
@@ -2400,6 +2414,11 @@ components:
             id: 90ozg0447uev4
           format: date-time
           nullable: true
+        isEditable:
+          type: boolean
+          x-stoplight:
+            id: 7cclb3rj71dtv
+          description: if jupiterguid or dataowner<>RE then false
   securitySchemes:
     token:
       type: oauth2
