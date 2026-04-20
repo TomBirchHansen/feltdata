@@ -1531,7 +1531,8 @@ paths:
   /waterlevel:
     get:
       summary: Waterlevel GET
-      tags: []
+      tags:
+        - waterlevel
       responses:
         '200':
           description: Shared Response
@@ -1548,7 +1549,7 @@ paths:
                     type: boolean
                     x-stoplight:
                       id: iu4k7xfzzyo67
-                  '':
+                  waterlevels:
                     type: array
                     x-stoplight:
                       id: kaf69wjftyybn
@@ -1578,6 +1579,140 @@ paths:
           in: query
           name: valueId
           description: guid of waterlevel id
+    put:
+      summary: Waterlevel PUT
+      tags:
+        - waterlevel
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Waterlevel'
+      operationId: put-waterlevel
+      x-stoplight:
+        id: 970qoar4maylk
+      description: create new waterlevel-measurement
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - intakeId
+              properties:
+                valueId:
+                  type: string
+                  x-stoplight:
+                    id: dunnvxtya5tbx
+                intakeId:
+                  type: string
+                  x-stoplight:
+                    id: ae0eaczs4dmlm
+                dateTime:
+                  type: string
+                  x-stoplight:
+                    id: t7q6jwxuifk92
+                  format: date-time
+                reading:
+                  type: number
+                  x-stoplight:
+                    id: cal3okyqixkef
+                  format: float
+                situationC:
+                  type: string
+                  x-stoplight:
+                    id: p73fzx6kv1tq0
+                  nullable: true
+                extremeC:
+                  type: string
+                  x-stoplight:
+                    id: q5kutsmo6kjzp
+                  nullable: true
+                methodC:
+                  type: string
+                  x-stoplight:
+                    id: g06oiszjtjepy
+                  nullable: true
+                qualityC:
+                  type: string
+                  x-stoplight:
+                    id: k9783ppajjoz0
+                  nullable: true
+                phaseId:
+                  type: string
+                  x-stoplight:
+                    id: nej1j5nuo1hst
+                  nullable: true
+                wBottom:
+                  type: number
+                  x-stoplight:
+                    id: hl4srjlqvk7me
+                  nullable: true
+                description:
+                  type: string
+                  x-stoplight:
+                    id: zwna80rez8qix
+                  nullable: true
+                referenceLevel:
+                  type: number
+                  x-stoplight:
+                    id: ra05atkxtr7kp
+                  nullable: true
+                souCompany:
+                  type: string
+                  x-stoplight:
+                    id: qx5idp6rpsd41
+                  nullable: true
+                souInitials:
+                  type: string
+                  x-stoplight:
+                    id: ursh9e415g65y
+                  nullable: true
+                '':
+                  type: string
+                  x-stoplight:
+                    id: yxz1k3yfgzypl
+  '/waterlevel/{valueId}':
+    parameters:
+      - schema:
+          type: string
+        name: valueId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: valueId
+        in: path
+        required: true
+    get:
+      summary: 'Waterlevel GET {valueId}'
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Waterlevel'
+      operationId: get-waterlevel-valueId
+      x-stoplight:
+        id: 9484oy0gnswmq
+    patch:
+      summary: 'Waterlevel PATCH {valueId}'
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Waterlevel'
+      operationId: patch-waterlevel-valueId
+      x-stoplight:
+        id: ijf1apejg9m1d
+      description: update waterlevel
 components:
   schemas:
     Project_Detailed:
