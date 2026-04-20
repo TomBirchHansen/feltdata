@@ -1528,6 +1528,56 @@ paths:
       description: Get data on specific user-initial
       tags:
         - Initials
+  /waterlevel:
+    get:
+      summary: Waterlevel GET
+      tags: []
+      responses:
+        '200':
+          description: Shared Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  recordsFound:
+                    type: integer
+                    x-stoplight:
+                      id: 5iwzjsj09p51j
+                  maxRecordsExceeded:
+                    type: boolean
+                    x-stoplight:
+                      id: iu4k7xfzzyo67
+                  '':
+                    type: array
+                    x-stoplight:
+                      id: kaf69wjftyybn
+                    items:
+                      $ref: '#/components/schemas/Waterlevel'
+      operationId: get-waterlevel
+      x-stoplight:
+        id: s8ms5v01uakb3
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: projectId
+          description: guid of project
+        - schema:
+            type: string
+          in: query
+          name: pointId
+          description: guid of point
+        - schema:
+            type: string
+          in: query
+          name: intakeId
+          description: guid of intake
+        - schema:
+            type: string
+          in: query
+          name: valueId
+          description: guid of waterlevel id
 components:
   schemas:
     Project_Detailed:
