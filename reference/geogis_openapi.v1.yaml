@@ -9,7 +9,7 @@ info:
     email: tomhan@rm.dk
   license:
     name: none
-    url: "http://"
+    url: 'http://'
 servers:
   - url: 'http://localhost:3000'
     description: testsite
@@ -2297,14 +2297,22 @@ components:
       type: object
       x-tags:
         - objects
+      description: Waterlevel measurements
       required:
         - id
+        - intakeId
       properties:
         id:
           type: string
           x-stoplight:
             id: 09zmb59ug3feg
           format: uuid
+        intakeId:
+          type: string
+          x-stoplight:
+            id: 1ks1ztp614y96
+          format: uuid
+          description: referencen to intake
         dateTime:
           type: string
           x-stoplight:
@@ -2316,11 +2324,7 @@ components:
             id: irz04s4uj2k09
           format: float
           example: 4.23
-        referenceLevel:
-          type: number
-          x-stoplight:
-            id: 3m4imone62tq3
-          format: float
+          description: pejling-måleværdi i meter
         situationC:
           type: string
           x-stoplight:
@@ -2341,6 +2345,49 @@ components:
           x-stoplight:
             id: 6f0l5f0ws7cxl
           nullable: true
+        methodC:
+          type: string
+          x-stoplight:
+            id: 6dwfwspoj7r1w
+          nullable: true
+        methodT:
+          type: string
+          x-stoplight:
+            id: 18oru5rm01mar
+          nullable: true
+        qualityC:
+          type: string
+          x-stoplight:
+            id: cfmgl0q88i6bz
+          nullable: true
+        qualityT:
+          type: string
+          x-stoplight:
+            id: sfxb1pk2u0nzy
+          nullable: true
+        phaseId:
+          type: string
+          x-stoplight:
+            id: 1tdh7m75ln6sk
+          nullable: true
+        wbottom:
+          type: number
+          x-stoplight:
+            id: dhixr6iip4fu1
+          format: float
+          description: bundpejling i m
+        referenceLevel:
+          type: number
+          x-stoplight:
+            id: 3m4imone62tq3
+          format: float
+          description: referencekote
+        wLevel:
+          type: number
+          x-stoplight:
+            id: u8byn6cimkggc
+          format: float
+          description: calculated waterlevel (pejlekote)
         createdD:
           type: string
           x-stoplight:
