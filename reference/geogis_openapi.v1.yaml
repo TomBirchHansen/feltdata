@@ -1579,6 +1579,7 @@ paths:
           in: query
           name: valueId
           description: guid of waterlevel id
+      description: get waterlevel
     put:
       summary: Waterlevel PUT
       tags:
@@ -1670,10 +1671,6 @@ paths:
                   x-stoplight:
                     id: ursh9e415g65y
                   nullable: true
-                '':
-                  type: string
-                  x-stoplight:
-                    id: yxz1k3yfgzypl
   '/waterlevel/{valueId}':
     parameters:
       - schema:
@@ -1681,14 +1678,10 @@ paths:
         name: valueId
         in: path
         required: true
-      - schema:
-          type: string
-        name: valueId
-        in: path
-        required: true
     get:
       summary: 'Waterlevel GET {valueId}'
-      tags: []
+      tags:
+        - waterlevel
       responses:
         '200':
           description: OK
@@ -1699,9 +1692,11 @@ paths:
       operationId: get-waterlevel-valueId
       x-stoplight:
         id: 9484oy0gnswmq
+      description: get waterlevel by Guid
     patch:
       summary: 'Waterlevel PATCH {valueId}'
-      tags: []
+      tags:
+        - waterlevel
       responses:
         '200':
           description: OK
@@ -1713,6 +1708,86 @@ paths:
       x-stoplight:
         id: ijf1apejg9m1d
       description: update waterlevel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                intakeId:
+                  type: string
+                  x-stoplight:
+                    id: fb10wd6k5hsta
+                  format: uuid
+                dateTime:
+                  type: string
+                  x-stoplight:
+                    id: fld93v7wonz04
+                  format: date-time
+                reading:
+                  type: number
+                  x-stoplight:
+                    id: z3ticxj80hfnz
+                  format: float
+                situationC:
+                  type: string
+                  x-stoplight:
+                    id: 6omi5y473lzbp
+                extremeC:
+                  type: string
+                  x-stoplight:
+                    id: owc6vyqcurwta
+                methodC:
+                  type: string
+                  x-stoplight:
+                    id: potm2ux3211t3
+                qualityC:
+                  type: string
+                  x-stoplight:
+                    id: r1lb7m453xeeo
+                phaseId:
+                  type: string
+                  x-stoplight:
+                    id: 901maims7exjc
+                  format: uuid
+                wBottom:
+                  type: number
+                  x-stoplight:
+                    id: v2lu9ragb98jw
+                  format: float
+                description:
+                  type: string
+                  x-stoplight:
+                    id: yvrse1jpoecj3
+                referenceLevel:
+                  type: number
+                  x-stoplight:
+                    id: baqma8h9kox4i
+                  format: float
+                souCompany:
+                  type: string
+                  x-stoplight:
+                    id: cmpx3v3k8lzjo
+                souInitials:
+                  type: string
+                  x-stoplight:
+                    id: ek8lc4ofqzjxd
+        description: ''
+    delete:
+      summary: 'Waterlevel DELETE {valueId}'
+      tags:
+        - waterlevel
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      operationId: delete-waterlevel-valueId
+      x-stoplight:
+        id: yyf9ut07ofj1x
+      description: delete waterlevel
 components:
   schemas:
     Project_Detailed:
