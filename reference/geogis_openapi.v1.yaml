@@ -1632,7 +1632,7 @@ paths:
                   type: number
                   x-stoplight:
                     id: cal3okyqixkef
-                  format: float
+                  nullable: true
                 situationC:
                   type: string
                   x-stoplight:
@@ -1752,7 +1752,7 @@ paths:
                   type: number
                   x-stoplight:
                     id: z3ticxj80hfnz
-                  format: float
+                  nullable: true
                 situationC:
                   type: string
                   x-stoplight:
