@@ -1520,7 +1520,7 @@ paths:
           description: Unauthorized
         '404':
           description: Not Found
-      operationId: get-initials-initialId
+      operationId: Initials_GetInitials
       x-stoplight:
         id: 4o08q9t7h94yv
       requestBody:
@@ -1559,7 +1559,7 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
-      operationId: get-waterlevel
+      operationId: Waterlevel_FindWaterlevel
       x-stoplight:
         id: s8ms5v01uakb3
       parameters:
@@ -1601,7 +1601,7 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
-      operationId: put-waterlevel
+      operationId: Waterlevel_PutWaterlevel
       x-stoplight:
         id: 970qoar4maylk
       description: create new waterlevel-measurement
@@ -1706,7 +1706,7 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
-      operationId: get-waterlevel-valueId
+      operationId: Waterlevel_GetWaterlevel
       x-stoplight:
         id: 9484oy0gnswmq
       description: get waterlevel by Guid
@@ -1727,7 +1727,7 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
-      operationId: patch-waterlevel-valueId
+      operationId: Waterlevel_PatchWaterlevel
       x-stoplight:
         id: ijf1apejg9m1d
       description: update waterlevel
@@ -1816,7 +1816,7 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
-      operationId: delete-waterlevel-valueId
+      operationId: Waterlevel_DeleteWaterlevel
       x-stoplight:
         id: yyf9ut07ofj1x
       description: delete waterlevel
