@@ -1531,8 +1531,6 @@ paths:
   /waterlevel:
     get:
       summary: Waterlevel GET
-      tags:
-        - waterlevel
       responses:
         '200':
           description: Shared Response
@@ -1586,10 +1584,10 @@ paths:
           name: valueId
           description: guid of waterlevel id
       description: get waterlevel
+      tags:
+        - Waterlevel
     put:
       summary: Waterlevel PUT
-      tags:
-        - waterlevel
       responses:
         '201':
           description: Created
@@ -1683,6 +1681,8 @@ paths:
                   x-stoplight:
                     id: ursh9e415g65y
                   nullable: true
+      tags:
+        - Waterlevel
   '/waterlevel/{valueId}':
     parameters:
       - schema:
@@ -1690,10 +1690,9 @@ paths:
         name: valueId
         in: path
         required: true
+        description: id of waterlevel
     get:
       summary: 'Waterlevel GET {valueId}'
-      tags:
-        - waterlevel
       responses:
         '200':
           description: OK
@@ -1711,10 +1710,10 @@ paths:
       x-stoplight:
         id: 9484oy0gnswmq
       description: get waterlevel by Guid
+      tags:
+        - Waterlevel
     patch:
       summary: 'Waterlevel PATCH {valueId}'
-      tags:
-        - waterlevel
       responses:
         '200':
           description: OK
@@ -1804,10 +1803,10 @@ paths:
                     id: ek8lc4ofqzjxd
                   nullable: true
         description: ''
+      tags:
+        - Waterlevel
     delete:
       summary: 'Waterlevel DELETE {valueId}'
-      tags:
-        - waterlevel
       responses:
         '200':
           description: OK
@@ -1821,6 +1820,8 @@ paths:
       x-stoplight:
         id: yyf9ut07ofj1x
       description: delete waterlevel
+      tags:
+        - Waterlevel
 components:
   schemas:
     Project_Detailed:
@@ -2773,19 +2774,13 @@ components:
                 type: string
 tags:
   - name: CodeList
-    description: kodeliste
   - name: Initials
-    description: Initials
   - name: Intake
-    description: Intake
   - name: Point
-    description: Point
   - name: Project
-    description: Project
   - name: Sample
-    description: Sample
   - name: Samplesite
-    description: Samplesite
+  - name: Waterlevel
 security:
   - token:
       - openid
