@@ -1617,10 +1617,12 @@ paths:
                   type: string
                   x-stoplight:
                     id: dunnvxtya5tbx
+                  format: uuid
                 intakeId:
                   type: string
                   x-stoplight:
                     id: ae0eaczs4dmlm
+                  format: uuid
                 dateTime:
                   type: string
                   x-stoplight:
