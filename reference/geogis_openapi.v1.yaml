@@ -1657,6 +1657,7 @@ paths:
                   type: string
                   x-stoplight:
                     id: nej1j5nuo1hst
+                  format: uuid
                   nullable: true
                 wBottom:
                   type: number
@@ -2665,6 +2666,7 @@ components:
           type: string
           x-stoplight:
             id: 1tdh7m75ln6sk
+          format: uuid
           nullable: true
         wbottom:
           type: number
