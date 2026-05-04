@@ -1565,25 +1565,23 @@ paths:
       parameters:
         - schema:
             type: string
+            format: uuid
           in: query
           name: projectId
           description: guid of project
         - schema:
             type: string
+            format: uuid
           in: query
           name: pointId
           description: guid of point
         - schema:
             type: string
+            format: uuid
           in: query
           name: intakeId
           description: guid of intake
-        - schema:
-            type: string
-          in: query
-          name: valueId
-          description: guid of waterlevel id
-      description: get waterlevel
+      description: get waterlevels by searching by parameters. Minimum 1 parameter must be provided.
       tags:
         - Waterlevel
     put:
@@ -1690,6 +1688,7 @@ paths:
     parameters:
       - schema:
           type: string
+          format: uuid
         name: valueId
         in: path
         required: true
