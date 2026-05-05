@@ -1621,12 +1621,12 @@ paths:
                   x-stoplight:
                     id: ae0eaczs4dmlm
                   format: uuid
-                dateTime:
+                date:
                   type: string
                   x-stoplight:
                     id: t7q6jwxuifk92
                   format: date-time
-                reading:
+                depth:
                   type: number
                   x-stoplight:
                     id: cal3okyqixkef
@@ -1744,12 +1744,12 @@ paths:
                   x-stoplight:
                     id: fb10wd6k5hsta
                   format: uuid
-                dateTime:
+                date:
                   type: string
                   x-stoplight:
                     id: fld93v7wonz04
                   format: date-time
-                reading:
+                depth:
                   type: number
                   x-stoplight:
                     id: z3ticxj80hfnz
@@ -2609,12 +2609,12 @@ components:
             id: 1ks1ztp614y96
           format: uuid
           description: referencen to intake
-        dateTime:
+        date:
           type: string
           x-stoplight:
             id: yyo7y6hwawvyv
           format: date-time
-        reading:
+        depth:
           type: number
           x-stoplight:
             id: irz04s4uj2k09
@@ -2679,7 +2679,7 @@ components:
             id: 3m4imone62tq3
           format: float
           description: referencekote
-        wLevel:
+        waterLevel:
           type: number
           x-stoplight:
             id: u8byn6cimkggc
