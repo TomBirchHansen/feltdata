@@ -2595,10 +2595,10 @@ components:
         - objects
       description: Waterlevel measurements
       required:
-        - id
+        - valueId
         - intakeId
       properties:
-        id:
+        valueId:
           type: string
           x-stoplight:
             id: 09zmb59ug3feg
