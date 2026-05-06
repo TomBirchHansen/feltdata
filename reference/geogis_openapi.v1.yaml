@@ -1615,7 +1615,7 @@ paths:
                   type: string
                   x-stoplight:
                     id: dunnvxtya5tbx
-                  format: uuid
+                  nullable: true
                 intakeId:
                   type: string
                   x-stoplight:
